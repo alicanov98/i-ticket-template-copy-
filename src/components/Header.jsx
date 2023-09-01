@@ -9,9 +9,6 @@ import logo2 from "../assets/images/logo-dark.svg";
 import MobileMenu from "../components/MobileMenu";
 import LoginModal from "../components/LoginModal";
 
-
-
-
 // Icons
 import {
   IoHeartOutline,
@@ -28,7 +25,6 @@ import { Search } from "./Search";
 
 const Header = () => {
   const path = useLocation();
-
 
   // DropDown
   const [openDropList, setOpenDrop] = useState(false);
@@ -60,10 +56,16 @@ const Header = () => {
         setHeaderClassName("header");
         setLogoSrc(logo);
       } else {
-        setHeaderClassName(
-          path.pathname === "/" ? "homeHeader header" : "header"
-        );
-        setLogoSrc(path.pathname === "/" ? logo2 : logo);
+        if (path.pathname === "/") {
+          setHeaderClassName("homeHeader header");
+          setLogoSrc(logo2);
+        } else if (path.pathname.startsWith("/CardDetails/")) {
+          setHeaderClassName("homeHeader header");
+          setLogoSrc(logo2);
+        } else {
+          setHeaderClassName("header");
+          setLogoSrc(logo);
+        }
       }
     };
 
@@ -74,7 +76,6 @@ const Header = () => {
       window.addEventListener("resize", handleResize);
     };
   }, [path.pathname]);
-
 
   return (
     <header className={headerClassName}>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Card = ({ image, price, name, date, location }) => {
   return (
     <div className="card">
-      <Link className="cardEvent" to="/">
+      <Link className="cardEvent" to="/CardDetails/:id">
         <div className="cardImg">
           <img className="imgUp" src={image} alt="" />
           {/* <img className="imgDown" src={cardImg} alt="" /> */}

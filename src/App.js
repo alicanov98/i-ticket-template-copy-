@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import AllEvnets from "./pages/AllEvnets";
+import CardDetails from "./pages/CardDetails";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-events" element={<AllEvnets/>}/>
+        <Route path="/CardDetails/:id" element={<CardDetails/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

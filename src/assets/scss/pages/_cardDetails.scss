@@ -1,0 +1,161 @@
+.cardHerro {
+    width: 100%;
+    max-width: 1420px;
+    min-height: 300px;
+    padding: 20px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0 52px 94px rgba(0, 0, 0, .3));
+
+    .barnerImg {
+        position: relative;
+        width: 100%;
+
+        img {
+            width: 100%;
+            vertical-align: middle;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+    }
+
+    &::before {
+        background: linear-gradient(0deg, rgba(0, 0, 0, .65), transparent);
+        border-radius: 20px;
+        bottom: 20px;
+        content: "";
+        left: 20px;
+        position: absolute;
+        right: 20px;
+        height: 32%;
+        z-index: 1;
+    }
+
+    .info {
+        position: absolute;
+        left: 0;
+        pointer-events: none;
+        right: 0;
+        padding: 76px 0;
+        bottom: 20px;
+        z-index: 2;
+
+        .container {
+            .btnsCard {
+                display: flex;
+
+                .priceBtn {
+                    font-size: 20.8px;
+                    line-height: 32px;
+                    padding: 16px 24px;
+                    background-color: #fd0;
+                    border-radius: 9999px;
+                    font-weight: 700;
+
+                    .cardBtn {
+                        display: inline-block;
+                        color: black;
+                    }
+                }
+
+                .icon {
+                    margin-left: 20px;
+                    border-width: 3px;
+                    height: 64px;
+                    width: 64px;
+                    border: 2px solid #fff;
+                    background-color: transparent;
+                    border-radius: 9999px;
+                    font-size: 27px;
+                    padding: 1.25rem;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    vertical-align: middle;
+                }
+
+            }
+        }
+    }
+}
+
+.cardDetails {
+    .container {
+        .eventChips {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+            margin-bottom: 44px;
+
+            a {
+                cursor: pointer;
+
+                .infoBlock {
+                    display: flex;
+                    align-items: center;
+                    border-radius: 24px;
+                    box-shadow: 0 32px 34px rgba(0, 0, 0, .046);
+                    padding: 8px;
+                    background-color: #fff;
+                    position: relative;
+                    z-index: 3;
+
+                    .blockIconfirst {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 80px;
+                        flex: 0 0 80px;
+                        height: 80px;
+                        border-radius: 9999px;
+                        color: rgba(255, 255, 255, 1);
+                        border-color: rgba(229, 231, 235, 1);
+                        z-index: 20;
+                        position: relative;
+                        
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                            vertical-align: middle;
+                        }
+                        .age{
+                            position: absolute;
+                            top: 38%;
+                            left: 38%;
+                            z-index: 21;
+                        }
+                    }
+
+                    .blockIconSecond {
+                        display: flex;
+                        width: 80px;
+                        flex: 0 0 80px;
+                        height: 80px;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 10;
+                        border-radius: 9999px;
+                        color: #fff;
+                        color: rgba(255, 255, 255, 1);
+                        margin-left: -48px;
+                    }
+
+                    .infoBlockTitle {
+                        margin-left: 4px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+
+                        .blockTitle {
+                            font-size: 18px;
+                            font-weight: 500;
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
