@@ -1,0 +1,32 @@
+@mixin filterController{
+    width: 100%;
+    cursor: text;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+    .dateInp{
+        &::placeholder{
+            text-align: center;
+        }
+    }
+    input {
+        background: #fff;
+        width: 100%;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        border: none;
+        border-radius: 30px;
+        box-shadow: 0 15px 38px rgba(0, 0, 0, .104);
+        padding: 20px 28px;
+           position: relative;
+
+        &::placeholder {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.2;
+            color: #bebebe;
+            text-align: left;
+        }
+
+    }
+}

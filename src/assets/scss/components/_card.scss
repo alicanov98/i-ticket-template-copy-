@@ -1,0 +1,154 @@
+.card {
+    height: 100%;
+
+    .cardEvent {
+        width: 100%;
+        display: inline-block;
+        position: relative;
+
+        .cardImg {
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            transition-delay: 0.15s;
+            transition-duration: 0.3s;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border: 1px solid #e0e0e0;
+                border-radius: 20px;
+                object-fit: cover;
+                vertical-align: middle;
+                max-height: 100%;
+                transition-delay: 0.15s;
+                transition-duration: 0.3s;
+            }
+
+            .cardBtn {
+                font-size: 20px;
+                line-height: 28px;
+                line-height: 24px;
+                padding: 16px 20px;
+                color: #000000;
+                border-radius: 9999px;
+                background-color: #fd0;
+                font-weight: 700;
+                position: relative;
+                left: 65%;
+                bottom: 20%;
+                z-index: 2;
+            }
+        }
+
+        .cardInfo {
+            transition-delay: 0.1s;
+            transition-duration: 0.3s;
+            padding: 44px 36px;
+            text-align: center;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            z-index: 1;
+            position: absolute;
+
+            &::before {
+                background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.5));
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                bottom: 0;
+                content: "";
+                left: 0;
+                opacity: 1;
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 1;
+            }
+
+            .eventName {
+                transition-delay: 0.1s;
+                transition-duration: 0.3s;
+                font-size: 10px;
+                font-weight: 700;
+                color: #000000;
+                opacity: 0;
+                max-width: 100%;
+                padding-top: 8px;
+                overflow: hidden;
+                white-space: nowrap; 
+                text-overflow: ellipsis;
+            }
+
+            .eventInfo {
+                position: absolute;
+                font-size: 20px;
+                line-height: 28px;
+                font-weight: 500;
+                cursor: pointer;
+                color: #f4f4f4;
+                display: flex;
+                top: 33px;
+                z-index: 5;
+
+                .separator {
+                    opacity: 0;
+                }
+
+                .venueName {
+                    display: none;
+                    opacity: 0;
+                    overflow: hidden;
+                    white-space: nowrap; 
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        &:hover {
+            .cardImg {
+                padding-bottom: 50px;
+            }
+
+            .cardInfo {
+                color: #646464;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                &:before {
+                    opacity: 0;
+                }
+
+                .eventName {
+                    padding-bottom: 5px;
+                    font-size: 20px;
+                    line-height: 21px;
+                    opacity: 1;
+                    overflow: visible;
+
+
+                }
+
+                .eventInfo {
+                    font-size: 14px;
+                    line-height: 16px;
+                    color: #777575;
+
+                    .separator {
+                        padding: 0 3px;
+                        opacity: 1;
+                    }
+
+                    .venueName {
+                        display: block;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

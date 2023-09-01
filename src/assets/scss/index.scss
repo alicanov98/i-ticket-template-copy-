@@ -1,0 +1,21 @@
+// Global styles
+@import "./base";
+@import "./mixin";
+
+// Components
+@import "./components/header";
+@import "./components/mobile-menu";
+@import "./components/search";
+@import "./components/login-modals/login-modal";
+@import "./components/login-modals/modals";
+@import "./components/login-modals/register-modal";
+@import "./components/login-modals/resetPassword";
+@import "./components/card";
+@import "./components/swipers/swiperEvents";
+@import "./components/swipers/swiperHomeHerro";
+@import "./components/swipers/swipersEvents";
+@import "./components/advertisingApp";
+@import "./components/swiperFilter";
+@import "./components/footer";
+// Pages
+@import "./pages/home";

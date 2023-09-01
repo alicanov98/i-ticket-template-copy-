@@ -1,0 +1,107 @@
+.advertisingApp {
+    position: relative;
+    .container {
+
+        .advertiCard {
+            width: 100%;
+            background-color: #fd0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+
+            .advertiContent {
+                width: 620px;
+                padding: 56px 96px;
+                position: relative;
+                z-index: 10;
+
+                .titleApp {
+                    font-size: 42px;
+                    margin-bottom: 20px;
+                    line-height: 1;
+                    font-weight: 700;
+                }
+
+                .text {
+                    margin-bottom: 52px;
+                }
+
+                .linksApp {
+                    background-color: black;
+                    display: inline-flex;
+                    border-radius: 16px;
+                    align-items: center;
+
+                    .linkApp {
+                        display: block;
+                        padding: 8px 20px;
+
+                        img {
+                            height: auto;
+                            max-width: 100%;
+                        }
+                    }
+
+                    .linkLine {
+                        border-right: 1px solid #ececec;
+                        display: block;
+                        height: 30px;
+                        opacity: .3;
+                        width: 0;
+                    }
+                }
+            }
+
+            .downloadInfo {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: block;
+                overflow: hidden;
+
+                .downloadText {
+                    animation-direction: alternate;
+                    animation-duration: 100s;
+                    animation-iteration-count: infinite;
+                    animation-name: ticker;
+                    animation-timing-function: linear;
+                    background-color: #000;
+                    color: #fff;
+                    font-size: 140px;
+                    font-weight: 700;
+                    height: 97px;
+                    left: 200px;
+                    line-height: 95px;
+                    pointer-events: none;
+                    position: absolute;
+                    top: 100%;
+                    transform: rotate(-23deg);
+                    transform-origin: 0 0;
+                    white-space: nowrap;
+                    z-index: 0;
+                }
+
+                @keyframes ticker {
+                    0% {
+                        transform: rotate(-23deg) translateX(0);
+                        visibility: visible
+                    }
+
+                    to {
+                        transform: rotate(-23deg) translateX(-50%)
+                    }
+                }
+            }
+            img {
+vertical-align: middle;
+position: relative;
+z-index: 13;
+            }
+        }
+
+
+    }
+}

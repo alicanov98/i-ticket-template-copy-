@@ -1,0 +1,212 @@
+.footer {
+    width: 100%;
+    margin-top: 64px;
+    padding-top: 12px;
+
+    .container {
+        .row {
+            max-width: 100%;
+            flex-wrap: wrap;
+            gap: 35px;
+
+            .footerCard {
+                max-width: 22.35%;
+                flex: 0 0 22.35%;
+
+                .footerLogo {
+                    display: inline-block;
+                    margin-bottom: 55px;
+                    width: 160px;
+
+                    img {
+                        max-width: 100%;
+                        object-fit: cover;
+                        vertical-align: middle;
+                    }
+                }
+
+                .footerCardCont {
+                    p {
+                        color: #646464;
+                        font-size: 18px;
+                    }
+
+                    .tel {
+                        font-size: 24px;
+                        color: #000000;
+                        padding-top: 8px;
+                        line-height: 32px;
+                        font-weight: 700;
+                    }
+                }
+
+                .footerCardTitle {
+                    font-size: 24px;
+                    line-height: 32px;
+                    padding-bottom: 20px;
+                    font-weight: 700;
+                }
+
+                .infoList {
+                    width: 100%;
+
+                    .infoItem {
+                        width: 100%;
+                        line-height: 26px;
+                        margin-bottom: 12px;
+
+                        a {
+                            display: inline-block;
+                            font-size: 18px;
+                            color: #646464;
+                        }
+                    }
+                }
+
+                .footerText {
+                    width: 100%;
+                    font-size: 18px;
+                    color: #646464;
+                }
+
+                img {
+                    max-width: 100%;
+                    object-fit: cover;
+                    vertical-align: middle;
+                    margin-top: 28px;
+                    width: 185px;
+                }
+            }
+        }
+
+        .footerBottom {
+            width: 100%;
+
+            .row {
+                justify-content: space-between;
+                align-items: center;
+
+                .copyRight {
+                    font-size: 18px;
+                    color: #646464;
+                }
+
+                .socialList {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    background-color: #fd0;
+                    height: 70px;
+
+                    .socialItem {
+                        height: 70px;
+                        padding: 16px;
+
+                        .social {
+                            width: 38px;
+                            display: inline-block;
+                            height: 38px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            .icon {
+                                color: #000000;
+                                font-size: 27px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer {
+        .container {
+            .row {
+                gap: 32px;
+
+                .footerCard {
+                    &:first-child {
+                        max-width: 100%;
+                        flex: 0 0 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 1px solid #d2d2d2;
+                        height: 67px;
+                    }
+
+                    max-width: 47%;
+                    flex: 0 0 47%;
+
+                    &:last-child {
+                        max-width: 100%;
+                        flex: 0 0 100%;
+                        display: flex;
+                        flex-direction: column;
+                        margin-bottom: 15px;
+                        // border-bottom: 1px solid #d2d2d2;
+                        height: 135px;
+                    }
+
+                    .footerLogo {
+                        margin: 0;
+                        width: 112px;
+
+                        img {
+                            margin: 0;
+                        }
+                    }
+
+                    .footerCardCont {
+                        p {
+                            font-size: 16px;
+                        }
+
+                        .tel {
+                            font-size: 18px;
+                        }
+                    }
+
+                    .footerCardTitle {
+                        font-size: 18px;
+                    }
+
+                    .infoList {
+                        .infoItem {
+                            a {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+
+                    .footerText {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .footerBottom {
+                width: 100%;
+                border-top: 1px solid #d2d2d2;
+
+                .row {
+                    justify-content: center;
+                    gap: 0;
+
+                    .copyRight {
+                        padding: 16px 20px;
+                        font-size: 16px;
+                    }
+
+                    .socialList {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

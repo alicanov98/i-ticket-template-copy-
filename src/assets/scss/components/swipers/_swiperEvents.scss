@@ -1,0 +1,46 @@
+.childrenEvents,.swiperNewEvents,.weekendEvenetsSwiper {
+    height: 612px;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 8px;
+    position: relative;
+    margin: 80px 0;
+
+    &:before {
+        background: linear-gradient(to bottom right, #fd0, #fd0 50%, transparent 0, transparent);
+        content: "";
+        left: 0;
+        padding-top: 505px;
+        position: absolute;
+        top: 0;
+        width: 1660px;
+    }
+
+    .container {
+        height: auto;
+    }
+
+    .row {
+        .cardBox {
+            width: 100%;
+
+            .mySwiper {
+                .slideCard {
+                    width: 471px;
+                    height: 100%;
+
+                    .card {
+                        width: 100%;
+                        height: 100%;
+
+                        .cardEvent {
+                            .cardImg {
+                                height: 415px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

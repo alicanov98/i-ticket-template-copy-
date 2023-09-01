@@ -1,0 +1,221 @@
+// .loginDialog {
+//   padding: 36px;
+// }
+// .registerDialog {
+//   padding: 20px;
+// }
+.overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 97;
+  left: 0px;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  background-color: rgba(55, 65, 81, 0.5);
+}
+
+.close {
+  width: 56px;
+  height: 56px;
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: 30px;
+  padding: 16px;
+  position: absolute;
+  top: -5px;
+  right: -50px;
+  cursor: pointer;
+
+  .icoClose {
+    color: #fff;
+  }
+}
+
+.modalDialog {
+  width: 440px;
+  position: relative;
+  z-index: 98;
+  padding: 36px;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border-radius: 12px;
+
+  .hat {
+    border-radius: 12px;
+    bottom: 0;
+    display: block;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+
+    &::after {
+      background-color: #fd0;
+      content: "";
+      height: 154px;
+      left: -98px;
+      position: absolute;
+      top: 88px;
+      transform: rotate(-40deg);
+      transform-origin: 0 0;
+      width: 100%;
+    }
+  }
+
+  .modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+
+    .modalTitle {
+      font-size: 30px;
+      line-height: 36px;
+      font-weight: 700;
+    }
+
+    // .regTitle {
+    //   font-size: 20px;
+    //   line-height: 28px;
+    //   font-weight: 700;
+    // }
+    .modalHeaderAddons {
+      display: flex;
+
+      .ico-btn {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        outline: none;
+        border: none;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      //   .socRegFb,
+      //   .socRegGoogle {
+      //     width: 30px;
+      //     height: 30px;
+      //   }
+      //   .socRegFb {
+      //     font-size: 16px;
+      //     background-color: #3b5a97;
+      //   }
+      //   .socRegGoogle {
+      //     font-size: 14px;
+      //     background-color: #db4d41;
+      //     margin-left: 16px;
+      //   }
+
+      .socialFb {
+        font-size: 25px;
+        background-color: #3b5a97;
+      }
+
+      .socialGoogle {
+        font-size: 18px;
+        background-color: #db4d41;
+        margin-left: 16px;
+      }
+    }
+  }
+
+  .modalBody {
+    form {
+      height: auto;
+
+      .formGroup {
+        margin-bottom: 20px;
+        position: relative;
+
+        input {
+          border-width: 1px;
+          font-size: 20px;
+          line-height: 28px;
+          outline: none;
+          border-radius: 8px;
+          padding: 16px 24px;
+          width: 100%;
+          opacity: 1;
+          background: #ffffff;
+          font-weight: 500;
+          border: 1px solid #d1d5db;
+
+          &::placeholder {
+            color: #6b6e72;
+          }
+
+          &:focus {
+            background-color: #d1d5db99;
+          }
+        }
+
+        // .regInp {
+        //   font-size: 20px;
+        //   &::placeholder {
+        //     font-size: 14px;
+        //   }
+        // }
+        .forgot {
+          position: absolute;
+          right: 15px;
+          top: 20px;
+          color: #bb7dfb;
+          font-size: 20px;
+          line-height: 28px;
+          font-weight: 500;
+          cursor: pointer;
+        }
+
+        .btn {
+          width: 100%;
+          padding: 16px 32px;
+          border-radius: 8px;
+          background-color: #fd0;
+          outline: none;
+          border: none;
+          font-size: 18px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .modalFooter {
+    text-align: center;
+
+    .footerText {
+      color: #646464;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 20px;
+    }
+
+    .modalRegister,
+    .signUp {
+      color: #bb7dfb;
+      font-size: 19px;
+      line-height: 26px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    // .signUp,.regFooterText{
+    //     font-size: 14px;
+    //     line-height: 20px;
+    //     font-weight: 500;
+    //     cursor: pointer;
+    // }
+  }
+}

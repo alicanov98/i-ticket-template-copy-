@@ -1,0 +1,51 @@
+.performancesEvents,.tourismEvents {
+    width: 100%;
+
+    .row {
+
+        .cardBox {
+            width: 100%;
+
+            .mySwiper {
+
+                .slideCard {
+                    width: 471px;
+                    height: auto;
+
+                    .card {
+                        width: 100%;
+                        height: 100%;
+
+                        .cardEvent {
+                            .cardImg {
+                                height: 415px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.popularEvents {
+    width: 100%;
+    margin-top:40px;
+.row {
+    .cardBox {
+        width: 100%;
+        height: auto;
+        .mySwiper {
+            .swiperSlide{
+                .card {
+                    .cardEvent {
+                        .cardImg {
+                            height: 512px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+}

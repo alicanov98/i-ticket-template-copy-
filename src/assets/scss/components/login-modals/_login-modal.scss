@@ -1,0 +1,26 @@
+.loginModal {
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+
+  .row {
+    justify-content: center;
+
+    .modal {
+      display: block;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
