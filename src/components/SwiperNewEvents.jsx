@@ -11,7 +11,7 @@ import axios from "axios";
 
 export const SwiperNewEvents = () => {
   const [event, setEvents] = useState([]);
-  console.log(event);
+
   useEffect(() => {
     eventData();
   }, []);
@@ -21,7 +21,7 @@ export const SwiperNewEvents = () => {
       .get(process.env.REACT_APP_ALL_EVENTS)
       .then((res) => {
         setEvents(res.data);
-        console.log(res.data);
+    
       })
       .catch((error) => {
         console.log(error);
@@ -42,14 +42,7 @@ export const SwiperNewEvents = () => {
       >
         {event.map((item) => (
           <SwiperSlide key={item.id} className="slideCard">
-            <Card
-              key={item.id}
-              image={`http://localhost:7000/${item.cardImg}`}
-              price={item.minimumPrice}
-              name={item.eventTitle}
-              date={item.eventDate}
-              location={item.eventLocation}
-            />
+           <Card data={item} />
           </SwiperSlide>
         ))}
       </Swiper>

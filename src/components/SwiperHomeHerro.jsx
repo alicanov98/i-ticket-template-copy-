@@ -15,29 +15,30 @@ export const SwiperHomeHerro = () => {
 const navigate=useNavigate()
 const [loading,setLoading]=useState(false)
 
-  console.log(loading);
   useEffect(() => {
+    const getSlide = async () => {
+      setLoading(true)
+      await axios
+        .get(process.env.REACT_APP_ALL_SLIDES)
+        .then((res) => {
+          setEventImg(res.data);
+          
+          setLoading(false)
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false)
+          navigate("/error")
+        });
+    };
     getSlide();
-  },[]);
+  },[navigate]);
 
-  const getSlide = async () => {
-    setLoading(true)
-    await axios
-      .get(process.env.REACT_APP_ALL_SLIDES)
-      .then((res) => {
-        setEventImg(res.data);
-        
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false)
-        navigate("/error")
-      });
-  };
+
 
   return (
     <div className="swiperHome">
+      {loading && <div>LOADING</div>}
       <div className="swiper-container">
         <Swiper
           spaceBetween={30}

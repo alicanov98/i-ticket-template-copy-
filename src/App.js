@@ -12,10 +12,12 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import AllEvnets from "./pages/AllEvnets";
 import CardDetails from "./pages/CardDetails";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -24,7 +26,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-    </>
+    </Provider>
   );
 };
 

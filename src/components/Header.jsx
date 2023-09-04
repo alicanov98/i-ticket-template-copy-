@@ -22,9 +22,15 @@ import { FaEllipsis, FaBars } from "react-icons/fa6";
 // Hooks
 import { useEffect, useState } from "react";
 import { Search } from "./Search";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/slices/cartSlice";
 
 const Header = () => {
   const path = useLocation();
+  const cart=useSelector((state)=>state.cartData.cart)
+  const dispatch=useDispatch()
+
+  console.log(cart);
 
   // DropDown
   const [openDropList, setOpenDrop] = useState(false);
@@ -153,7 +159,7 @@ const Header = () => {
           <IoHeartOutline className="heartIcon" />
           <IoSearch className="searchIcon" onClick={() => setSearch(!search)} />
           <div className="cart">
-            <IoCart className="icart" />
+            <IoCart className="icart" onClick={()=>dispatch(addToCart())}/>
             <span className="count">0</span>
           </div>
           <div className="personOut" onClick={() => setLoginModal(!loginModal)}>

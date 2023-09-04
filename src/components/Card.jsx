@@ -2,23 +2,28 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-export const Card = ({ image, price, name, date, location }) => {
+export const Card = ({ data }) => {
+ 
   return (
     <div className="card">
       <Link className="cardEvent" to="/CardDetails/:id">
         <div className="cardImg">
-          <img className="imgUp" src={image} alt="" />
+          <img
+            className="imgUp"
+            src={`http://localhost:7000/${data.cardImg}`}
+            alt=""
+          />
           {/* <img className="imgDown" src={cardImg} alt="" /> */}
           <span className="cardBtn">
-            <span className="price">{price} ₼</span>-dan
+            <span className="price">{data.minimumPrice} ₼</span>-dan
           </span>
         </div>
         <div className="cardInfo">
-          <h2 className="eventName">{name}</h2>
+          <h2 className="eventName">{data.eventTitle}</h2>
           <div className="eventInfo">
-            <p className="eventDate">{date}</p>
+            <p className="eventDate">{data.eventDate}</p>
             <p className="separator">•</p>
-            <p className="venueName">{location}</p>
+            <p className="venueName">{data.eventLocation}</p>
           </div>
         </div>
       </Link>

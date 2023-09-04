@@ -41,14 +41,7 @@ export const SwiperPopular = () => {
       >
         {events.map((item) => (
           <SwiperSlide key={item.id} className="swiperSlide">
-            <Card
-              key={item.id}
-              image={`http://localhost:7000/${item.cardImg}`}
-              price={item.minimumPrice}
-              name={item.eventTitle}
-              date={item.eventDate}
-              location={item.eventLocation}
-            />
+            <Card data={item} />
           </SwiperSlide>
         ))}
       </Swiper>
