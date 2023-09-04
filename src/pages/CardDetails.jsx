@@ -18,7 +18,22 @@ import fullscreenImg from "../assets/images/fullscreens.svg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  decrementCounter,
+  incrementCounter,
+  decrementCounter1,
+  incrementCounter1,
+  incrementCounter2,
+  decrementCounter2,
+} from "../redux/slices/counterSlice";
+
 const CardDetails = () => {
+  const count1 = useSelector((state) => state.counter.value);
+  const count2 = useSelector((state) => state.counter1.value);
+  const count3 = useSelector((state) => state.counter2.value);
+  const dispatch = useDispatch();
+
   return (
     <>
       <section className="cardHerro">
@@ -146,7 +161,9 @@ const CardDetails = () => {
                           <button
                             className="decrease counterBtn"
                             type="button"
-                            disabled
+                            onClick={() =>
+                              dispatch(decrementCounter("counter"))
+                            }
                           >
                             -
                           </button>
@@ -157,10 +174,16 @@ const CardDetails = () => {
                             readonly
                             min="1"
                             max="10"
-                            value="1"
+                            value={count1}
                             step="1"
                           />
-                          <button className="increase counterBtn" type="button">
+                          <button
+                            className="increase counterBtn"
+                            type="button"
+                            onClick={() =>
+                              dispatch(incrementCounter("counter"))
+                            }
+                          >
                             +
                           </button>
                         </div>
@@ -184,7 +207,9 @@ const CardDetails = () => {
                           <button
                             className="decrease counterBtn"
                             type="button"
-                            disabled
+                            onClick={() =>
+                              dispatch(decrementCounter1("counter1"))
+                            }
                           >
                             -
                           </button>
@@ -195,10 +220,16 @@ const CardDetails = () => {
                             readonly
                             min="1"
                             max="10"
-                            value="1"
+                            value={count2}
                             step="1"
                           />
-                          <button className="increase counterBtn" type="button">
+                          <button
+                            className="increase counterBtn"
+                            onClick={() =>
+                              dispatch(incrementCounter1("counter1"))
+                            }
+                            type="button"
+                          >
                             +
                           </button>
                         </div>
@@ -222,7 +253,9 @@ const CardDetails = () => {
                           <button
                             className="decrease counterBtn"
                             type="button"
-                            disabled
+                            onClick={() =>
+                              dispatch(decrementCounter2("counter2"))
+                            }
                           >
                             -
                           </button>
@@ -233,10 +266,16 @@ const CardDetails = () => {
                             readonly
                             min="1"
                             max="10"
-                            value="1"
+                            value={count3}
                             step="1"
                           />
-                          <button className="increase counterBtn" type="button">
+                          <button
+                            className="increase counterBtn"
+                            type="button"
+                            onClick={() =>
+                              dispatch(incrementCounter2("counter2"))
+                            }
+                          >
                             +
                           </button>
                         </div>

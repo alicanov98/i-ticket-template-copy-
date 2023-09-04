@@ -17,27 +17,31 @@ import {
   IoPersonOutline,
 } from "react-icons/io5";
 
+import cartIcon from "../assets/images/cart.svg";
 import { FaEllipsis, FaBars } from "react-icons/fa6";
 
 // Hooks
 import { useEffect, useState } from "react";
 import { Search } from "./Search";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../redux/slices/cartSlice";
+import {  useSelector } from "react-redux";
+// import { addToCart } from "../redux/slices/cartSlice";
+
+
+import { Cart } from "./Cart";
+
 
 const Header = () => {
   const path = useLocation();
-  const cart=useSelector((state)=>state.cartData.cart)
-  const dispatch=useDispatch()
-
-  console.log(cart);
+  // cart = useSelector((state) => state.cartData.cart);
+  // const dispatch = useDispatch();
+const count=useSelector((state)=>state.counter.value)
 
   // DropDown
   const [openDropList, setOpenDrop] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [search, setSearch] = useState(false);
-
+const [cart,setCart]=useState(false)
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
   };
@@ -158,9 +162,10 @@ const Header = () => {
         <div className="userArea">
           <IoHeartOutline className="heartIcon" />
           <IoSearch className="searchIcon" onClick={() => setSearch(!search)} />
-          <div className="cart">
-            <IoCart className="icart" onClick={()=>dispatch(addToCart())}/>
-            <span className="count">0</span>
+          <div className="carts">
+            <IoCart className="icart"  />
+            {/* onClick={() => dispatch(addToCart())} */}
+            <span className="count">{count}</span>
           </div>
           <div className="personOut" onClick={() => setLoginModal(!loginModal)}>
             <IoPersonOutline className="personOutLine" />
@@ -170,6 +175,13 @@ const Header = () => {
         <LoginModal open={loginModal} setOpen={setLoginModal} />
         <Search open={search} setOpen={setSearch} />
       </div>
+      <div className="cartBtnFixed">
+      <button className="cartBtn" onClick={()=>setCart(!cart)}>
+        <span className="cartBtnCount">{count}</span>
+        <img  className="cartIcon" src={cartIcon} alt="icon" />
+      </button>
+      </div>
+      <Cart open={cart} setOpen={setCart}/>
     </header>
   );
 };

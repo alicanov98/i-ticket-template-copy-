@@ -1,0 +1,241 @@
+.cart {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+
+    .cartContent {
+        position: absolute;
+        width: 40%;
+        height: 100%;
+        right: 0px;
+        z-index: 9999;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding-top: 20px;
+
+        .cartHeader {
+            position: relative;
+            margin: 16px 20px 20px;
+
+            .NumberOfTickets {
+                .numberOfTitle {
+                    img {
+                        width: 16px;
+                        height: 16px;
+                        margin-right: 7px;
+                    }
+
+                    margin-right: 6px;
+                    color: #6b7280;
+
+                }
+
+                .numberOf {
+                    color: #6b7280;
+
+                }
+            }
+
+            .close {
+                right: 0;
+                padding: 0;
+                height: 0;
+                top: -10px;
+
+                img {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+
+        .title {
+            padding: 0;
+            margin: 0 20px 12px;
+            font-size: 30px;
+        }
+
+        .ticketsList {
+            outline: none;
+            flex: 1 1 0%;
+            margin-left: 20px;
+            margin-right: 16px;
+
+
+            .cartsContent {
+
+                .cartTicketList {
+                    width: 100%;
+                    display: flex;
+                    margin-top: 32px;
+                    padding-bottom: 32px;
+                    flex-direction: row;
+
+                    .cartTicketItem {
+                        width: 100%;
+                        align-items: center;
+                        display: flex;
+
+
+                        .cartTicketImg {
+                            margin-right: 16px;
+
+                            img {
+                                width: 96px;
+                                height: 96px;
+                                object-fit: cover;
+                                border-radius: 8px;
+                            }
+                        }
+
+                        .cartTicketData {
+                            display: flex;
+                            flex-direction: column;
+                            text-align: start;
+
+                            .cartTicketStartDate {
+                                margin-bottom: 4px;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #6b7280;
+                            }
+
+                            .cartTicketTitle {
+                                font-size: 20px;
+                                font-weight: 500;
+                                line-height: 28px;
+                                margin-bottom: 4px;
+                            }
+                        }
+
+                        .cartTicketPrice {
+                            width: 100%;
+                            display: flex;
+                            flex: 1 1 0%;
+                            overflow: hidden;
+                            align-items: center;
+
+                            .cartPriceTicket {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 24px;
+                                font-weight: 500;
+                                line-height: 32px;
+                                padding: 12px;
+                                text-align: center;
+                                background-color: #fd0;
+                                border-radius: 12px;
+
+                                .person {
+                                    font-size: 14px;
+                                    display: block;
+                                    font-weight: 500;
+                                    line-height: 20px;
+                                    color: #6b7280;
+                                }
+                            }
+                        }
+
+                        .cartTicketItemRemove {
+                            border-radius: 9999px;
+                            height: 40px;
+                            margin-left: 20px;
+                            padding: 8px;
+                            width: 40px;
+                            background-color: #ff8787;
+
+                            .removeBtn {
+                                width: 100%;
+                                height: 100%;
+                                outline: none;
+                                border: none;
+                                background-color: transparent;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+
+                                img {
+                                    width: 16px;
+                                    height: 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .cartFooter {
+            border-top: 2px solid #cacfdb;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px;
+            padding-top: 24px;
+
+            .totalPriceCart {
+                display: flex;
+                justify-content: flex-end;
+
+                .cartTotalPrice {
+                    display: flex;
+                    flex-direction: row;
+                    width: 50%;
+                    font-weight: 700;
+                    text-align: end;
+
+                    .totalPriceTitle,
+                    .totalPrice {
+                        cursor: auto;
+                        width: 50%;
+                    }
+
+                }
+            }
+
+            .cartFooterContent {
+                display: flex;
+                justify-content: space-between;
+                cursor: pointer;
+
+                a {
+                    display: flex;
+                    gap: 8px;
+                    align-items: center;
+                    color: #6b7280;
+                    font-size: 14px;
+                    width: 50%;
+
+                    img {
+                        width: 10px;
+                        vertical-align: middle;
+                    }
+                }
+
+                .complete {
+                    border-radius: 12px;
+                    font-size: 18px;
+                    line-height: 24px;
+                    padding: 12px 0;
+                    width: 50%;
+                    background-color: #fd0;
+                    border: none;
+                    outline: none;
+                    padding: 16 24px;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+.active {
+    display: block;
+}
