@@ -40,9 +40,11 @@ export const SwiperNewEvents = () => {
         }}
         className="mySwiper "
       >
-        {event.map((item) => (
-          <SwiperSlide key={item.id} className="slideCard">
-           <Card data={item} />
+        {event
+        .filter((item)=>item.status==="yenilik")
+        .map((filterItem) => (
+          <SwiperSlide key={filterItem.id} className="slideCard">
+            <Card data={filterItem} />
           </SwiperSlide>
         ))}
       </Swiper>

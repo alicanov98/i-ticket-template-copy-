@@ -1,5 +1,5 @@
 // Router
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // Icons
 import { MdFavoriteBorder } from "react-icons/md";
@@ -17,38 +17,67 @@ import fullscreenImg from "../assets/images/fullscreens.svg";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { useEffect, useState } from "react";
+// axios
+import axios from "axios";
 
-import { useDispatch, useSelector } from "react-redux";
+// redux
 import {
-  decrementCounter,
-  incrementCounter,
-  decrementCounter1,
-  incrementCounter1,
-  incrementCounter2,
-  decrementCounter2,
-} from "../redux/slices/counterSlice";
+  addToCart,
+  cartTotal,
+  cartTotalPrice,
+  decrement,
+  increment,
+} from "../redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+//google-map
+import GoogleMapReact from "google-map-react";
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+const defaultProps = {
+  center: {
+    lat: 40.383702,
+    lng: 49.8096241,
+  },
+  zoom: 16,
+};
 
 const CardDetails = () => {
-  const count1 = useSelector((state) => state.counter.value);
-  const count2 = useSelector((state) => state.counter1.value);
-  const count3 = useSelector((state) => state.counter2.value);
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const [cardData, setCardData] = useState({});
+
+  useEffect(() => {
+    const getSingleData = async () => {
+      await axios
+        .get(`${process.env.REACT_APP_EVENT_DETAILS}/${id}`)
+        .then((res) => {
+          setCardData(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getSingleData();
+  }, [id]);
+
+  const count = useSelector((state) => state.cartData.counter);
+  let totalPrice = Number(cardData.minimumPrice) * count;
 
   return (
     <>
       <section className="cardHerro">
         <div className="barnerImg">
-          <img
-            src="https://cdn.iticket.az/event/cover/CNjngyfI3Q4huSOYTvFZ1vu9SnyRLLASrvpNDgvJ.jpg"
-            alt=""
-          />
+          <img src={`http://localhost:7000/${cardData.bannerImg}`} alt="" />
         </div>
         <div className="info">
           <div className="container">
             <div className="btnsCard">
               <Link href="#icalendar" className="priceBtn" to="/">
                 <span className="cardBtn">
-                  <span className="price">25 ₼</span>-dan
+                  <span className="price">{cardData.minimumPrice} ₼</span>-dan
                 </span>
               </Link>
               <button className="favoriteIcon icon">
@@ -124,19 +153,23 @@ const CardDetails = () => {
                 <div className="imapInfo">
                   <div className="ticketLocation infoItems">
                     <span className="value">
-                      Lahıc Tarix-Diyarşünaslıq Muzeyi (0+)
+                      {cardData.eventTitle} ({cardData.ageRestriction})
                     </span>
                     <span className="sessionLabel infoItems">
-                      Lahıc Tarix-Diyarşünaslıq Muzeyi
+                      {cardData.eventLocation}
                     </span>
                   </div>
                   <div className="ticketDate infoItems">
                     <span className="sessionLabel">Tarix</span>
-                    <span className="value">B. 3.09.2023 10:00 - 20:00</span>
+                    <span className="value">
+                      {cardData.eventDate} / {cardData.startTime} -{" "}
+                      {cardData.endTime}
+                    </span>
                   </div>
                   <div className="ticketPrice infoItems">
                     <span className="sessionLabel">Qiymət</span>
-                    <span className="value">2 - 3 ₼</span>
+
+                    <span className="value">{cardData.minimumPrice} ₼</span>
                   </div>
                 </div>
               </div>
@@ -147,13 +180,11 @@ const CardDetails = () => {
                   <div className="scrollContent">
                     <div className="helper">
                       <div className="variation">
-                        <span className="sector">
-                          Lahıc Tarix-Diyarşünaslıq Muzeyi
-                        </span>
+                        <span className="sector">{cardData.eventTitle}</span>
                         <div className="priceCategory">
-                          <span className="buyerType">Tələbə</span>
+                          <span className="buyerType">Qiymət</span>
                           <div className="price">
-                            <span>1 </span>
+                            <span>{totalPrice} </span>
                             <span>₼</span>
                           </div>
                         </div>
@@ -161,126 +192,38 @@ const CardDetails = () => {
                           <button
                             className="decrease counterBtn"
                             type="button"
-                            onClick={() =>
-                              dispatch(decrementCounter("counter"))
-                            }
+                            onClick={() => dispatch(decrement())}
                           >
                             -
                           </button>
                           <input
                             className="inpCounter"
                             type="text"
-                            autocomplete="off"
-                            readonly
+                            autoComplete="off"
+                            readOnly
                             min="1"
                             max="10"
-                            value={count1}
+                            value={count}
                             step="1"
                           />
                           <button
                             className="increase counterBtn"
                             type="button"
-                            onClick={() =>
-                              dispatch(incrementCounter("counter"))
-                            }
+                            onClick={() => dispatch(increment())}
                           >
                             +
                           </button>
                         </div>
                         <span className="available">Mövcuddur: 3000</span>
-                        <button className="add" type="button">
-                          Əlavə edin
-                        </button>
-                      </div>
-                      <div className="variation">
-                        <span className="sector">
-                          Lahıc Tarix-Diyarşünaslıq Muzeyi
-                        </span>
-                        <div className="priceCategory">
-                          <span className="buyerType">Xarici vətəndaşlar.</span>
-                          <div className="price">
-                            <span>3 </span>
-                            <span>₼</span>
-                          </div>
-                        </div>
-                        <div className="counter">
-                          <button
-                            className="decrease counterBtn"
-                            type="button"
-                            onClick={() =>
-                              dispatch(decrementCounter1("counter1"))
-                            }
-                          >
-                            -
-                          </button>
-                          <input
-                            className="inpCounter"
-                            type="text"
-                            autocomplete="off"
-                            readonly
-                            min="1"
-                            max="10"
-                            value={count2}
-                            step="1"
-                          />
-                          <button
-                            className="increase counterBtn"
-                            onClick={() =>
-                              dispatch(incrementCounter1("counter1"))
-                            }
-                            type="button"
-                          >
-                            +
-                          </button>
-                        </div>
-                        <span className="available">Mövcuddur: 3000</span>
-                        <button className="add" type="button">
-                          Əlavə edin
-                        </button>
-                      </div>
-                      <div className="variation">
-                        <span className="sector">
-                          Lahıc Tarix-Diyarşünaslıq Muzeyi
-                        </span>
-                        <div className="priceCategory">
-                          <span className="buyerType">Yerli vətəndaşlar.</span>
-                          <div className="price">
-                            <span>2 </span>
-                            <span>₼</span>
-                          </div>
-                        </div>
-                        <div className="counter">
-                          <button
-                            className="decrease counterBtn"
-                            type="button"
-                            onClick={() =>
-                              dispatch(decrementCounter2("counter2"))
-                            }
-                          >
-                            -
-                          </button>
-                          <input
-                            className="inpCounter"
-                            type="text"
-                            autocomplete="off"
-                            readonly
-                            min="1"
-                            max="10"
-                            value={count3}
-                            step="1"
-                          />
-                          <button
-                            className="increase counterBtn"
-                            type="button"
-                            onClick={() =>
-                              dispatch(incrementCounter2("counter2"))
-                            }
-                          >
-                            +
-                          </button>
-                        </div>
-                        <span className="available">Mövcuddur: 3000</span>
-                        <button className="add" type="button">
+                        <button
+                          className="add"
+                          type="button"
+                          onClick={() => {
+                            dispatch(addToCart(cardData));
+                            dispatch(cartTotal());
+                            dispatch(cartTotalPrice());
+                          }}
+                        >
                           Əlavə edin
                         </button>
                       </div>
@@ -310,26 +253,14 @@ const CardDetails = () => {
                 <TabPanel className="tabMain">
                   <div className="tabContent">
                     <div className="tabText">
-                      <p className="tabTxt">
-                        1985-ci ildə yaradılmış Lahıc Tarix-Diyarşünaslıq
-                        Muzeyinin fondunda 700-dən çox maddi-mədəniyyət nümunəsi
-                        mühafizə olunur. 5 zaldan ibarət ekspozisiyada Lahıcın
-                        orta əsrlər dövrünü xarakterizə edən maddi-mədəniyyət
-                        nümunələri nümayiş olunur. Məzmun və forma zənginliyinə
-                        görə seçilən bu eksponatlar arxeoloji, etnoqrafik,
-                        numizimatik, dekorativ-tətbiqi sənəti nümunələrindən
-                        ibarətdir. Muzeydə xüsusilə Lahıc ustalarının mürəkkəb
-                        və incə naxışlarla bəzədikləri misgərlik sənəti
-                        nümunələri, dəmirçilik sənətinə aid əmək alətləri və s.
-                        sərgilənir.
-                      </p>
+                      <p className="tabTxt">{cardData.eventInfo}</p>
                     </div>
                   </div>
                 </TabPanel>
                 <TabPanel className="tabMain">
                   <div className="tabContent">
                     <div className="tabText">
-                      <p className="tabTxt">0+</p>
+                      <p className="tabTxt">{cardData.ageRestriction}</p>
                     </div>
                   </div>
                 </TabPanel>
@@ -337,7 +268,7 @@ const CardDetails = () => {
             </div>
             <div className="eventDetailImg">
               <img
-                src="https://cdn.iticket.az/event/artist/aFpGxyIdcS4OmYTbVVdmCjbqbxSEb9GNGHNVx3Eg.png"
+                src={`http://localhost:7000/${cardData.infoImg}`}
                 alt=""
               />
             </div>
@@ -347,24 +278,30 @@ const CardDetails = () => {
             <h2 className="title">Məkan yeri</h2>
             <div className="locationInfo">
               <div className="locationMap">
-                <iframe
-                  src="https://maps.google.com/maps?q=40.8451988,48.3832192&z=16&output=embed"
-                  frameborder="0"
-                ></iframe>
+                <GoogleMapReact
+                  bootstrapURLKeys={{ key: "" }}
+                  defaultCenter={defaultProps.center}
+                  defaultZoom={defaultProps.zoom}
+                >
+                  <AnyReactComponent lat={40.383702} lng={49.8096241} />
+                </GoogleMapReact>
               </div>
               <div className="vanueCard">
                 <div className="vanueCardCont">
                   <div className="vanueCardTxt">
-                    <div className="venue-name">
+                    <h3 className="venueName">
+                       {cardData.eventLocation}
+                    </h3>
+                    <div className="venueLocation">
                       <Link to="https://iticket.az/venues/lahij-museum-of-local-history">
-                        Lahıc Tarix-Diyarşünaslıq Muzeyi
+                        {cardData.venuelocation}
                       </Link>
                     </div>
                     <div className="venue-address"></div>
                     <div className="venue-phones">
                       <span>Mobil</span>
-                      <Link to="tel:(+994 20) 287-75-79">
-                        (+994 20) 287-75-79
+                      <Link to={`tel:${cardData.mobil}`}>
+                      {cardData.mobil}
                       </Link>
                     </div>
                   </div>
@@ -375,7 +312,7 @@ const CardDetails = () => {
                   </div>
                 </div>
                 <img
-                  src="https://cdn.iticket.az/venue/icon/RpETSDGyZcwunN6rR03A4MHC5lrveO1C.png"
+                  src={`http://localhost:7000/${cardData.locationImg}`}
                   alt=""
                 />
               </div>

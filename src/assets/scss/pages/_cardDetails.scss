@@ -520,22 +520,28 @@
                     box-shadow: 0 32px 34px 0 rgba(0, 0, 0, .046);
                     display: flex;
                     gap: 40px;
-
+align-items: flex-end;
                     .vanueCardCont {
                         display: flex;
                         flex-direction: column;
                         padding: 16px 24px;
 
                         .vanueCardTxt {
-                            .venue-name {
+                            .venueName {
                                 margin-bottom: 8px;
-
-                                a {
                                     color: #000000;
                                     font-size: 24px;
                                     font-weight: 700;
                                     line-height: 34px;
-                                }
+                            }
+                            .venueLocation{
+                                margin-bottom: 8px;
+                               a{
+                                color: #6b7280;
+                                font-size: 20px;
+                                font-weight: 500;
+                                line-height: 34px;
+                               }
                             }
 
                             .venue-address {
@@ -585,6 +591,7 @@
 
                     img {
                         width: 250px;
+                        height: 230px;
                         object-fit: cover;
                         border-top-left-radius: 20px;
                         border-bottom-right-radius: 20px;

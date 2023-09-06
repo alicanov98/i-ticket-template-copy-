@@ -22,7 +22,6 @@ const [loading,setLoading]=useState(false)
         .get(process.env.REACT_APP_ALL_SLIDES)
         .then((res) => {
           setEventImg(res.data);
-          
           setLoading(false)
         })
         .catch((error) => {
@@ -38,7 +37,7 @@ const [loading,setLoading]=useState(false)
 
   return (
     <div className="swiperHome">
-      {loading && <div>LOADING</div>}
+      {loading && <div>LOADING...</div>}
       <div className="swiper-container">
         <Swiper
           spaceBetween={30}

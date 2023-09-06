@@ -1,0 +1,17 @@
+.container{
+    .cardBox{
+        display: grid;
+grid-template-columns: repeat(3,minmax(0,1fr));
+gap: 40px;
+    .card {
+        width: 377px;
+        height: auto;
+
+        .cardEvent {
+            .cardImg {
+                height: 415px;
+            }
+        }
+    }
+}
+    }

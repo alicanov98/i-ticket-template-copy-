@@ -23,43 +23,43 @@ import { FaEllipsis, FaBars } from "react-icons/fa6";
 // Hooks
 import { useEffect, useState } from "react";
 import { Search } from "./Search";
-import {  useSelector } from "react-redux";
+
 // import { addToCart } from "../redux/slices/cartSlice";
 
 
 import { Cart } from "./Cart";
+import { useSelector } from "react-redux";
 
 
 const Header = () => {
   const path = useLocation();
-  // cart = useSelector((state) => state.cartData.cart);
   // const dispatch = useDispatch();
-const count=useSelector((state)=>state.counter.value)
-
+  
+  
   // DropDown
   const [openDropList, setOpenDrop] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [search, setSearch] = useState(false);
-const [cart,setCart]=useState(false)
+  const [cart,setCart]=useState(false)
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
   };
-
+  
   let checkDropdown = openDropList ? "dropDown" : "active";
   const closeDropdown = () => {
     setOpenDrop(false);
   };
-
+  
   useEffect(() => {
     closeDropdown();
   }, [path.pathname]);
-
+  
   // Responsive Header Change
-
+  
   const [headerClassName, setHeaderClassName] = useState("header");
   const [logoSrc, setLogoSrc] = useState(logo);
-
+  
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 1255) {
@@ -69,7 +69,7 @@ const [cart,setCart]=useState(false)
         if (path.pathname === "/") {
           setHeaderClassName("homeHeader header");
           setLogoSrc(logo2);
-        } else if (path.pathname.startsWith("/CardDetails/")) {
+        } else if (path.pathname.startsWith("/card-details/")) {
           setHeaderClassName("homeHeader header");
           setLogoSrc(logo2);
         } else {
@@ -78,6 +78,7 @@ const [cart,setCart]=useState(false)
         }
       }
     };
+    
 
     handleResize();
 
@@ -87,6 +88,8 @@ const [cart,setCart]=useState(false)
     };
   }, [path.pathname]);
 
+      const carts = useSelector((state) => state.cartData.cart);
+    const cartCount = carts.reduce((total, item) => total + item.quantity, 0);
   return (
     <header className={headerClassName}>
       <div className="row">
@@ -165,7 +168,7 @@ const [cart,setCart]=useState(false)
           <div className="carts">
             <IoCart className="icart"  />
             {/* onClick={() => dispatch(addToCart())} */}
-            <span className="count">{count}</span>
+            <span className="count">{cartCount}</span>
           </div>
           <div className="personOut" onClick={() => setLoginModal(!loginModal)}>
             <IoPersonOutline className="personOutLine" />
@@ -177,7 +180,7 @@ const [cart,setCart]=useState(false)
       </div>
       <div className="cartBtnFixed">
       <button className="cartBtn" onClick={()=>setCart(!cart)}>
-        <span className="cartBtnCount">{count}</span>
+        <span className="cartBtnCount">{cartCount}</span>
         <img  className="cartIcon" src={cartIcon} alt="icon" />
       </button>
       </div>

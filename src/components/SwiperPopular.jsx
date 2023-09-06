@@ -39,11 +39,14 @@ export const SwiperPopular = () => {
         }}
         className="mySwiper"
       >
-        {events.map((item) => (
-          <SwiperSlide key={item.id} className="swiperSlide">
-            <Card data={item} />
-          </SwiperSlide>
-        ))}
+   {
+   events
+      .filter((item) => item.status === "populyar") 
+      .map((filteredItem) => (
+        <SwiperSlide key={filteredItem.id} className="swiperSlide">
+          <Card data={filteredItem} />
+        </SwiperSlide>
+      ))}
       </Swiper>
     </div>
   );
