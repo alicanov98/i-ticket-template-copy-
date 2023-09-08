@@ -16,6 +16,8 @@ export const SwiperNewEvents = () => {
     eventData();
   }, []);
 
+
+
   const eventData = async () => {
     await axios
       .get(process.env.REACT_APP_ALL_EVENTS)
@@ -27,6 +29,7 @@ export const SwiperNewEvents = () => {
         console.log(error);
       });
   };
+
   return (
     <div className="cardBox">
       <Swiper

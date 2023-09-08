@@ -14,6 +14,8 @@ import AllEvnets from "./pages/AllEvnets";
 import CardDetails from "./pages/CardDetails";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { FavoriEvenets } from "./pages/FavoriEvenets";
+import { Basket } from "./pages/Basket";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/all-events" element={<AllEvnets/>}/>
         <Route path="/card-details/:id" element={<CardDetails/>}/>
+        <Route path="/favorites" element={<FavoriEvenets/>}/>
+        <Route path="/basket" element={<Basket/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

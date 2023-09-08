@@ -21,12 +21,16 @@ export const SwiperEventsWeekend = () => {
         .get(process.env.REACT_APP_ALL_EVENTS)
         .then((res) => {
           setEvents(res.data);
-       
         })
         .catch((error) => {
           console.log(error);
         });
     };
+
+    
+
+
+
   return (
     <div className="cardBox">
     <Swiper

@@ -1,5 +1,8 @@
 import { VscChromeClose } from "react-icons/vsc";
 
+
+
+
 export const ResetPassword = ({ open, setOpen, setModal }) => {
   return (
     <div className="resetPasswordModal">
@@ -26,9 +29,10 @@ export const ResetPassword = ({ open, setOpen, setModal }) => {
               <h4 className="modalTitle">Şifrəni Sıfırla</h4>
             </div>
             <div className="modalBody">
-              <form>
+              <form >
                 <div className="formGroup">
-                  <input type="text" name="login" placeholder="E-poçt" />
+                {/* {errors.email && errorSwal(errors.email.message)} */}
+                  <input type="text" name="email" placeholder="E-poçt"  />
                 </div>
                 <div className="formGroup">
                   <button className="btn" type="submit">

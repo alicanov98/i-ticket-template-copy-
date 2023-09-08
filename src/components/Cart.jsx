@@ -109,10 +109,14 @@ export const Cart = ({ open, setOpen }) => {
             </div>
           </div>
           <div className="cartFooterContent">
-            <Link to="/">
+            <div className="removeCart">
+            <button >
               <img src={removeAll} alt="removeAll" /> Səbəti təmizlə
-            </Link>
-            <button className="complete">Səbət</button>
+            </button>
+            </div>
+            <div className="cartBtn">
+            <Link to="/basket"  className="complete">Səbət</Link>
+            </div>
           </div>
         </div>
       </div>

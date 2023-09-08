@@ -30,9 +30,11 @@
   color: #000000;
   position: relative;
 }
-.advertising{
+
+.advertising {
   margin: 80px 0;
 }
+
 .imapLoading {
   position: absolute;
   top: 0;
@@ -46,3 +48,17 @@
   display: none;
   border-radius: 20px;
 }
+
+.swalAlertError {
+  color: #fff;
+  cursor: pointer;
+  opacity: 1;
+  position: fixed;
+  top: 15px;
+  right: 25px;
+  font-size: 10px;
+  background: rgb(255, 66, 66);
+  border-radius: 90px;
+}
+
+

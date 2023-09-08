@@ -4,9 +4,59 @@ import { BiLogoFacebook } from "react-icons/bi";
 import RegisterModal from "./RegisterModal";
 import { ResetPassword } from "./ResetPassword";
 import { useState } from "react";
+import { object, string } from "yup";
+import { errorSwal } from "../utils/swal";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 
 const LoginModal = ({ open, setOpen }) => {
   const [modal, setModal] = useState("login");
+
+  const loginSchema = object({
+    email: string()
+      .trim("Email bos olmasin")
+      .matches(
+        /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
+        "Email formati yalnisdir"
+      ),
+    password: string()
+      .trim("Sifre bos olmasin")
+      .matches(/^(?=.*[a-z])(?=.*[A-Z]).{8,18}$/, "Sifrenin formati yalnisdir"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const submitForm = async (data) => {
+    const body ={
+      email: data.email,
+      password: data.password,
+    }
+
+    await axios
+    .post("http://localhost:7000/iticket-api/login", body)
+    .then((res) => {
+      localStorage.setItem("token", JSON.stringify(res.data.token));
+  
+
+      if (res.status === 200) {
+        setOpen(true);
+        setModal("login");
+        window.location.reload();
+      }
+    })
+    .catch((err) => {
+      if (err.response.status === 404) {
+        console.log("Istifadeci tapilmadi");
+      }
+    });
+  };
 
   return (
     <div className={`loginModal ${open && "active"}`}>
@@ -43,24 +93,28 @@ const LoginModal = ({ open, setOpen }) => {
                 </div>
               </div>
               <div className="modalBody">
-                <form>
+                <form onSubmit={handleSubmit(submitForm)}>
                   <div className="formGroup">
                     <input
-                      type="text"
-                      name="login"
+                      type="email"
+                      name="email"
                       placeholder="E-poçt və ya telefon nömrəsi"
+                      {...register("email")}
                     />
                   </div>
+                  {errors.password && errorSwal(errors.password.message)}
                   <div className="formGroup">
                     <input
                       type="password"
                       name="password"
                       placeholder="Şifrə"
+                      {...register("password")}
                     />
                     <p className="forgot" onClick={() => setModal("reset")}>
                       Unutmusunuz?
                     </p>
                   </div>
+                  {errors.email && errorSwal(errors.email.message)}
                   <div className="formGroup">
                     <button className="btn" type="submit">
                       Daxil ol

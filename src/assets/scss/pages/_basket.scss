@@ -1,0 +1,202 @@
+.basket {
+    width: 100%;
+
+    .container {
+        .orders {
+            width: 100%;
+            height: 610px;
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            box-shadow: 1px 8px 43px -27px rgba(0, 0, 0, 0.76);
+            border-radius: 20px;
+            background-color: #fff;
+            .eventTickets::-webkit-scrollbar {
+                background-color: transparent;
+              }
+            .eventTickets {
+                height: 100%;
+                height: 610px;
+                grid-column: span 3/span 3;
+                padding: 32px 40px;
+                padding-top: 0;
+                border-right: 1px solid #ececec;
+                overflow-y: scroll;
+                .title {
+                    font-weight: 400;
+                    padding: 20px 0;
+                }
+
+                .timer {
+                    margin-left: 0;
+                    margin-right: 0px;
+
+                    div {
+                        .timeOut {
+                            right: 0px;
+                        }
+                    }
+            
+                }
+
+                .delivery {
+
+                    .onlineDelivery {
+                        width: 250px;
+                        height: 104px;
+                        border: 4px solid #fd0;
+                        border-radius: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0 28px;
+
+                        img {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 36px;
+                            height: 36px;
+                            margin-right: 16px;
+                            // object-fit: cover;
+                        }
+                    }
+                }
+            }
+
+            .ticketsOrder {
+                padding: 28px 32px;
+
+                .ticketOrderTitle {
+                    display: flex;
+                    flex-direction: column;
+
+                    h2 {
+                        line-height: 28px;
+                        font-size: 18px;
+                        font-weight: 500;
+                        color: #6b7280;
+                        margin-bottom: 8px;
+                    }
+
+                    p {
+                        font-size: 20px;
+                        font-weight: 700;
+                        line-height: 28px;
+                        margin-bottom: 40px;
+                    }
+                }
+
+                .personInfoforOrder {
+                    line-height: 28px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    color: #6b7280;
+                    margin-bottom: 8px;
+                }
+
+                .orderForm {
+                    margin-bottom: 40px;
+                    input {
+                        border: 1px solid #e1e1e1;
+                        border-radius: 10px;
+                        padding: 0.75rem 1rem;
+                        width: 100%;
+                        outline: 2px solid transparent;
+                        outline-offset: 2px;
+                        margin-bottom: 8px;
+
+                        &::placeholder {
+                            color: #6b7280;
+                            font-size: 16px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+                .orderTotalPrice{
+                    display: flex;
+                    justify-content: space-between;
+                    .orderPrice{
+                        line-height: 28px;
+                        font-size: 18px;
+                        font-weight: 500;
+                        color: #6b7280;
+                        margin-bottom: 8px;
+                    }
+                }
+                .rule{
+                    display: flex;
+                    margin: 20px 0;
+                    // span{
+                    //     .checkBox{
+                    //         margin-right: 7px;
+                    //     }
+                    //     .ruleLabel{
+                    //         :before {
+                    //             content:''; 
+                    //             background-color: transparent;
+                    //             border: 2px solid #0079bf;
+                    //             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                    //             padding: 10px;
+                    //             display: inline-block;
+                    //             position: relative;
+                    //             vertical-align: middle;
+                    //             cursor: pointer;
+                    //             margin-right: 5px;
+                    //           }
+                    //     }
+                    //     .checkBox:checked + label:after {
+                    //         content: '';
+                    //         display: block;
+                    //         position: absolute;
+                    //         top: 2px;
+                    //         left: 9px;
+                    //         width: 6px;
+                    //         height: 14px;
+                    //         border: solid #0079bf;
+                    //         border-width: 0 2px 2px 0;
+                    //         transform: rotate(45deg);
+                    //       }
+                    // }
+                    .checkBox{
+                        display: none;
+                    }
+                    .form-group label {
+                        position: relative;
+                        cursor: pointer;
+                      }
+                    .form-group label:before {
+                        content:url(../../images/checkBox.svg);
+                        background-color: transparent;
+                        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                        width: 16px;
+                        height: 16px;
+                        display: inline-block;
+                        position: relative;
+                        vertical-align: middle;
+                        cursor: pointer;
+                        margin-right: 5px;
+                      }
+                      
+                      .form-group input:checked + label:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: 5px;
+                        left: 5.2px;
+                        width: 4px;
+                        height: 9px;
+                        border: solid #0079bf;
+                        border-width: 0 2px 2px 0;
+                        transform: rotate(45deg);
+                      }
+                }
+                .orderBtn{
+                    .complate{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

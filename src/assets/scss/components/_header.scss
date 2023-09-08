@@ -36,9 +36,18 @@
           }
         }
       }
-
       .userArea {
+       .searchIcon,.heartIcon{
         color: #fff;
+       }
+ .carts{
+  .icart {
+    color: #fff;
+  }
+  .count {
+    color: #fff;
+  }
+ }
       }
     }
   }
@@ -206,13 +215,13 @@
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      color: #bebebe;
       gap: 26px;
 
       .heartIcon,
       .searchIcon {
         font-size: 24px;
         cursor: pointer;
+        color: #bebebe;
       }
 
       .personOut {
@@ -238,11 +247,13 @@
         .icart {
           font-size: 27px;
           cursor: pointer;
+          color: #bebebe;
         }
 
         .count {
           font-size: 15px;
           font-weight: 700;
+          color: #bebebe;
         }
       }
     }

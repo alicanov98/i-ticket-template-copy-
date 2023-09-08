@@ -26,40 +26,40 @@ import { Search } from "./Search";
 
 // import { addToCart } from "../redux/slices/cartSlice";
 
-
 import { Cart } from "./Cart";
 import { useSelector } from "react-redux";
-
+import axios from "axios";
 
 const Header = () => {
   const path = useLocation();
   // const dispatch = useDispatch();
-  
-  
+
+  const [user, setUser] = useState(null);
+
   // DropDown
   const [openDropList, setOpenDrop] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [search, setSearch] = useState(false);
-  const [cart,setCart]=useState(false)
+  const [cart, setCart] = useState(false);
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
   };
-  
+
   let checkDropdown = openDropList ? "dropDown" : "active";
   const closeDropdown = () => {
     setOpenDrop(false);
   };
-  
+
   useEffect(() => {
     closeDropdown();
   }, [path.pathname]);
-  
+
   // Responsive Header Change
-  
+
   const [headerClassName, setHeaderClassName] = useState("header");
   const [logoSrc, setLogoSrc] = useState(logo);
-  
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 1255) {
@@ -78,7 +78,6 @@ const Header = () => {
         }
       }
     };
-    
 
     handleResize();
 
@@ -88,8 +87,29 @@ const Header = () => {
     };
   }, [path.pathname]);
 
-      const carts = useSelector((state) => state.cartData.cart);
-    const cartCount = carts.reduce((total, item) => total + item.quantity, 0);
+  const carts = useSelector((state) => state.cartData.cart);
+  const cartCount = carts.reduce((total, item) => total + item.quantity, 0);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      let token = JSON.parse(localStorage.getItem("token"));
+      if (token) {
+        const body = {
+          token,
+        };
+        await axios
+          .post("http://localhost:7000/iticket-api/check-login", body)
+          .then((res) => {
+            setUser(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    };
+    checkUser();
+  }, []);
+
   return (
     <header className={headerClassName}>
       <div className="row">
@@ -163,28 +183,33 @@ const Header = () => {
           </ul>
         </nav>
         <div className="userArea">
-          <IoHeartOutline className="heartIcon" />
+          <Link to="/favorites" className="favoIcon"> <IoHeartOutline className="heartIcon" /></Link>
           <IoSearch className="searchIcon" onClick={() => setSearch(!search)} />
-          <div className="carts">
-            <IoCart className="icart"  />
+          <Link className="carts" to="/basket" > 
+            <IoCart className="icart" />
             {/* onClick={() => dispatch(addToCart())} */}
             <span className="count">{cartCount}</span>
-          </div>
-          <div className="personOut" onClick={() => setLoginModal(!loginModal)}>
-            <IoPersonOutline className="personOutLine" />
-          </div>
+         </Link>
+          {!user && (
+            <div
+              className="personOut"
+              onClick={() => setLoginModal(!loginModal)}
+            >
+              <IoPersonOutline className="personOutLine" />
+            </div>
+          )}
         </div>
         <MobileMenu open={mobileMenu} setOpen={setMobileMenu} />
         <LoginModal open={loginModal} setOpen={setLoginModal} />
         <Search open={search} setOpen={setSearch} />
       </div>
       <div className="cartBtnFixed">
-      <button className="cartBtn" onClick={()=>setCart(!cart)}>
-        <span className="cartBtnCount">{cartCount}</span>
-        <img  className="cartIcon" src={cartIcon} alt="icon" />
-      </button>
+        <button className="cartBtn" onClick={() => setCart(!cart)}>
+          <span className="cartBtnCount">{cartCount}</span>
+          <img className="cartIcon" src={cartIcon} alt="icon" />
+        </button>
       </div>
-      <Cart open={cart} setOpen={setCart}/>
+      <Cart open={cart} setOpen={setCart} />
     </header>
   );
 };
