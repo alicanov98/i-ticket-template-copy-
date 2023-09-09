@@ -25,14 +25,13 @@ const AllEvnets = () => {
       };
       getSlide();
     },[navigate]);
-    console.log(eventCards)
   return (
     <div className="container">
       <EventsFilter/>
       {loading && <div>LOADING</div>}
       <div className="cardBox">
        {eventCards.map((item)=>
-        <Card data={item}/>
+        <Card data={item} key={item.id}/>
        )}
       
       </div>

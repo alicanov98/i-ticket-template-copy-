@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
+  favori:[],
   events: [],
   cartCount: 0,
   totalPrice: 0,
@@ -47,7 +48,15 @@ const cartSlice = createSlice({
       }
       state.counter = 0;
     },
-
+    adToFavori: (state, action) => {
+      const newFavoriCard = action.payload;
+      const existingFavoriCardIndex = state.favori.findIndex(
+        (favoriItem) => favoriItem.id === newFavoriCard.id
+      );
+      if (existingFavoriCardIndex === -1) {
+        state.favori.push(newFavoriCard);
+      }
+    },
     removeFromCart: (state, action) => {
       const cardId = action.payload;
       const updatedCart = state.cart.filter((item) => item.id !== cardId);
@@ -67,6 +76,7 @@ const cartSlice = createSlice({
     },
   },
 });
+
 export const {
   addToCart,
   removeFromCart,
@@ -74,6 +84,7 @@ export const {
   increment,
   decrement,
   cartTotalPrice,
+  adToFavori,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

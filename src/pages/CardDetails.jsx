@@ -24,6 +24,7 @@ import axios from "axios";
 // redux
 import {
   addToCart,
+  adToFavori,
   cartTotal,
   cartTotalPrice,
   decrement,
@@ -48,7 +49,11 @@ const CardDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [cardData, setCardData] = useState({});
+  const [activIcon, setActiveIcon] = useState(false);
 
+  let checkDropdown = activIcon ? "favoriteIcon icon" : "active icon";
+
+  
   useEffect(() => {
     const getSingleData = async () => {
       await axios
@@ -80,7 +85,13 @@ const CardDetails = () => {
                   <span className="price">{cardData.minimumPrice} ₼</span>-dan
                 </span>
               </Link>
-              <button className="favoriteIcon icon">
+              <button
+                className={checkDropdown}
+                onClick={() => {
+                  setActiveIcon((activIcon) => !activIcon);
+                  dispatch(adToFavori(cardData));
+                }}
+              >
                 <MdFavoriteBorder />
               </button>
               <button className="shareIcon icon">
@@ -267,10 +278,7 @@ const CardDetails = () => {
               </Tabs>
             </div>
             <div className="eventDetailImg">
-              <img
-                src={`http://localhost:7000/${cardData.infoImg}`}
-                alt=""
-              />
+              <img src={`http://localhost:7000/${cardData.infoImg}`} alt="" />
             </div>
           </div>
           <div className="venue-detail">
@@ -289,9 +297,7 @@ const CardDetails = () => {
               <div className="vanueCard">
                 <div className="vanueCardCont">
                   <div className="vanueCardTxt">
-                    <h3 className="venueName">
-                       {cardData.eventLocation}
-                    </h3>
+                    <h3 className="venueName">{cardData.eventLocation}</h3>
                     <div className="venueLocation">
                       <Link to="https://iticket.az/venues/lahij-museum-of-local-history">
                         {cardData.venuelocation}
@@ -300,9 +306,7 @@ const CardDetails = () => {
                     <div className="venue-address"></div>
                     <div className="venue-phones">
                       <span>Mobil</span>
-                      <Link to={`tel:${cardData.mobil}`}>
-                      {cardData.mobil}
-                      </Link>
+                      <Link to={`tel:${cardData.mobil}`}>{cardData.mobil}</Link>
                     </div>
                   </div>
                   <div className="venueBtn">

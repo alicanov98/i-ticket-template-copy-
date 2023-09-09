@@ -38,7 +38,7 @@ export const Cart = ({ open, setOpen }) => {
   const cart = useSelector((state) => state.cartData.cart);
   const cartCount =  cart.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cart.reduce((total, item) => total + item.minimumPrice * item.quantity, 0);
-
+// console.log(cart)
   return (
     <div className={`cart ${open && "active"}`}>
       <div className="overlay" onClick={() => setOpen(false)}></div>

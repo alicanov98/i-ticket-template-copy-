@@ -75,8 +75,13 @@
                     justify-content: center;
                     text-align: center;
                     vertical-align: middle;
-
                 }
+              
+                    .active{
+                        border: 2px solid #fd0;
+                        color: #fd0;
+                    }
+               
 
             }
         }
