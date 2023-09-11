@@ -294,3 +294,20 @@
         }
     }
 }
+
+
+@media(max-width:768px){
+    .cart{
+        .cartContent{
+            width: 60%;
+        }
+    }
+}
+
+@media(max-width:580px){
+    .cart{
+        .cartContent{
+            width: 100%;
+        }
+    }
+}

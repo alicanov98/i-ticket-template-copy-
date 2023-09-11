@@ -481,11 +481,11 @@
         }
 
         .personOut {
-          width: 35px;
-          height: 35px;
+          width: 25px;
+          height: 25px;
 
           .personOutLine {
-            font-size: 17px;
+            font-size: 15px;
           }
         }
 
@@ -508,6 +508,18 @@
     .row {
       .logo {
         flex: 0 0 20%;
+      }
+    }
+  }
+}
+
+@media(max-width:376px) {
+  .header {
+    .row {
+      .logo {
+        flex: 0 0 20% ;
+        min-width: 91px;
+        margin-left: 40px;
       }
     }
   }

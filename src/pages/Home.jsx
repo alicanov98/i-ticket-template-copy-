@@ -20,11 +20,10 @@ const Home = () => {
           <div className="container">
             <h2 className="title">Populyar tədbirlər</h2>
           </div>
-          <div className="row">
-            <SwiperPopular />
-          </div>
-        </section>
 
+            <SwiperPopular />
+        </section>
+{/* 
         <div className="advertising">
           <div className="container">
             <img
@@ -117,7 +116,7 @@ const Home = () => {
               <img src={mobilApp} alt="mobilApp" />
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );

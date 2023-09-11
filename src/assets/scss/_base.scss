@@ -30,6 +30,13 @@
   color: #000000;
   position: relative;
 }
+@media(max-width:1024px){
+  .title{
+
+    padding: 19px 0;
+    font-size: 22px;
+  }
+}
 
 .advertising {
   margin: 80px 0;

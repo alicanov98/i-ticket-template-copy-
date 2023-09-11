@@ -28,14 +28,35 @@ export const SwiperPopular = () => {
   };
 
   return (
-    <div className="cardBox">
       <Swiper
-        slidesPerView={3.2}
-        centeredSlides={true}
+
+       centeredSlides={true}
         initialSlide={2}
-        spaceBetween={30}
         pagination={{
           clickable: true,
+        }}
+        loop={true}
+        autoplay={{
+          delay: 1500,
+          disableOnInteraction: false,
+        }}
+        breakpoints={{
+          560: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3.2,
+            spaceBetween: 30,
+          },
+          1255:{
+            slidesPerView:3.5,
+            spaceBetween:30
+          }
         }}
         className="mySwiper"
       >
@@ -48,6 +69,5 @@ export const SwiperPopular = () => {
         </SwiperSlide>
       ))}
       </Swiper>
-    </div>
   );
 };
