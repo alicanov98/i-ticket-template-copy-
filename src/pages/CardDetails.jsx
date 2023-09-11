@@ -129,7 +129,7 @@ const CardDetails = () => {
                 </span>
                 <div className="infoBlockTitle">
                   <p className="blockTitle">Dil</p>
-                  <p className="blockTitle">Yaş məhdudiyyəti</p>
+                  <p className="blockTitle blockTitlend">Yaş məhdudiyyəti</p>
                 </div>
               </div>
             </Link>
@@ -166,7 +166,7 @@ const CardDetails = () => {
                     <span className="value">
                       {cardData.eventTitle} ({cardData.ageRestriction})
                     </span>
-                    <span className="sessionLabel infoItems">
+                    <span className="sessionLabel infoItems infoItemsLine">
                       {cardData.eventLocation}
                     </span>
                   </div>
@@ -180,7 +180,7 @@ const CardDetails = () => {
                   <div className="ticketPrice infoItems">
                     <span className="sessionLabel">Qiymət</span>
 
-                    <span className="value">{cardData.minimumPrice} ₼</span>
+                    <span className="value priceValue">{cardData.minimumPrice} ₼</span>
                   </div>
                 </div>
               </div>

@@ -76,15 +76,43 @@
                     text-align: center;
                     vertical-align: middle;
                 }
-              
-                    .active{
-                        border: 2px solid #fd0;
-                        color: #fd0;
-                    }
-               
+
+                .active {
+                    border: 2px solid #fd0;
+                    color: #fd0;
+                }
+
 
             }
         }
+    }
+}
+
+@media(max-width:1024px) {
+    .cardHerro {
+        padding: 0px;
+
+        .barnerImg {
+
+            img {
+                border-radius: 0px;
+            }
+        }
+
+        &::before {
+            display: none;
+
+        }
+
+        .info {
+            display: none;
+        }
+    }
+}
+
+@media(max-width:480px) {
+    .cardHerro {
+        min-height: 100%;
     }
 }
 
@@ -167,6 +195,66 @@
             }
         }
 
+        @media(max-width:1024px) {
+            .eventChips {
+                a {
+                    cursor: pointer;
+                    display: grid;
+                    grid-column: span 2/span 2;
+                }
+            }
+        }
+
+        @media(max-width:768px) {
+            .eventChips {
+                a {
+                    grid-column: span 4/span 4;
+                }
+            }
+        }
+
+        @media(max-width:480px) {
+            .eventChips {
+                a {
+                    .infoBlock {
+                        .blockIconfirst {
+                            width: 50px;
+                            flex: 0 0 50px;
+                        }
+
+                        .blockIconSecond {
+                            width: 50px;
+                            flex: 0 0 50px;
+                            margin-left: -25px;
+                        }
+
+                        .infoBlockTitle {
+                            margin-left: 10px;
+                            gap: 5px;
+
+                            .blockTitle {
+                                font-size: 14px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .infoBlock {
+                            .infoBlockTitle {
+                                .blockTitlend {
+                                    font-size: 11px;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
         .ticketInfos {
             padding-bottom: 56px;
 
@@ -236,6 +324,43 @@
                             width: 150px;
                         }
                     }
+
+                    @media(max-width:1024px) {
+                        .imapInfo {
+                            gap: 0px;
+                            flex-wrap: wrap;
+
+                            .infoItems {
+                                border: none;
+                            }
+
+                            .ticketLocation {
+                                flex: 0 0 100%;
+                            }
+
+                            .ticketDate {
+                                flex: 0 0 50%;
+                            }
+
+                            .ticketPrice {
+                                flex: 0 0 40%;
+                            }
+                        }
+                    }
+
+                    @media(max-width:768px) {
+                        .imapInfo {
+                            .ticketDate {
+                                flex: 0 0 100%;
+                            }
+
+                            .ticketPrice {
+                                flex: 0 0 100%;
+                            }
+
+
+                        }
+                    }
                 }
 
                 .map {
@@ -262,6 +387,7 @@
                         display: flex;
                         flex-direction: column;
                     }
+
                     .imapViews {
                         padding: 30px 0;
                         overflow: hidden;
@@ -402,206 +528,461 @@
                         }
                     }
                 }
+
+                @media(max-width:1024px) {
+                    .map {
+                        height: auto;
+                    }
+                }
             }
         }
+    }
 
-        .eventDetails {
-            display: grid;
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-            padding-top: 40px;
-            gap: 40px;
+    @media(max-width:480px) {
+        .container {
             width: 100%;
 
-            .eventInfoTab {
-                grid-column: span 7/span 7;
+            .ticketInfos {
+                .imapParent {
+                    .ticketMap {
+                        padding: 20px 25px 0 15px;
 
-                .tabs {
-                    width: 100%;
+                        .imapInfo {
+                            .infoItems {
+                                border-right: none;
+                                margin-bottom: 5px;
+                                padding: 0;
 
-                    .tabList {
-                        width: 100%;
-                        display: flex;
-                        gap: 20px;
-                        margin-bottom: 32px;
+                                &:last-child {
+                                    border-right: none;
+                                }
 
-                        .tab {
-                            width: 50%;
-                            background-color: #fff;
-                            flex-grow: 1;
-                            border-radius: 20px;
-                            border: 1px solid #f3f4f6;
+                                .value {
+                                    border-bottom: 1px solid #e5e7eb;
 
-                            a {
-                                display: block;
-                                font-size: 18px;
-                                font-weight: 700;
-                                line-height: 28px;
-                                padding: 20px;
-                                text-align: center;
-                                color: #000000;
+                                    &:nth-child(1) {
+                                        border-bottom: none;
+                                    }
+                                }
+
+                                .sessionLabel {
+                                    font-size: 16px;
+                                }
+
+                                .infoItemsLine {
+                                    border-bottom: 1px solid #e5e7eb;
+                                }
+
+                                .value {
+                                    font-size: 16px;
+                                }
+
+                                .priceValue {
+                                    border: none;
+                                }
                             }
-                        }
 
-                        .react-tabs__tab--selected {
-                            background-color: #fd0;
                         }
                     }
 
+                    .map {
+                        .imapViews {
+                            padding: 50px 0;
+                        }
 
+                        .imapFullscreen {
+                            .fullScreenBtn {
+                                width: 40px;
+                                height: 40px;
 
-                    .tabMain {
-                        display: none;
-
-                        .tabContent {
-                            height: 100%;
-                            border-radius: 20px;
-                            padding: 20px;
-                            display: flex;
-                            height: auto;
-
-                            .tabText {
-                                width: 100%;
-
-                                .tabTxt {
-                                    margin-bottom: 16px;
+                                img {
+                                    width: 25px;
+                                    height: 25px;
                                 }
                             }
                         }
                     }
 
-                    .react-tabs__tab-panel--selected {
-                        display: flex;
-                        flex-grow: 1;
-                        gap: 20px;
-                        overflow: hidden;
-                        border-radius: 20px;
-                        box-shadow: 0 32px 34px rgba(0, 0, 0, .046);
-                        height: 294px;
-                        display: block;
-                        border: 1px solid #f3f4f6;
-                    }
-                }
-            }
-
-            .eventDetailImg {
-                grid-column: span 5/span 5;
-
-                img {
-                    object-fit: cover;
-                    width: 100%;
                 }
             }
         }
+    }
+}
 
-        .venue-detail {
-            margin-bottom: 40px;
-            margin-top: 40px;
+.eventDetails {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    padding-top: 40px;
+    gap: 40px;
+    width: 100%;
 
-            hr {
-                color: #e5e7eb;
-                height: 0;
+    .eventInfoTab {
+        grid-column: span 7/span 7;
+
+        .tabs {
+            width: 100%;
+
+            .tabList {
+                width: 100%;
+                display: flex;
+                gap: 20px;
+                margin-bottom: 32px;
+
+                .tab {
+                    width: 50%;
+                    background-color: #fff;
+                    flex-grow: 1;
+                    border-radius: 20px;
+                    border: 1px solid #f3f4f6;
+
+                    a {
+                        display: block;
+                        font-size: 18px;
+                        font-weight: 700;
+                        line-height: 28px;
+                        padding: 20px;
+                        text-align: center;
+                        color: #000000;
+                    }
+                }
+
+                .react-tabs__tab--selected {
+                    background-color: #fd0;
+                }
             }
 
-            .locationInfo {
-                display: grid;
-                grid-template-columns: repeat(12, minmax(0, 1fr));
-                padding-top: 40px;
-                gap: 40px;
+
+
+            .tabMain {
+                display: none;
+
+                .tabContent {
+                    height: 100%;
+                    border-radius: 20px;
+                    padding: 20px;
+                    display: flex;
+                    height: auto;
+
+                    .tabText {
+                        width: 100%;
+
+                        .tabTxt {
+                            margin-bottom: 16px;
+                        }
+                    }
+                }
+            }
+
+            .react-tabs__tab-panel--selected {
+                display: flex;
+                flex-grow: 1;
+                gap: 20px;
+                overflow: hidden;
+                border-radius: 20px;
+                box-shadow: 0 32px 34px rgba(0, 0, 0, .046);
+                height: 294px;
+                display: block;
+                border: 1px solid #f3f4f6;
+            }
+        }
+    }
+
+    .eventDetailImg {
+        grid-column: span 5/span 5;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+}
+
+@media(max-width:1024px) {
+    .eventDetails {
+        .eventInfoTab {
+            grid-column: span 12/span 12;
+
+            .tabs {
                 width: 100%;
 
-                .locationMap {
-                    grid-column: span 7/span 7;
+                .tabList {
+                    width: 100%;
+                    display: flex;
+                    gap: 20px;
+                    margin-bottom: 32px;
 
-                    iframe {
-                        height: 100%;
+                    .tab {
+                        width: 50%;
+                        background-color: #fff;
+                        flex-grow: 1;
                         border-radius: 20px;
-                        width: 100%;
+                        border: 1px solid #f3f4f6;
+
+                        a {
+                            display: block;
+                            font-size: 18px;
+                            font-weight: 700;
+                            line-height: 28px;
+                            padding: 20px;
+                            text-align: center;
+                            color: #000000;
+                        }
+                    }
+
+                    .react-tabs__tab--selected {
+                        background-color: #fd0;
                     }
                 }
 
-                .vanueCard {
-                    grid-column: span 5/span 5;
-                    border-radius: 20px;
-                    box-shadow: 0 32px 34px 0 rgba(0, 0, 0, .046);
-                    display: flex;
-                    gap: 40px;
-align-items: flex-end;
-                    .vanueCardCont {
+
+
+
+
+
+            }
+        }
+
+        .eventDetailImg {
+            grid-column: span 12/span 12;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 200px;
+                margin: 20px 0;
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .eventDetails {
+        gap: 0;
+
+        .eventInfoTab {
+            .tabs {
+                .tabList {
+                    flex-wrap: wrap;
+
+                    .tab {
+                        flex: 0 0 100%;
+
+                    }
+                }
+
+                .tabMain {
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+.venue-detail {
+
+    width: 100%;
+
+    hr {
+        color: #e5e7eb;
+        height: 0;
+    }
+
+    .locationInfo {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 4fr));
+        padding-top: 40px;
+        gap: 40px;
+        width: 100%;
+
+        .locationMap {
+            grid-column: span 7/span 7;
+
+            iframe {
+                height: 100%;
+                border-radius: 20px;
+                width: 100%;
+            }
+        }
+
+        .vanueCard {
+            grid-column: span 5/span 5;
+            border-radius: 20px;
+            box-shadow: 0 32px 34px 0 rgba(0, 0, 0, .046);
+            display: flex;
+            gap: 40px;
+            align-items: flex-end;
+
+            .vanueCardCont {
+                display: flex;
+                flex-direction: column;
+                padding: 16px 24px;
+
+                .vanueCardTxt {
+                    .venueName {
+                        margin-bottom: 8px;
+                        color: #000000;
+                        font-size: 24px;
+                        font-weight: 700;
+                        line-height: 34px;
+                    }
+
+                    .venueLocation {
+                        margin-bottom: 8px;
+
+                        a {
+                            color: #6b7280;
+                            font-size: 20px;
+                            font-weight: 500;
+                            line-height: 34px;
+                        }
+                    }
+
+                    .venue-address {
+                        color: #6b7280;
+                        font-size: 20px;
+                        font-weight: 500;
+                        line-height: 28px;
+                        margin-bottom: 24px;
+                        width: 60%;
+                    }
+
+                    .venue-phones {
                         display: flex;
                         flex-direction: column;
-                        padding: 16px 24px;
 
-                        .vanueCardTxt {
-                            .venueName {
-                                margin-bottom: 8px;
-                                    color: #000000;
-                                    font-size: 24px;
-                                    font-weight: 700;
-                                    line-height: 34px;
-                            }
-                            .venueLocation{
-                                margin-bottom: 8px;
-                               a{
-                                color: #6b7280;
-                                font-size: 20px;
-                                font-weight: 500;
-                                line-height: 34px;
-                               }
-                            }
+                        span {
+                            color: #000000;
+                            font-size: 24px;
+                            font-weight: 500;
+                            line-height: 16px;
+                            margin-bottom: 14px;
 
-                            .venue-address {
-                                color: #6b7280;
-                                font-size: 20px;
-                                font-weight: 500;
-                                line-height: 28px;
-                                margin-bottom: 24px;
-                                width: 60%;
-                            }
-
-                            .venue-phones {
-                                display: flex;
-                                flex-direction: column;
-
-                                span {
-                                    color: #000000;
-                                    font-size: 24px;
-                                    font-weight: 500;
-                                    line-height: 16px;
-                                    margin-bottom: 14px;
-
-                                }
-
-                                a {
-                                    margin-bottom: 13px;
-                                    color: #6b7280;
-                                }
-                            }
                         }
 
-                        .venueBtn {
-                            background-color: #fd0;
-                            border-radius: 9999px;
-
-                            a {
-                                display: inline-block;
-                                font-size: 20px;
-                                font-weight: 700;
-                                line-height: 28px;
-                                padding: 16px 48px;
-                                color: #000000;
-                            }
+                        a {
+                            margin-bottom: 13px;
+                            color: #6b7280;
                         }
-                    }
-
-
-                    img {
-                        width: 250px;
-                        height: 230px;
-                        object-fit: cover;
-                        border-top-left-radius: 20px;
-                        border-bottom-right-radius: 20px;
                     }
                 }
+
+                .venueBtn {
+                    background-color: #fd0;
+                    border-radius: 9999px;
+
+                    a {
+                        display: inline-block;
+                        font-size: 20px;
+                        font-weight: 700;
+                        line-height: 28px;
+                        padding: 16px 48px;
+                        color: #000000;
+                    }
+                }
+            }
+
+
+
+            img {
+                width: 100%;
+                height: 230px;
+                overflow: hidden;
+                object-fit: cover;
+                border-top-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+        }
+
+        @media(max-width:480px) {
+            .vanueCard {
+                gap: 20px;
+
+                .vanueCardCont {
+
+                    padding: 20px 20px;
+
+                    .vanueCardTxt {
+                        .venueName {
+                            font-size: 20px;
+                            line-height: 30px;
+                        }
+
+                        .venueLocation {
+                            a {
+                                font-size: 16px;
+                                line-height: 24px;
+                            }
+                        }
+
+                        .venue-address {
+                            font-size: 16px;
+                            line-height: 23px;
+                            margin-bottom: 16px;
+                        }
+
+                        .venue-phones {
+                            span {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+
+                    .venueBtn {
+                        background-color: transparent;
+
+                        a {
+                            border-radius: 9999px;
+                            background-color: #fd0;
+                            font-size: 14px;
+                            line-height: 20px;
+                            padding: 16px 30px;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    @media(max-width:1024px) {
+        .locationInfo {
+            .locationMap {
+                grid-column: span 12/span 12;
+                height: 200px;
+            }
+
+            .vanueCard {
+                grid-column: span 12/span 12;
+            }
+        }
+    }
+
+    @media(max-width:480px) {
+        .locationInfo {
+            padding-top: 15px;
+
+            .locationMap {
+                grid-column: span 12/span 12;
+                height: 150px;
+            }
+
+            .vanueCard {
+                grid-column: span 12/span 12;
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .venue-detail {
+        .locationInfo {
+            gap: 0;
+        }
+
+        .locationInfo {
+            .vanueCard {
+                display: flex;
+                flex-direction: column;
             }
         }
     }
