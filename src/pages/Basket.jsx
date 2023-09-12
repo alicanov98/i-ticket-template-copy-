@@ -127,8 +127,9 @@ export const Basket = () => {
               <div className="rule">
                 <span class="form-group">
                   <input type="checkbox" id="checkbox" className="checkBox" />
-                  <label for="checkbox">Şərtləri və qaydaları</label>
-                  qəbul edirəm.
+                  <label for="checkbox">Şərtləri və qaydaları</label> 
+                  <br />
+                      qəbul edirəm.
                 </span>
               </div>
 

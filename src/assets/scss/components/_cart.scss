@@ -67,6 +67,12 @@
             overflow-y: scroll;
             cursor: pointer;
         }
+        @media(max-width:480px){
+            .ticketsList {
+                margin-left: 10px;
+                margin-right: 0px;
+            }
+        }
         .ticketsList::-webkit-scrollbar {
             background-color: transparent;
           }
@@ -294,17 +300,192 @@
         }
     }
 }
+// @media(max-width:768px){
+//     .cartTicketList{
+//         margin-top: 10px;
+//         padding: 10px 0;
+//         margin-right: 0;
+//         .cartTicketItem {
+//             margin-bottom: 10px;
+//             .cartTicketImg {
+//                 margin-right: 0px;
+    
+//                 img {
+//                     display: none;
+//                 }
+//             }
+    
+//             .cartTicketData {
 
+//                 .cartTicketStartDate {
+//                     font-size: 12px;
+//                     line-height: 20px;
 
+//                 }
+    
+//                 .cartTicketTitle {
+//                     font-size: 16px;
+//                     line-height: 20px;
+//                 }
+//             }
+    
+//             .cartTicketPrice {
+//                 .cartPriceTicket {
+//                     width: 45px;
+//                     flex-direction: row;
+//                     font-size: 16px;
+//                     line-height: 20px;
+//                     padding: 6px;
+//                 }
+//             }
+    
+//             .cartTicketItemRemove {
+//                 height: 30px;
+//                 margin-left: 5px;
+//                 padding: 8px;
+//                 width: 30px;
+//                 .removeBtn {
+
+//                     img {
+//                         width: 14px;
+//                         height: 14px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+@media(max-width:576px){
+    .cartTicketList{
+        margin-top: 10px;
+        padding: 10px 0;
+        .cartTicketItem {
+            margin-bottom: 10px;
+            .cartTicketImg {
+                margin-right:10px;
+                img {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    border-radius: 8px;
+                }
+
+            }
+    
+            .cartTicketData {
+
+                .cartTicketStartDate {
+                    font-size: 16px;
+                    line-height: 20px;
+
+                }
+    
+                .cartTicketTitle {
+                    font-size: 20px;
+                    line-height: 20px;
+                }
+            }
+    
+            .cartTicketPrice {
+                .cartPriceTicket {
+                    width: 60px;
+                    flex-direction: row;
+                    font-size: 20px;
+                    line-height: 30px;
+                    padding: 6px;
+                }
+            }
+    
+            .cartTicketItemRemove {
+                height: 35px;
+                margin-left: 5px;
+                padding: 8px;
+                width: 35px;
+                .removeBtn {
+
+                    img {
+                        width: 16px;
+                        height: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width:480px){
+    .cartTicketList{
+        .cartTicketItem {
+            .cartTicketImg {
+                margin-right: 0px;
+    
+                img {
+                    display: none;
+                }
+            }
+    
+            .cartTicketData {
+
+                .cartTicketStartDate {
+                    font-size: 12px;
+                }
+    
+                .cartTicketTitle {
+                    font-size: 16px;
+                }
+            }
+    
+            .cartTicketPrice {
+                .cartPriceTicket {
+                    width: 45px;
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+            }
+    
+            .cartTicketItemRemove {
+                height: 30px;
+                width: 30px;
+                .removeBtn {
+
+                    img {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width:1255px){
+    .cart{
+        .cartContent{
+            width: 50%;
+        }
+    }
+}
+@media(max-width:1024px){
+    .cart{
+        .cartContent{
+            width: 70%;
+        }
+    }
+}
 @media(max-width:768px){
     .cart{
         .cartContent{
-            width: 60%;
+            width: 85%;
         }
     }
 }
 
-@media(max-width:580px){
+@media(max-width:576px){
+    .cart{
+        .cartContent{
+            width: 95%;
+        }
+    }
+}
+@media(max-width:480px){
     .cart{
         .cartContent{
             width: 100%;
