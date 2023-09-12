@@ -71,6 +71,8 @@ const CardDetails = () => {
   const count = useSelector((state) => state.cartData.counter);
   let totalPrice = Number(cardData.minimumPrice) * count;
 
+
+  
   return (
     <>
       <section className="cardHerro">

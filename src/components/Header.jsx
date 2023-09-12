@@ -183,13 +183,16 @@ const Header = () => {
           </ul>
         </nav>
         <div className="userArea">
-          <Link to="/favorites" className="favoIcon"> <IoHeartOutline className="heartIcon" /></Link>
+          <Link to="/favorites" className="favoIcon">
+            {" "}
+            <IoHeartOutline className="heartIcon" />
+          </Link>
           <IoSearch className="searchIcon" onClick={() => setSearch(!search)} />
-          <Link className="carts" to="/basket" > 
+          <Link className="carts" to={carts.length!==0 ? "/basket" : "#"}>
             <IoCart className="icart" />
             {/* onClick={() => dispatch(addToCart())} */}
             <span className="count">{cartCount}</span>
-         </Link>
+          </Link>
           {!user && (
             <div
               className="personOut"
@@ -204,7 +207,16 @@ const Header = () => {
         <Search open={search} setOpen={setSearch} />
       </div>
       <div className="cartBtnFixed">
-        <button className="cartBtn" onClick={() => setCart(!cart)}>
+        <button
+          className="cartBtn"
+          onClick={() => {
+            if (carts.length === 0) {
+              setCart(false);
+            } else {
+              setCart(true);
+            }
+          }}
+        >
           <span className="cartBtnCount">{cartCount}</span>
           <img className="cartIcon" src={cartIcon} alt="icon" />
         </button>

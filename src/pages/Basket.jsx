@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useTimer } from "react-timer-hook";
 import { useDispatch, useSelector } from "react-redux";
 import removeImg from "../assets/images/remove.svg";
 import delivery from "../assets/images/delivery.svg";
@@ -10,27 +9,10 @@ import {
   cartTotalPrice,
 } from "../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
+import Timer from "../components/Timer";
 
-function MyTimer({ expiryTimestamp }) {
-  const { seconds, minutes } = useTimer({
-    expiryTimestamp,
-    onExpire: () => console.warn("onExpire called"),
-  });
-  return (
-    <div className="timer">
-      <div>
-        <div className="track"></div>
-        <span className="timeOut">
-          <span>{minutes}</span>:<span>{seconds}</span>
-        </span>
-      </div>
-    </div>
-  );
-}
 
 export const Basket = () => {
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 900);
 
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartData.cart);
@@ -57,7 +39,7 @@ export const Basket = () => {
           <div className="orders">
             <div className="eventTickets">
               <h4 className="title">Səbət</h4>
-              <MyTimer expiryTimestamp={time} />
+              <Timer />
               <ul className="cartTicketList">
                 {cart.map((item) => (
                   <li className="cartTicketItem" key={item.id}>
@@ -125,9 +107,9 @@ export const Basket = () => {
                 <span className="orderPrice">{totalPrice} ₼</span>
               </div>
               <div className="rule">
-                <span class="form-group">
+                <span className="form-group">
                   <input type="checkbox" id="checkbox" className="checkBox" />
-                  <label for="checkbox">Şərtləri və qaydaları</label> 
+                  <label htmlFor="checkbox">Şərtləri və qaydaları</label> 
                   <br />
                       qəbul edirəm.
                 </span>

@@ -2,12 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
-  favori:[],
+  favori: [],
   events: [],
   cartCount: 0,
   totalPrice: 0,
-  counter: 0,
+  counter: 1,
 };
+
+const checkSavedFavorite = () => {
+  const saved = JSON.parse(localStorage.getItem("favoriteList"));
+  if (saved !== null) {
+    initialState.favori = saved;
+  } else {
+    initialState.favori = [];
+  }
+};
+checkSavedFavorite()
 
 const cartSlice = createSlice({
   name: "cartData",
@@ -55,12 +65,18 @@ const cartSlice = createSlice({
       );
       if (existingFavoriCardIndex === -1) {
         state.favori.push(newFavoriCard);
+      }else{
+        // Silmek yazilmalidir
       }
+      localStorage.setItem("favoriteList", JSON.stringify(state.favori));
     },
     removeFromCart: (state, action) => {
       const cardId = action.payload;
       const updatedCart = state.cart.filter((item) => item.id !== cardId);
       state.cart = updatedCart;
+    },
+    allRemoveFromCart: (state, action) => {
+      state.cart = [];
     },
     cartTotal: (state, action) => {
       let count = state.cart.map((item) => item.quantitiy);
@@ -85,6 +101,7 @@ export const {
   decrement,
   cartTotalPrice,
   adToFavori,
+  allRemoveFromCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

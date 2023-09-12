@@ -2,43 +2,27 @@ import closeIcon from "../assets/images/close.svg";
 import evenodd from "../assets/images/evenodd.svg";
 import removeImg from "../assets/images/remove.svg";
 import removeAll from "../assets/images/removeAll.svg";
-import { useTimer } from "react-timer-hook";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-
-import { 
+import {
   removeFromCart,
   cartTotal,
   cartTotalPrice,
+  allRemoveFromCart,
 } from "../redux/slices/cartSlice";
 
-
-function MyTimer({ expiryTimestamp }) {
-  const { seconds, minutes } = useTimer({
-    expiryTimestamp,
-    onExpire: () => console.warn("onExpire called"),
-  });
-
-  return (
-    <div className="timer">
-      <div>
-        <div className="track"></div>
-        <span className="timeOut"><span>{minutes}</span>:<span>{seconds}</span></span>
-      </div>
-    </div>
-  );
-}
+import Timer from "./Timer";
 
 export const Cart = ({ open, setOpen }) => {
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 900);
-
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartData.cart);
-  const cartCount =  cart.reduce((total, item) => total + item.quantity, 0);
-  const totalPrice = cart.reduce((total, item) => total + item.minimumPrice * item.quantity, 0);
-// console.log(cart)
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.minimumPrice * item.quantity,
+    0
+  );
+
   return (
     <div className={`cart ${open && "active"}`}>
       <div className="overlay" onClick={() => setOpen(false)}></div>
@@ -57,7 +41,7 @@ export const Cart = ({ open, setOpen }) => {
           </button>
         </div>
         <div className="title">Səbət</div>
-        <MyTimer expiryTimestamp={time} />
+        <Timer setOpen={setOpen}/>
         <div className="ticketsList">
           <div className="cartsContent">
             <ul className="cartTicketList">
@@ -74,9 +58,7 @@ export const Cart = ({ open, setOpen }) => {
                       LTM / {item.eventDates} - {item.startTime}
                     </span>
                     <span className="cartTicketTitle">{item.eventTitle}</span>
-                    <span className="cartTicketName">
-                      {item.eventLocation}
-                    </span>
+                    <span className="cartTicketName">{item.eventLocation}</span>
                   </div>
                   <div className="cartTicketPrice">
                     <div className="cartPriceTicket">
@@ -97,7 +79,6 @@ export const Cart = ({ open, setOpen }) => {
                   </div>
                 </li>
               ))}
-
             </ul>
           </div>
         </div>
@@ -110,12 +91,14 @@ export const Cart = ({ open, setOpen }) => {
           </div>
           <div className="cartFooterContent">
             <div className="removeCart">
-            <button >
-              <img src={removeAll} alt="removeAll" /> Səbəti təmizlə
-            </button>
+              <button onClick={() => dispatch(allRemoveFromCart())}>
+                <img src={removeAll} alt="removeAll" /> Səbəti təmizlə
+              </button>
             </div>
             <div className="cartBtn">
-            <Link to="/basket"  className="complete">Səbət</Link>
+              <Link to="/basket" className="complete">
+                Səbət
+              </Link>
             </div>
           </div>
         </div>
