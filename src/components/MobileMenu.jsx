@@ -1,8 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import { AiOutlineSearch } from "react-icons/ai";
 import {VscChromeClose} from "react-icons/vsc"
+import { useEffect } from "react";
 const MobileMenu = ({ open, setOpen }) => {
+  const path=useLocation()
+  useEffect(()=>{
+   setOpen(false)
+  },[path.pathname,setOpen])
   return (
     <div className={`mobileMenu ${open && "active"}`}>
       <div className="overlay" onClick={() => setOpen(false)}></div>
