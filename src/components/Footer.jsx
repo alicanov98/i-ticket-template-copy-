@@ -1,4 +1,9 @@
 import React from "react";
+
+// I18n
+import { useTranslation } from "react-i18next";
+
+
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.svg"
 import pay from "../assets/images/cards.svg"
@@ -11,6 +16,9 @@ import {
 import { AiFillInstagram } from "react-icons/ai";
 
 const Footer = () => {
+
+const {t}=useTranslation()
+
   return (
     <footer className="footer">
       <div className="container">
@@ -20,32 +28,32 @@ const Footer = () => {
               <img src={logo} alt="" />
             </Link>
             <div className="footerCardCont">
-              <p>Dəstək xidməti</p>
+              <p>{t("support_service")}</p>
               <Link className="tel" to="tel:+994 12 424 24 24">
                 +994 12 424 24 24
               </Link>
             </div>
           </div>
           <div className="footerCard">
-            <h3 className="footerCardTitle">Məlumat</h3>
+            <h3 className="footerCardTitle">{t("information")}</h3>
             <ul className="infoList">
               <li className="infoItem">
-                <Link to="/">Ən çox verilən suallar</Link>
+                <Link to="/">{t("faq")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Dəstək</Link>
+                <Link to="/">{t("support")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Şərtlər və Qaydalar</Link>
+                <Link to="/">{t("terms_conditions")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Elektron bilet</Link>
+                <Link to="/">{t("e_ticket")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Biletin qaytarılması və dəyişdirilməsi</Link>
+                <Link to="/">{t("refund_or_change")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Məxfilik</Link>
+                <Link to="/">{t("pirvaciy_policy")}</Link>
               </li>
             </ul>
           </div>
@@ -53,27 +61,26 @@ const Footer = () => {
             <h3 className="footerCardTitle">iTicket</h3>
             <ul className="infoList">
               <li className="infoItem">
-                <Link to="/">Haqqımızda</Link>
+                <Link to="/">{t("about_us")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Məkanlar</Link>
+                <Link to="/">{t("venues")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Biletlərin Satış Məntəqələri</Link>
+                <Link to="/">{t("point_sales")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Qarabağ Dirçəliş Fondu</Link>
+                <Link to="/">{t("karabagh")}</Link>
               </li>
               <li className="infoItem">
-                <Link to="/">Əlaqə</Link>
+                <Link to="/">{t("contacts")}</Link>
               </li>
             </ul>
           </div>
           <div className="footerCard">
-            <h3 className="footerCardTitle">Təhlükəsizlik</h3>
+            <h3 className="footerCardTitle">{t("security")}</h3>
             <p className="footerText">
-              Bütün ödənişlər Visa, Visa Electron, Maestro və MasterCard-dan 3D
-              Secure ilə qorunur.
+              {t("protected")}
             </p>
             <img src={pay} alt="" />
           </div>
@@ -81,7 +88,7 @@ const Footer = () => {
         <div className="footerBottom">
           <div className="row">
             <p className="copyRight">
-              ITICKET®, «İTİCKET» MMC-nin qeydə alınmış əmtəə nişanıdır.
+               {t("trademark")}
             </p>
             <ul className="socialList">
               <li className="socialItem">

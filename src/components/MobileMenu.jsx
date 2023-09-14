@@ -1,13 +1,28 @@
+// Router
 import { Link, NavLink, useLocation } from "react-router-dom";
+
+// img
 import logo from "../assets/images/logo.svg";
+// Icons
 import { AiOutlineSearch } from "react-icons/ai";
 import {VscChromeClose} from "react-icons/vsc"
+
 import { useEffect } from "react";
+
+// i18n
+import { useTranslation } from "react-i18next";
+
+
 const MobileMenu = ({ open, setOpen }) => {
+
   const path=useLocation()
   useEffect(()=>{
    setOpen(false)
   },[path.pathname,setOpen])
+
+
+  const {i18n} =useTranslation()
+const {t}=useTranslation()
   return (
     <div className={`mobileMenu ${open && "active"}`}>
       <div className="overlay" onClick={() => setOpen(false)}></div>
@@ -23,8 +38,8 @@ const MobileMenu = ({ open, setOpen }) => {
               </Link>
             </div>
             <div className="lng">
-              <button className="btn">EN</button>
-              <button className="btn">RU</button>
+              <button className="btn" onClick={()=> i18n.changeLanguage("en")}>EN</button>
+              <button className="btn" onClick={()=>i18n.changeLanguage("az")}>AZ</button>
             </div>
           </div>
           <div className="menuSearch">
@@ -33,47 +48,47 @@ const MobileMenu = ({ open, setOpen }) => {
           </div>
             <nav className="navBarz">
               <ul className="navList">
-                <li className="navItem">
-                  <NavLink to="/allevent">Bütün tədbirlər</NavLink>
+              <li className="navItem">
+              <NavLink to="/all-events">{t("all_events")}</NavLink>
+            </li>
+            <li className="navItem">
+              <NavLink to="/c">{t("concert")}</NavLink>
+            </li>
+            <li className="navItem">
+              <NavLink to="/t">{t("theatre")}</NavLink>
+            </li>
+            <li className="navItem">
+              <NavLink to="/u">{t("kids")}</NavLink>
+            </li>
+            <li className="navItem">
+              <NavLink to="/h">{t("hayal_kahvesi")}</NavLink>
+            </li>
+            <li className="navItem">
+              <NavLink to="/sport">{t("sport")}</NavLink>
+            </li>
+            <li className="navItem">
+                  <NavLink to="/a">{t("baku_jazz_fest")}</NavLink>
                 </li>
                 <li className="navItem">
-                  <NavLink to="/c">Konsert</NavLink>
+                  <NavLink to="/b">{t("museum")}</NavLink>
                 </li>
                 <li className="navItem">
-                  <NavLink to="/t">Tamaşa</NavLink>
+                  <NavLink to="/f">{t("tourism")}</NavLink>
                 </li>
                 <li className="navItem">
-                  <NavLink to="/u">Uşaqlar</NavLink>
+                  <NavLink to="/g">{t("seminar")}</NavLink>
                 </li>
                 <li className="navItem">
-                  <NavLink to="/a"> Hayal Kahvesi</NavLink>
+                  <NavLink to="/x">{t("master_class")}</NavLink>
                 </li>
                 <li className="navItem">
-                  <NavLink to="/a"> İdman</NavLink>
+                  <NavLink to="/m">{t("other")}</NavLink>
                 </li>
                 <li className="navItem">
-                  <NavLink to="/a"> Baku Jazz Fest '23</NavLink>
+                  <NavLink to="/m">{t("products")}</NavLink>
                 </li>
                 <li className="navItem">
-                  <NavLink to="/b">Muzey</NavLink>
-                </li>
-                <li className="navItem">
-                  <NavLink to="/f">Turizm</NavLink>
-                </li>
-                <li className="navItem">
-                  <NavLink to="/g">Seminar</NavLink>
-                </li>
-                <li className="navItem">
-                  <NavLink to="/x">Master Klass</NavLink>
-                </li>
-                <li className="navItem">
-                  <NavLink to="/m">Digər</NavLink>
-                </li>
-                <li className="navItem">
-                  <NavLink to="/m">Məhsullar</NavLink>
-                </li>
-                <li className="navItem">
-                  <NavLink to="/m">360°/VR</NavLink>
+                  <NavLink to="/m">{t("vr")}</NavLink>
                 </li>
               </ul>
             </nav>

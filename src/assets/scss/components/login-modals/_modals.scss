@@ -193,12 +193,15 @@
   }
 
   .modalFooter {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 
     .footerText {
       color: #646464;
-      font-size: 20px;
-      font-weight: 500;
+      font-size: 19px;
+      font-weight: 400;
       line-height: 20px;
     }
 

@@ -1,12 +1,30 @@
+//? Icons 
 import { VscChromeClose } from "react-icons/vsc";
 import { BsGoogle } from "react-icons/bs";
 import { BiLogoFacebook } from "react-icons/bi";
+
+//? Form hook
 import { useForm } from "react-hook-form";
+
+//? Yup 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+//? axios
 import axios from "axios";
+
+//? alertswal2
 import { errorSwal } from "../utils/swal";
+
+//? i18n 
+import { useTranslation } from "react-i18next";
+
+//? ----------------------------------------------
 const RegisterModal = ({ open, setOpen, setModal }) => {
+
+  const {t}=useTranslation()
+
+  //! Form validation
   const registerSchema = yup.object({
     name: yup.string().trim().required("Ad Bos olmaz"),
     surname: yup.string().trim().required("Soyad Bos olmaz"),
@@ -33,6 +51,8 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
       resolver: yupResolver(registerSchema),
     });
 
+
+    //! Post form data 
   const formSubmit = async (data) => {
     const body = {
       name: data.name,
@@ -52,6 +72,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
       });
   };
 
+// !----------------------------------------------
   return (
     <div className="registerModal">
       <div
@@ -75,7 +96,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
               <VscChromeClose className="icoClose" />
             </button>
             <div className="modalHeader">
-              <h4 className="modalTitle">Qeydiyyat</h4>
+              <h4 className="modalTitle">{t("register")}</h4>
               <div className="modalHeaderAddons">
                 <button className="ico-btn  socialFb">
                   <BiLogoFacebook />
@@ -95,7 +116,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                 {errors.name && errorSwal(errors.name.message)}
                   <input
                     type="text"
-                    placeholder="Ad"
+                    placeholder={t("first_name")}
                     name="name"
                     {...register("name")}
                   />
@@ -103,19 +124,19 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                 <div className="formGroup">
                   <input
                     type="text"
-                    placeholder="Soyad"
+                    placeholder={t("last_name")}
                     name="surname"
                     {...register("surname")}
                   />
                 </div>
                 <div className="formGroup">
-                  <input type="text" placeholder="Mobil" />
+                  <input type="text" placeholder={t("mobile")} />
                 </div>
                 <div className="formGroup">
                   <input
                     type="email"
                     name="email"
-                    placeholder="E-poçt"
+                    placeholder={t("email")}
                     {...register("email")}
                   />
                 </div>
@@ -124,7 +145,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                     className="regInp"
                     type="password"
                     name="password"
-                    placeholder="Şifrə"
+                    placeholder={t("password")}
                     {...register("password")}
                   />
                 </div>
@@ -133,23 +154,23 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                     type="password"
                     className="regInp"
                     name="confirmPassword"
-                    placeholder="Şifrəni təsdiqləyin "
+                    placeholder={t("confirm_password")}
                     {...register("confirmPassword")}
                   />
                 </div>
                 <div className="formGroup">
                   <button className="btn" type="submit">
-                    Qeydiyyat
+                   {t("register")}
                   </button>
                 </div>
               </form>
             </div>
             <div className="modalFooter">
               <span className="footerText regFooterText">
-                Artıq qeydiyyatdan keçmisiniz?{" "}
+                {t("already_registered")}
               </span>
               <p className="signUp" onClick={() => setModal("login")}>
-                Daxil olun
+               {t("sgin_in")}
               </p>
             </div>
           </div>

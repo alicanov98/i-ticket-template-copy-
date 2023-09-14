@@ -4,10 +4,12 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 // Images
 import logo from "../assets/images/logo.svg";
 import logo2 from "../assets/images/logo-dark.svg";
+import cartIcon from "../assets/images/cart.svg";
 
 // Components
 import MobileMenu from "../components/MobileMenu";
 import LoginModal from "../components/LoginModal";
+import { Cart } from "./Cart";
 
 // Icons
 import {
@@ -16,19 +18,21 @@ import {
   IoCart,
   IoPersonOutline,
 } from "react-icons/io5";
-
-import cartIcon from "../assets/images/cart.svg";
 import { FaEllipsis, FaBars } from "react-icons/fa6";
+
 
 // Hooks
 import { useEffect, useState } from "react";
 import { Search } from "./Search";
 
+// Redux
 // import { addToCart } from "../redux/slices/cartSlice";
-
-import { Cart } from "./Cart";
 import { useSelector } from "react-redux";
+
+// Axios
 import axios from "axios";
+
+// i18n
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
@@ -155,7 +159,7 @@ const {t}=useTranslation()
                   <NavLink to="/a"> Hayal Kahvesi</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/a"> İdman</NavLink>
+                <NavLink to="/sport">{t("sport")}</NavLink>
                 </li>
                 <li className="dropDownItem">
                   <NavLink to="/a">{t("baku_jazz_fest")}</NavLink>
