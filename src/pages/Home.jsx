@@ -1,16 +1,24 @@
-import { Link } from "react-router-dom";
-import { SwiperChildrean } from "../components/SwiperChildrean";
+// import { Link } from "react-router-dom";
+// import { SwiperChildrean } from "../components/SwiperChildrean";
 import { SwiperHomeHerro } from "../components/SwiperHomeHerro";
-import { SwiperPerformances } from "../components/SwiperPerformances";
+// import { SwiperPerformances } from "../components/SwiperPerformances";
 import { SwiperPopular } from "../components/SwiperPopular";
-import { SwiperTourism } from "../components/SwiperTourism";
+// import { SwiperTourism } from "../components/SwiperTourism";
 // images
-import ios from "../assets/images/ios.png";
-import android from "../assets/images/android.png";
-import mobilApp from "../assets/images/app-05-2023.png";
-import { SwiperNewEvents } from "../components/SwiperNewEvents";
-import { SwiperEventsWeekend } from "../components/SwiperEventsWeekend";
+// import ios from "../assets/images/ios.png";
+// import android from "../assets/images/android.png";
+// import mobilApp from "../assets/images/app-05-2023.png";
+// import { SwiperNewEvents } from "../components/SwiperNewEvents";
+// import { SwiperEventsWeekend } from "../components/SwiperEventsWeekend";
+
+// I18next
+import { useTranslation } from "react-i18next";
+
+
 const Home = () => {
+
+  const {t}=useTranslation()
+ 
   return (
     <>
       <main>
@@ -18,7 +26,7 @@ const Home = () => {
 
         <section className="popularEvents">
           <div className="container">
-            <h2 className="title">Populyar tədbirlər</h2>
+            <h2 className="title">{t("populyar_events")}</h2>
           </div>
 
             <SwiperPopular />

@@ -29,6 +29,7 @@ import { Search } from "./Search";
 import { Cart } from "./Cart";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const path = useLocation();
@@ -110,6 +111,8 @@ const Header = () => {
     checkUser();
   }, []);
 
+const {i18n} =useTranslation()
+const {t}=useTranslation()
   return (
     <header className={headerClassName}>
       <div className="row">
@@ -123,27 +126,27 @@ const Header = () => {
         </div>
         <nav className="navBar">
           <div className="lng">
-            <button className="btn">EN</button>
-            <button className="btn">RU</button>
+            <button className="btn" onClick={()=> i18n.changeLanguage("en")}>EN</button>
+            <button className="btn" onClick={()=>i18n.changeLanguage("az")}>AZ</button>
           </div>
           <ul className="navList">
             <li className="navItem">
-              <NavLink to="/all-events">Bütün tədbirlər</NavLink>
+              <NavLink to="/all-events">{t("all_events")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/c">Konsert</NavLink>
+              <NavLink to="/c">{t("concert")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/t">Tamaşa</NavLink>
+              <NavLink to="/t">{t("theatre")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/u">Uşaqlar</NavLink>
+              <NavLink to="/u">{t("kids")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/h">Hayal Kahvesi</NavLink>
+              <NavLink to="/h">{t("hayal_kahvesi")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/sport">İdman</NavLink>
+              <NavLink to="/sport">{t("sport")}</NavLink>
             </li>
             <li className={checkDropdown}>
               <FaEllipsis onClick={openDropdown} className="dod" />
@@ -155,28 +158,28 @@ const Header = () => {
                   <NavLink to="/a"> İdman</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/a"> Baku Jazz Fest '23</NavLink>
+                  <NavLink to="/a">{t("baku_jazz_fest")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/b">Muzey</NavLink>
+                  <NavLink to="/b">{t("museum")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/f">Turizm</NavLink>
+                  <NavLink to="/f">{t("tourism")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/g">Seminar</NavLink>
+                  <NavLink to="/g">{t("seminar")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/x">Master Klass</NavLink>
+                  <NavLink to="/x">{t("master_class")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/m">Digər</NavLink>
+                  <NavLink to="/m">{t("other")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/m">Məhsullar</NavLink>
+                  <NavLink to="/m">{t("products")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/m">360°/VR</NavLink>
+                  <NavLink to="/m">{t("vr")}</NavLink>
                 </li>
               </ul>
             </li>
