@@ -77,9 +77,10 @@
                 align-items: center;
                 justify-content: flex-start;
                 font-size: 14px;
-                gap: 10px;
+                gap: 5px;
                 color: #e5e7eb;
-
+                white-space: nowrap;
+                text-overflow: ellipsis;
                 p,
                 span {
                     font-weight: 700;

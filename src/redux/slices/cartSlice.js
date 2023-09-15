@@ -66,7 +66,8 @@ const cartSlice = createSlice({
       if (existingFavoriCardIndex === -1) {
         state.favori.push(newFavoriCard);
       }else{
-        // Silmek yazilmalidir
+        const uptateFavori=state.favori.filter((item)=>item.id!==newFavoriCard.id)
+        state.favori=uptateFavori
       }
       localStorage.setItem("favoriteList", JSON.stringify(state.favori));
     },

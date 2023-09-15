@@ -1,18 +1,21 @@
-import React from "react";
+//? Router
 import { Link } from "react-router-dom";
 
+//? i18n 
+import { useTranslation } from "react-i18next";
+
 export const Card = ({ data }) => {
- 
+ const {t}=useTranslation()
   return (
     <Link to={`/card-details/${data.id}`} className="card">
     <div className="cardImg">
       <div className="image">
         <img
-          src={`http://localhost:7000/${data.cardImg}`}
+          src={`http://localhost:7000/${data?.cardImg}`}
           alt={data.eventTitle}
         />
         <span className="btn">
-          <span className="price">{data.minimumPrice} ₼</span>-dan
+          <span className="price">{data.minimumPrice} ₼</span>-{t("from")}
         </span>
       </div>
       <div className="eventInfo">

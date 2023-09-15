@@ -49,7 +49,7 @@ const Home = () => {
 
         <section className="tourismEvents">
           <div className="container">
-            <h2 className="title">Turizm</h2>
+            <h2 className="title">{t("tourism")}</h2>
           </div>
           <div className="row">
             <SwiperTourism />
@@ -69,7 +69,7 @@ const Home = () => {
 
         <section className="performancesEvents">
           <div className="container">
-            <h2 className="title">Tamaşalar</h2>
+            <h2 className="title">{t("theatre")}</h2>
           </div>
           <div className="row">
             <SwiperPerformances />
@@ -78,7 +78,7 @@ const Home = () => {
 
         <section className="childrenEvents">
           <div className="container">
-            <h2 className="title">Uşaqlar</h2>
+            <h2 className="title">{t("kids")}</h2>
           </div>
           <div className="row">
             <SwiperChildrean />
@@ -87,7 +87,7 @@ const Home = () => {
 
         <section className="weekendEvenetsSwiper">
           <div className="container">
-            <h2 className="title">Həftəsonları</h2>
+            <h2 className="title">{t("weekends")}</h2>
           </div>
           <div className="row">
             <SwiperEventsWeekend/>
@@ -96,7 +96,7 @@ const Home = () => {
 
         <section className="swiperNewEvents">
           <div className="container">
-            <h2 className="title">Yenilik</h2>
+            <h2 className="title">{t("what_new")}</h2>
           </div>
           <div className="row">
             <SwiperNewEvents />
@@ -107,12 +107,10 @@ const Home = () => {
           <div className="container">
             <div className="advertiCard">
               <div className="advertiContent">
-                <h2 className="titleApp">NÖVBƏTİ VİZUAL SƏYAHƏTİNİZİ TAPIN</h2>
+                <h2 className="titleApp">{t("visual_journey")}</h2>
                 <p className="text">
-                 
-                  iTicket.AZ tətbiqi bütün növ tədbirlərə (teatr, idman,
-                  konsertlər, sərgilər və s.) biletləri əldə etməyi asan və
-                  sürətli edir.
+                {t("application")}
+             
                 </p>
                 <div className="linksApp">
                   <Link className="linkApp">
@@ -126,7 +124,7 @@ const Home = () => {
               </div>
               <div className="downloadInfo">
                 <p className="downloadText">
-                  İNDİ YÜKLƏ İNDİ YÜKLƏ İNDİ YÜKLƏ İNDİ YÜKLƏ İNDİ YÜKLƏ{" "}
+                  {t("download_now")}
                 </p>
               </div>
               <img src={mobilApp} alt="mobilApp" />

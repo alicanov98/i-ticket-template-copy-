@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { MdFavoriteBorder } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
 
-// Images
+//? Images
 import venue from "../assets/images/venue.svg";
 import date from "../assets/images/date.svg";
 import local from "../assets/images/locale.svg";
@@ -15,13 +15,15 @@ import tickets from "../assets/images/tickets.svg";
 import info from "../assets/images/info.svg";
 import fullscreenImg from "../assets/images/fullscreens.svg";
 
+//? React tabs 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+
 import { useEffect, useState } from "react";
-// axios
+//? axios
 import axios from "axios";
 
-// redux
+//? redux
 import {
   addToCart,
   adToFavori,
@@ -32,7 +34,7 @@ import {
 } from "../redux/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-//google-map
+//?google-map
 import GoogleMapReact from "google-map-react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -46,14 +48,30 @@ const defaultProps = {
 };
 
 const CardDetails = () => {
+
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const [cardData, setCardData] = useState({});
   const [activIcon, setActiveIcon] = useState(false);
 
-  let checkDropdown = activIcon ? "favoriteIcon icon" : "active icon";
+  let checkDropdown = activIcon ? "active icon" : "favoriteIcon icon";
+  useEffect(() => {
+    const storedFavori = localStorage.getItem("activIcon");
+    if (storedFavori === "true") {
+      setActiveIcon(true);
+    }
+  }, []);
 
-  
+  const handleFavoriClick = () => {
+    if (activIcon) {
+      localStorage.setItem("activIcon", "false");
+    } else {
+      localStorage.setItem("activIcon", "true");
+    }
+    setActiveIcon(!activIcon);
+  };
+
   useEffect(() => {
     const getSingleData = async () => {
       await axios
@@ -71,8 +89,6 @@ const CardDetails = () => {
   const count = useSelector((state) => state.cartData.counter);
   let totalPrice = Number(cardData.minimumPrice) * count;
 
-
-  
   return (
     <>
       <section className="cardHerro">
@@ -90,7 +106,7 @@ const CardDetails = () => {
               <button
                 className={checkDropdown}
                 onClick={() => {
-                  setActiveIcon((activIcon) => !activIcon);
+                  handleFavoriClick()
                   dispatch(adToFavori(cardData));
                 }}
               >

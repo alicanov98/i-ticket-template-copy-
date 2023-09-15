@@ -45,5 +45,14 @@
   "already_registered":"Artıq qeydiyyatdan keçmisiniz?",
   "first_name":"Ad",
   "last_name":"Soyad",
-  "mobile":"Mobil"
+  "mobile":"Mobil",
+  "from":"dan",
+"what_new":"Yenilik",
+"weekends":"Həftəsonları",
+"visual_journey":"NÖVBƏTİ VİZUAL SƏYAHƏTİNİZİ TAPIN",
+"application":"iTicket.AZ tətbiqi bütün növ tədbirlərə (teatr, idman,konsertlər, sərgilər və s.) biletləri əldə etməyi asan və sürətli edir.",
+"download_now":"İNDİ YÜKLƏ İNDİ YÜKLƏ İNDİ YÜKLƏ İNDİ YÜKLƏ İNDİ YÜKLƏ",
+"favorites":"Seçilmişlər",
+"No_events_found":"Sorğunuza uyğun tədbir tapılmadı."
+
 }
