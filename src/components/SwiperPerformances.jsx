@@ -31,14 +31,34 @@ export const SwiperPerformances = () => {
   return (
     <div className="cardBox">
     <Swiper
-      slidesPerView={3.5}
-      centeredSlides={true}
-      initialSlide={2}
-      spaceBetween={40}
-      //   loop={true}
-      pagination={{
-        clickable: true,
-      }}
+       centeredSlides={true}
+       initialSlide={2}
+       pagination={{
+         clickable: true,
+       }}
+       loop={true}
+       autoplay={{
+         delay: 1500,
+         disableOnInteraction: false,
+       }}
+       breakpoints={{
+         560: {
+           slidesPerView: 2,
+           spaceBetween: 10,
+         },
+         768: {
+           slidesPerView: 3,
+           spaceBetween: 20,
+         },
+         1024: {
+           slidesPerView: 3.2,
+           spaceBetween: 30,
+         },
+         1255:{
+           slidesPerView:3.5,
+           spaceBetween:30
+         }
+       }}
       className="mySwiper "
     >
       {event

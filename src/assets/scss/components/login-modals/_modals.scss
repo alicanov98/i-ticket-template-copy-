@@ -35,7 +35,8 @@
 }
 
 .modalDialog {
-  width: 440px;
+  width: 100%;
+  max-width: 440px;
   position: relative;
   z-index: 98;
   padding: 36px;
@@ -43,7 +44,6 @@
   left: 0;
   background-color: #fff;
   border-radius: 12px;
-
   .hat {
     border-radius: 12px;
     bottom: 0;
@@ -79,12 +79,6 @@
       line-height: 36px;
       font-weight: 700;
     }
-
-    // .regTitle {
-    //   font-size: 20px;
-    //   line-height: 28px;
-    //   font-weight: 700;
-    // }
     .modalHeaderAddons {
       display: flex;
 
@@ -101,22 +95,6 @@
         align-items: center;
         cursor: pointer;
       }
-
-      //   .socRegFb,
-      //   .socRegGoogle {
-      //     width: 30px;
-      //     height: 30px;
-      //   }
-      //   .socRegFb {
-      //     font-size: 16px;
-      //     background-color: #3b5a97;
-      //   }
-      //   .socRegGoogle {
-      //     font-size: 14px;
-      //     background-color: #db4d41;
-      //     margin-left: 16px;
-      //   }
-
       .socialFb {
         font-size: 25px;
         background-color: #3b5a97;
@@ -160,12 +138,6 @@
           }
         }
 
-        // .regInp {
-        //   font-size: 20px;
-        //   &::placeholder {
-        //     font-size: 14px;
-        //   }
-        // }
         .forgot {
           position: absolute;
           right: 15px;
@@ -213,12 +185,61 @@
       font-weight: 500;
       cursor: pointer;
     }
+  }
+}
 
-    // .signUp,.regFooterText{
-    //     font-size: 14px;
-    //     line-height: 20px;
-    //     font-weight: 500;
-    //     cursor: pointer;
-    // }
+@media(max-width:1024px){
+  .modalDialog {
+    padding: 20px;
+    .modalHeader {  
+      .modalTitle {
+            font-size: 20px;
+        line-height: 28px;
+        font-weight: 700;
+      }
+      .modalHeaderAddons {
+        .ico-btn {
+          width: 30px;
+          height: 30px;
+        }
+          .socialFb {
+            font-size: 18px;
+          }
+          .socialGoogle {
+            font-size: 14px;
+            margin-left: 16px;
+          }
+      }
+    }
+  
+    .modalBody {
+      form {
+        .formGroup {
+          input {
+            font-size: 17px;
+            line-height: 20px;
+          }
+          .forgot {
+            top: 18px;
+            font-size: 14px;
+            line-height: 20px;
+          }
+          .btn {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .modalFooter {
+      .footerText {
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .modalRegister,
+      .signUp {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
   }
 }

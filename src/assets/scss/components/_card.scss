@@ -104,11 +104,11 @@
         &:hover {
             .image {
                 height: 80%;
-                transform: translateY(-40px);
+                transform: translateY(-50px);
             }
 
             .eventInfo {
-                bottom: -70px;
+                bottom: -65px;
 
                 &::before {
                     background: transparent;
@@ -165,11 +165,11 @@
                 height: 82px;
                 .eventName {
                     font-size: 20px;
+                    line-height: 20px;
                 }
                 .info {
                     .eventDate {
                         font-size: 16px;
-                        transform: translateY(-18px);
                     }
                 }
             }
@@ -178,8 +178,18 @@
 
 }
 
-@media(max-width:1024px) {}
-
-@media(max-width:768px) {}
-
-@media(max-width:480px) {}
+@media(max-width:1024px) {
+    .card {
+    .cardImg {
+        .eventInfo {
+            .eventName {
+                font-size: 16px;
+            }
+            .info {
+                .eventDate {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}}

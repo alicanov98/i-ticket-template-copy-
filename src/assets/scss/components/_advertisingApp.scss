@@ -1,5 +1,6 @@
 .advertisingApp {
     position: relative;
+
     .container {
 
         .advertiCard {
@@ -95,13 +96,140 @@
                     }
                 }
             }
+
             img {
-vertical-align: middle;
-position: relative;
-z-index: 13;
+                vertical-align: middle;
+                position: relative;
+                z-index: 13;
             }
         }
+    }
+}
 
+@media(max-width:1024px) {
+    .advertisingApp {
+        .container {
+            display: flex;
+            justify-content: center;
 
+            .advertiCard {
+                max-width: 768px;
+
+                .advertiContent {
+                    width: 100%;
+                    padding: 20px;
+
+                    .titleApp {
+                        font-size: 30px;
+                    }
+
+                    .text {
+                        margin-bottom: 20px;
+                    }
+
+                    .linksApp {
+                        .linkApp {
+                            display: block;
+
+                            img {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+
+                .downloadInfo {
+                    .downloadText {
+                        display: none;
+                    }
+                }
+
+                img {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .advertisingApp {
+        .container {
+            .advertiCard {
+                max-width: 640px;
+
+                .advertiContent {
+                    width: 100%;
+                    padding: 20px;
+
+                    .titleApp {
+                        overflow: hidden;
+                        font-size: 28px;
+                    }
+
+                    .text {
+                        margin-bottom: 20px;
+                    }
+
+                    .linksApp {
+                        .linkApp {
+                            display: block;
+                            padding: 8px 20px;
+
+                            img {
+                                display: block;
+                                height: auto;
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                .downloadInfo {
+                    .downloadText {
+                        display: none;
+                    }
+                }
+
+                img {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:480px) {
+    .advertisingApp {
+        .container {
+            width: 100%;
+
+            .advertiCard {
+                .advertiContent {
+                    .linksApp {
+                        .linkApp {
+                            display: block;
+                            padding: 8px 20px;
+
+                            img {
+                                display: block;
+                                height: auto;
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                .downloadInfo {
+                    .downloadText {
+                        display: none;
+                    }
+                }
+
+                img {
+                    display: none;
+                }
+            }
+        }
     }
 }

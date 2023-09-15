@@ -40,6 +40,49 @@
 
 .advertising {
   margin: 80px 0;
+  .container{
+    .row{
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
+@media(max-width:1024px){
+  .advertising {
+margin: 40px 0;
+    .container{
+      .row{
+        justify-content: center;
+        img{
+          width: 88%;
+        }
+      }
+    }
+  }
+}
+@media(max-width:768px){
+  .advertising {
+    .container{
+      padding: 0;
+      .row{
+        img{
+          width: 97%;
+        }
+      }
+    }
+  }
+}
+@media(max-width:480px){
+  .advertising {
+    .container{
+      .row{
+        img{
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 .imapLoading {

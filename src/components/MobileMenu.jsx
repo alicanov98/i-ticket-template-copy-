@@ -38,8 +38,14 @@ const {t}=useTranslation()
               </Link>
             </div>
             <div className="lng">
-              <button className="btn" onClick={()=> i18n.changeLanguage("en")}>EN</button>
-              <button className="btn" onClick={()=>i18n.changeLanguage("az")}>AZ</button>
+              <button className="btn" onClick={()=>{
+                i18n.changeLanguage("en");
+                window.location.reload();
+              }}>EN</button>
+              <button className="btn" onClick={()=>{
+                i18n.changeLanguage("az");
+                window.location.reload();
+              }}>AZ</button>
             </div>
           </div>
           <div className="menuSearch">

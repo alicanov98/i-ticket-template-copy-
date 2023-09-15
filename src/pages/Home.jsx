@@ -1,17 +1,21 @@
-// import { Link } from "react-router-dom";
-// import { SwiperChildrean } from "../components/SwiperChildrean";
+//? Swiper sections 
+import { SwiperChildrean } from "../components/SwiperChildrean";
 import { SwiperHomeHerro } from "../components/SwiperHomeHerro";
-// import { SwiperPerformances } from "../components/SwiperPerformances";
+import { SwiperPerformances } from "../components/SwiperPerformances";
 import { SwiperPopular } from "../components/SwiperPopular";
-// import { SwiperTourism } from "../components/SwiperTourism";
-// images
-// import ios from "../assets/images/ios.png";
-// import android from "../assets/images/android.png";
-// import mobilApp from "../assets/images/app-05-2023.png";
-// import { SwiperNewEvents } from "../components/SwiperNewEvents";
-// import { SwiperEventsWeekend } from "../components/SwiperEventsWeekend";
+import { SwiperTourism } from "../components/SwiperTourism";
+import { SwiperNewEvents } from "../components/SwiperNewEvents";
+import { SwiperEventsWeekend } from "../components/SwiperEventsWeekend";
 
-// I18next
+//? Image 
+import ios from "../assets/images/ios.png";
+import android from "../assets/images/android.png";
+import mobilApp from "../assets/images/app-05-2023.png";
+
+//? Router
+import { Link } from "react-router-dom";
+
+//? I18next
 import { useTranslation } from "react-i18next";
 
 
@@ -31,13 +35,15 @@ const Home = () => {
 
             <SwiperPopular />
         </section>
-{/* 
+
         <div className="advertising">
           <div className="container">
+            <div className="row">
             <img
               src="https://cdn.iticket.az/images/banners/icard-banner-desktop-03-2023.gif"
               alt="advertising"
             />
+            </div>
           </div>
         </div>
 
@@ -52,11 +58,13 @@ const Home = () => {
 
         <div className="advertising">
           <div className="container">
+            <div className="row">
             <img
               src="https://cdn.iticket.az/images/banners/epoint-january-2023-1250x122.gif"
               alt="advertising"
             />
           </div>
+            </div>
         </div>
 
         <section className="performancesEvents">
@@ -124,7 +132,7 @@ const Home = () => {
               <img src={mobilApp} alt="mobilApp" />
             </div>
           </div>
-        </section> */}
+        </section>
       </main>
     </>
   );

@@ -20,7 +20,6 @@ import {
 } from "react-icons/io5";
 import { FaEllipsis, FaBars } from "react-icons/fa6";
 
-
 // Hooks
 import { useEffect, useState } from "react";
 import { Search } from "./Search";
@@ -115,8 +114,8 @@ const Header = () => {
     checkUser();
   }, []);
 
-const {i18n} =useTranslation()
-const {t}=useTranslation()
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <header className={headerClassName}>
       <div className="row">
@@ -130,8 +129,24 @@ const {t}=useTranslation()
         </div>
         <nav className="navBar">
           <div className="lng">
-            <button className="btn" onClick={()=> i18n.changeLanguage("en")}>EN</button>
-            <button className="btn" onClick={()=>i18n.changeLanguage("az")}>AZ</button>
+            <button
+              className="btn"
+              onClick={() => {
+                i18n.changeLanguage("en");
+                window.location.reload();
+              }}
+            >
+              EN
+            </button>
+            <button
+              className="btn"
+              onClick={() => {
+                i18n.changeLanguage("az");
+                window.location.reload();
+              }}
+            >
+              AZ
+            </button>
           </div>
           <ul className="navList">
             <li className="navItem">
@@ -159,7 +174,7 @@ const {t}=useTranslation()
                   <NavLink to="/a"> Hayal Kahvesi</NavLink>
                 </li>
                 <li className="dropDownItem">
-                <NavLink to="/sport">{t("sport")}</NavLink>
+                  <NavLink to="/sport">{t("sport")}</NavLink>
                 </li>
                 <li className="dropDownItem">
                   <NavLink to="/a">{t("baku_jazz_fest")}</NavLink>
@@ -195,7 +210,7 @@ const {t}=useTranslation()
             <IoHeartOutline className="heartIcon" />
           </Link>
           <IoSearch className="searchIcon" onClick={() => setSearch(!search)} />
-          <Link className="carts" to={carts.length!==0 ? "/basket" : "#"}>
+          <Link className="carts" to={carts.length !== 0 ? "/basket" : "#"}>
             <IoCart className="icart" />
             {/* onClick={() => dispatch(addToCart())} */}
             <span className="count">{cartCount}</span>

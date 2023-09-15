@@ -9,11 +9,13 @@
         background-color: transparent;
     }
     .row {
+        
         .registersModal {
             display: none;
-
+width: 100%;
+justify-content: center;
             &.active {
-                display: block;
+                display: flex;
             }
         }
     }

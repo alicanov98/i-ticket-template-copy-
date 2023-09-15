@@ -13,13 +13,13 @@
   left: 0;
 
   .row {
-    justify-content: center;
 
     .modal {
-      display: block;
-
+      display: flex;
+width: 100%;
+justify-content: center;
       &.active {
-        display: block;
+        display: flex;
       }
     }
   }

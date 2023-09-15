@@ -44,3 +44,41 @@
         }
     }
 }
+
+@media(max-width:1024px){
+    .childrenEvents,.swiperNewEvents,.weekendEvenetsSwiper {
+    height: auto;
+        .container {
+            .title{
+                margin:48px 0;
+            }
+        }
+    }
+}
+@media(max-width:768px){
+    .childrenEvents,.swiperNewEvents,.weekendEvenetsSwiper {
+        height:auto;
+        margin-bottom:  48px;
+
+        &:before {
+            left: -80%;
+        }
+    
+        .container {
+            height: auto;
+            .title{
+                margin-top:48px;
+                margin-bottom: 40px;
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media(max-width:480px){
+    .childrenEvents,.swiperNewEvents,.weekendEvenetsSwiper {
+        &:before {
+            left: -116%;
+        }
+    }
+}
