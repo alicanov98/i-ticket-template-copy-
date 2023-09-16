@@ -36,6 +36,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 //?google-map
 import GoogleMapReact from "google-map-react";
+import { useTranslation } from "react-i18next";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -89,6 +90,7 @@ const CardDetails = () => {
   const count = useSelector((state) => state.cartData.counter);
   let totalPrice = Number(cardData.minimumPrice) * count;
 
+  const {t}=useTranslation()
   return (
     <>
       <section className="cardHerro">
@@ -100,7 +102,7 @@ const CardDetails = () => {
             <div className="btnsCard">
               <Link href="#icalendar" className="priceBtn" to="/">
                 <span className="cardBtn">
-                  <span className="price">{cardData.minimumPrice} ₼</span>-dan
+                  <span className="price">{t("from")}-{cardData.minimumPrice} ₼</span>
                 </span>
               </Link>
               <button
@@ -131,8 +133,8 @@ const CardDetails = () => {
                   <img src={date} alt="date" />
                 </span>
                 <div className="infoBlockTitle">
-                  <p className="blockTitle">Məkan</p>
-                  <p className="blockTitle">Tarix</p>
+                  <p className="blockTitle">{t("venue")}</p>
+                  <p className="blockTitle">{t("date")}</p>
                 </div>
               </div>
             </Link>
@@ -146,8 +148,8 @@ const CardDetails = () => {
                   <img src={local} alt="local" />
                 </span>
                 <div className="infoBlockTitle">
-                  <p className="blockTitle">Dil</p>
-                  <p className="blockTitle blockTitlend">Yaş məhdudiyyəti</p>
+                  <p className="blockTitle">{t("language")}</p>
+                  <p className="blockTitle blockTitlend">{t("age_restrictions")}</p>
                 </div>
               </div>
             </Link>
@@ -160,8 +162,8 @@ const CardDetails = () => {
                   <img src={tickets} alt="tickets" />
                 </span>
                 <div className="infoBlockTitle">
-                  <p className="blockTitle">Qiymət</p>
-                  <p className="blockTitle">Biletlər haqda</p>
+                  <p className="blockTitle">{t("price")}</p>
+                  <p className="blockTitle">{t("ticket_info")}</p>
                 </div>
               </div>
             </Link>
@@ -171,7 +173,7 @@ const CardDetails = () => {
                   <img src={info} alt="info" />
                 </span>
                 <div className="infoBlockTitle">
-                  <p className="blockTitle">Tədbir haqqında</p>
+                  <p className="blockTitle">{t("about_event")}</p>
                 </div>
               </div>
             </Link>
@@ -189,14 +191,14 @@ const CardDetails = () => {
                     </span>
                   </div>
                   <div className="ticketDate infoItems">
-                    <span className="sessionLabel">Tarix</span>
+                    <span className="sessionLabel">{t("date")}</span>
                     <span className="value">
                       {cardData.eventDate} / {cardData.startTime} -{" "}
                       {cardData.endTime}
                     </span>
                   </div>
                   <div className="ticketPrice infoItems">
-                    <span className="sessionLabel">Qiymət</span>
+                    <span className="sessionLabel">{t("price")}</span>
 
                     <span className="value priceValue">{cardData.minimumPrice} ₼</span>
                   </div>
@@ -211,7 +213,7 @@ const CardDetails = () => {
                       <div className="variation">
                         <span className="sector">{cardData.eventTitle}</span>
                         <div className="priceCategory">
-                          <span className="buyerType">Qiymət</span>
+                          <span className="buyerType">{t("price")}</span>
                           <div className="price">
                             <span>{totalPrice} </span>
                             <span>₼</span>
@@ -243,7 +245,7 @@ const CardDetails = () => {
                             +
                           </button>
                         </div>
-                        <span className="available">Mövcuddur: 3000</span>
+                        <span className="available">{t("available")}: 3000</span>
                         <button
                           className="add"
                           type="button"
@@ -253,7 +255,7 @@ const CardDetails = () => {
                             dispatch(cartTotalPrice());
                           }}
                         >
-                          Əlavə edin
+                          {t("add")}
                         </button>
                       </div>
                     </div>
@@ -272,10 +274,10 @@ const CardDetails = () => {
               <Tabs className="tabs">
                 <TabList className="tabList">
                   <Tab className="tab">
-                    <Link>Tədbir haqqında</Link>
+                    <Link>{t("about_event")}</Link>
                   </Tab>
                   <Tab className="tab">
-                    <Link>Yaş məhdudiyyəti</Link>
+                    <Link>{t("age_restrictions")}</Link>
                   </Tab>
                 </TabList>
 
@@ -301,7 +303,7 @@ const CardDetails = () => {
           </div>
           <div className="venue-detail">
             <hr />
-            <h2 className="title">Məkan yeri</h2>
+            <h2 className="title">{t("venue_location")}</h2>
             <div className="locationInfo">
               <div className="locationMap">
                 <GoogleMapReact
@@ -329,7 +331,7 @@ const CardDetails = () => {
                   </div>
                   <div className="venueBtn">
                     <Link to="https://www.google.com/maps?q=40.8451988,48.3832192">
-                      İstiqamət
+                       {t("get_direction")}
                     </Link>
                   </div>
                 </div>

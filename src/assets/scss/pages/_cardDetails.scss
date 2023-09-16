@@ -867,16 +867,18 @@
                 }
 
                 .venueBtn {
-                    background-color: #fd0;
-                    border-radius: 9999px;
-
+                    
                     a {
+                        border-radius: 9999px;
+                        background-color: #fd0;
                         display: inline-block;
                         font-size: 20px;
                         font-weight: 700;
                         line-height: 28px;
                         padding: 16px 48px;
                         color: #000000;
+                        text-wrap: nowrap;
+                        text-align: center;
                     }
                 }
             }
