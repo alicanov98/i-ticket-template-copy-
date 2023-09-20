@@ -34,11 +34,6 @@ export const SwiperChildrean = () => {
        pagination={{
          clickable: true,
        }}
-       loop={true}
-       autoplay={{
-         delay: 1500,
-         disableOnInteraction: false,
-       }}
        breakpoints={{
          560: {
            slidesPerView: 2,
@@ -59,8 +54,7 @@ export const SwiperChildrean = () => {
        }}
         className="mySwiper "
       >
-        {event.
-        filter((item)=>item.status==="usaqlar")
+        {event.filter((item)=>item.status==="usaqlar")
         .map((filterItem) => (
           <SwiperSlide key={filterItem.id} className="slideCard">
             <Card data={filterItem} />

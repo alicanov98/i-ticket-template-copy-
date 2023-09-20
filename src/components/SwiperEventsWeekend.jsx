@@ -39,11 +39,6 @@ export const SwiperEventsWeekend = () => {
        pagination={{
          clickable: true,
        }}
-       loop={true}
-       autoplay={{
-         delay: 1500,
-         disableOnInteraction: false,
-       }}
        breakpoints={{
          560: {
            slidesPerView: 2,
@@ -64,8 +59,7 @@ export const SwiperEventsWeekend = () => {
        }}
       className="mySwiper "
     >
-      {event.
-        filter((item)=>item.status==="heftesonu")
+      {event.filter((item)=>item.status==="heftesonu")
         .map((filterItem) => (
           <SwiperSlide key={filterItem.id} className="slideCard">
             <Card data={filterItem} />

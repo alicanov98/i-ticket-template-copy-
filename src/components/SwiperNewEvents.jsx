@@ -38,11 +38,6 @@ export const SwiperNewEvents = () => {
        pagination={{
          clickable: true,
        }}
-       loop={true}
-       autoplay={{
-         delay: 1500,
-         disableOnInteraction: false,
-       }}
        breakpoints={{
          560: {
            slidesPerView: 2,

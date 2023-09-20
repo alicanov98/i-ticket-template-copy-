@@ -4,9 +4,6 @@
 grid-template-columns: repeat(3,minmax(0,1fr));
 gap: 40px;
     .card {
-        width: 377px;
-        height: auto;
-
         .cardEvent {
             .cardImg {
                 height: 415px;
@@ -15,3 +12,27 @@ gap: 40px;
     }
 }
     }
+    @media(max-width: 1024px){
+        .container{
+            .cardBox{
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        }
+    }
+    }
+    @media(max-width: 776px){
+        .container{
+            width: 100%;
+            margin: 0;
+            padding: 0 15px;
+            .cardBox{
+        grid-template-columns: repeat(1,minmax(0,1fr));
+        }
+    }
+    }
+    @media(max-width: 480px){
+        .container{
+            padding: 0 10px;
+    }
+    }
+
+ 

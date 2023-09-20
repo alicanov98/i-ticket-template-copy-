@@ -56,8 +56,9 @@ export const Search = ({ setOpen, open }) => {
           <VscChromeClose className="icoClose" />
         </button>
         <ul className="searchList">
-          {resultSearch.map((searchItem) => (
-            <Link to={`/card-details/${searchItem.id}`} className="searchCard" onClick={() => {
+          
+             {value===""? undefined :  resultSearch.map((searchItem) => (
+           value===""? undefined :  <Link to={`/card-details/${searchItem.id}`} className="searchCard" onClick={() => {
               path.push(`/card-details/${searchItem.id}`);
               window.location.reload();
             }}>

@@ -5,15 +5,17 @@
     z-index: 99;
     top: 0;
     left: 0;
-    .overlay{
+
+    .overlay {
         background-color: transparent;
     }
+
     .row {
-        
         .registersModal {
             display: none;
-width: 100%;
-justify-content: center;
+            width: 100%;
+            justify-content: center;
+
             &.active {
                 display: flex;
             }

@@ -107,13 +107,35 @@
                 }
 
                 margin-bottom: 32px;
+
+                .searchList {
+                    width: 100%;
+                    position: absolute;
+                    background-color: #ffffff;
+                    z-index: 2;
+                    box-shadow: -2px 4px 15px -6px rgba(0, 0, 0, 0.75);
+                    margin-left: -16px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    overflow-y: scroll;
+                    height: 400px;
+
+                    .searchItem {
+                        margin: 10px 0;
+                        padding: 0 16px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #000;
+                    }
+                }
+
             }
 
             .navBarz {
                 padding: 0 16px;
 
                 .navList {
-                    height: 550px;
+                    height: auto;
                     display: flex;
                     flex-direction: column;
                     cursor: pointer;
@@ -158,6 +180,14 @@
                     font-size: 16px;
                 }
             }
+        }
+    }
+}
+
+@media(max-width:480px) {
+    .mobileMenu {
+        .row {
+            padding-right: 0;
         }
     }
 }

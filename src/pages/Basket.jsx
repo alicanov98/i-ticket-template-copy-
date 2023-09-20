@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import removeImg from "../assets/images/remove.svg";
 import delivery from "../assets/images/delivery.svg";
-
+import warnig from "../assets/images/warning.svg";
 import {
   removeFromCart,
   cartTotal,
@@ -10,7 +10,7 @@ import {
 } from "../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import Timer from "../components/Timer";
-
+import { useTranslation } from "react-i18next";
 
 export const Basket = () => {
 
@@ -26,7 +26,7 @@ export const Basket = () => {
       setMobileNumber(newValue);
     }
   };
-
+  const {t}=useTranslation()
   const totalPrice = cart.reduce(
     (total, item) => total + item.minimumPrice * item.quantity,
     0
@@ -36,9 +36,19 @@ export const Basket = () => {
     <>
       <section className="basket">
         <div className="container">
+        {cart.length === 0 ? (   
+           <div className="warnning">
+          <h4 className="title">Səbət</h4>
+            <div className="warnig">
+              <img src={warnig} alt="warnig" />
+              <h3>{t("No_events_found")}</h3>
+            </div>
+        </div>
+          ):(
           <div className="orders">
             <div className="eventTickets">
               <h4 className="title">Səbət</h4>
+
               <Timer />
               <ul className="cartTicketList">
                 {cart.map((item) => (
@@ -120,6 +130,8 @@ export const Basket = () => {
               </Link>
             </div>
           </div>
+              )}
+         
         </div>
       </section>
     </>

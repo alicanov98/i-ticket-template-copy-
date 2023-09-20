@@ -25,9 +25,19 @@ const AllEvnets = () => {
       };
       getSlide();
     },[navigate]);
+
+    const handleFilter = (selectedValue) => {
+      const filteredCards = eventCards.filter((item) => {
+        return item.eventLocation === selectedValue;
+      })
+      
+        setEventCards(filteredCards)
+      
+    };
+
   return (
     <div className="container">
-      <EventsFilter/>
+      <EventsFilter onSelectFilter={(selectedValue) => handleFilter(selectedValue)} />
       {loading && <div>LOADING</div>}
       <div className="cardBox">
        {eventCards.map((item)=>
