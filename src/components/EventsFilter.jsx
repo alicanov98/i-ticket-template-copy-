@@ -5,10 +5,12 @@ import Slider from "react-slider";
 
 const MIN = 1.0;
 const MAX = 500.0;
-export const EventsFilter = ({ onSelectFilter }) => {
+export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
   const path = useLocation();
   const [openDropList, setOpenDrop] = useState(false);
   const [values, setValues] = useState({ initialState: [MIN, MAX] });
+
+
 
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
@@ -23,13 +25,19 @@ export const EventsFilter = ({ onSelectFilter }) => {
     closeDropdown();
   }, [path.pathname]);
 
-  const [selectedOption, setSelectedOption] = useState(null); 
+  
+  const [selectedOption, setSelectedOption] = useState(""); 
+  
 
 
-  const handleSelectOption = (optionText) => {
-    setSelectedOption(optionText);
-    onSelectFilter(optionText);
+  const handleSelectOption = (optionTexts) => {
+    setSelectedOption(optionTexts)
+    onSelectFilter(optionTexts);
   };
+
+  const handleFilterPrice = (price) => {
+    selectedPrice(price); 
+  }
 
   return (
     <section className="events-filter">
@@ -43,12 +51,12 @@ export const EventsFilter = ({ onSelectFilter }) => {
                 handleSelectOption(e.target.options[e.target.selectedIndex].text);
               }}
             >
-              <option value="1">Bakı Olimpiya Stadionu</option>
+              <option value="1">Şuşa Dövlət Musiqili Dram Teatrı</option>
               <option value="2">Heydər Əliyev Sarayı</option>
               <option value="3">Akademik Milli Dram Teatrı</option>
-              <option value="4">Beynəlxalq Muğam Mərkəzi</option>
+              <option value="4">Bakı Konqres Mərkəzi</option>
               <option value="5">
-                Azərbaycan Dövlət Akademik Filarmoniyası
+              Elektra Events Hall
               </option>
             </select>
             <div className="controlFilterInp">
@@ -59,10 +67,10 @@ export const EventsFilter = ({ onSelectFilter }) => {
               <div className={checkDropdown}>
                 <ul className="filterList">
                 <li
-                    className={`filterItem ${selectedOption === "Bakı Olimpiya Stadionu" ? "selected" : ""}`}
-                    onClick={() => handleSelectOption("Bakı Olimpiya Stadionu")}
+                    className={`filterItem ${selectedOption === "Şuşa Dövlət Musiqili Dram Teatrı" ? "selected" : ""}`}
+                    onClick={() => handleSelectOption("Şuşa Dövlət Musiqili Dram Teatrı")}
                   >
-                    Bakı Olimpiya Stadionu
+                    Şuşa Dövlət Musiqili Dram Teatrı
                   </li>
                   <li
                     className={`filterItem ${selectedOption === "Heydər Əliyev Sarayı" ? "selected" : ""}`}
@@ -77,11 +85,18 @@ export const EventsFilter = ({ onSelectFilter }) => {
                     Akademik Milli Dram Teatrı
                   </li>
                   <li
-                    className={`filterItem ${selectedOption === "Beynəlxalq Muğam Mərkəzi" ? "selected" : ""}`}
-                    onClick={() => handleSelectOption("Beynəlxalq Muğam Mərkəzi")}
+                    className={`filterItem ${selectedOption === "Bakı Konqres Mərkəzi" ? "selected" : ""}`}
+                    onClick={() => handleSelectOption("Bakı Konqres Mərkəzi")}
                   >
-                    Beynəlxalq Muğam Mərkəzi
+                    Bakı Konqres Mərkəzi
                   </li>
+                  <li
+                    className={`filterItem ${selectedOption === "Elektra Events Hall" ? "selected" : ""}`}
+                    onClick={() => handleSelectOption("Elektra Events Hall")}
+                  >
+                    Elektra Events Hall
+                  </li>
+                   
                 </ul>
               </div>
             </div>
@@ -99,13 +114,15 @@ export const EventsFilter = ({ onSelectFilter }) => {
               Qiymət {values[0]}.00 ₼-dan {values[1]}.00 ₼-dək
               <Slider
                 className="slider"
-                onChange={setValues}
-                thumbClassName="example-thumb"
+                onChange={(newValue)=>{setValues(newValue)
+                  handleFilterPrice(newValue[0])}}
+                thumbClassName="example-thumb" 
                 trackClassName="example-track"
                 defaultValue={[1, 500]}
                 priceRangeView={values}
                 min={MIN}
                 max={MAX}
+                
               />
             </div>
           </div>
