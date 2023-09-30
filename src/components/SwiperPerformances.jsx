@@ -1,33 +1,12 @@
-import React, { useEffect, useState } from "react";
-// Import Swiper React components
+//? Import Swiper styles
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
+
 import { Card } from "./Card";
 
-// axios
-import axios from "axios";
 
+export const SwiperPerformances = ({data}) => {
 
-export const SwiperPerformances = () => {
-    const [event, setEvents] = useState([]);
-
-    useEffect(() => {
-      eventData();
-    }, []);
-  
-    const eventData = async () => {
-      await axios
-        .get(process.env.REACT_APP_ALL_EVENTS)
-        .then((res) => {
-          setEvents(res.data);
-      
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
   return (
     <div className="cardBox">
     <Swiper
@@ -56,8 +35,8 @@ export const SwiperPerformances = () => {
        }}
       className="mySwiper "
     >
-      {event
-      .filter((item)=>item.status==="tamasalar")
+      {data
+      .filter((item)=>item.status==="concert")
       .map((filterItem) => (
         <SwiperSlide key={filterItem.id} className="slideCard">
          <Card data={filterItem} />

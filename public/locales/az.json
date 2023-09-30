@@ -80,5 +80,8 @@
   "get_direction":"İstiqamət",
   "similar_events":"Similar Events",
   "date":"Tarix",
-  "venue_location":"Məkan yeri"
+  "venue_location":"Məkan yeri",
+  "page_not_found":"Səhifə tapılmadı",
+  "home_page":"Əsas səhifə",
+  "we_are_sorry":"Narahatçılığa görə üzr istəyirik. Deyəsən, silinmiş və ya heç vaxt mövcud olmayan səhifəyə daxil olmağa çalışırsınız."
 }

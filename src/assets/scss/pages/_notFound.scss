@@ -1,0 +1,46 @@
+.notFound{
+    height: 60vh;
+    .container{
+        .row{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .notFoundError{
+                display: flex;
+                align-items: center;
+                .errorLable{
+                    font-size: 100px;
+                    font-weight: 500;
+                    .errorLableGray{
+                        color: #6b7280;
+                    }
+                }
+            }
+            .titleNotFound{
+                color:black;
+                font-size: 24px;
+                margin-bottom: 8px;
+                margin-top: 32px;
+                font-weight: 500;
+            }
+            p{
+                padding-top: 16px;
+                color: black;
+                font-size: 16px;
+            }
+            .btnBackHomePage{
+                background-color: #fd0;
+                border-radius: 9999px;
+                color: #000;
+                font-weight: 700;
+                font-size: 21px;
+                line-height: 32px;
+                padding: 16px 24px;
+                margin-top: 16px;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+}

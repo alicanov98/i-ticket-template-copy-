@@ -9,8 +9,6 @@ import { BiLogoFacebook } from "react-icons/bi";
 import RegisterModal from "./RegisterModal";
 import { ResetPassword } from "./ResetPassword";
 
-//? Swalalert2
-import { errorSwal } from "../utils/swal";
 
 //? Form hook
 import { useForm } from "react-hook-form";
@@ -57,6 +55,8 @@ const LoginModal = ({ open, setOpen }) => {
       email: data.email,
       password: data.password,
     };
+
+    console.log(body)
 
     await axios
       .post("http://localhost:7000/iticket-api/login", body)
@@ -123,7 +123,6 @@ const LoginModal = ({ open, setOpen }) => {
                       {...register("email")}
                     />
                   </div>
-                  {errors.password && errorSwal(errors.password.message)}
                   <div className="formGroup">
                     <input
                       type="password"
@@ -135,7 +134,6 @@ const LoginModal = ({ open, setOpen }) => {
                       {t("forgot")}?
                     </p>
                   </div>
-                  {errors.email && errorSwal(errors.email.message)}
                   <div className="formGroup">
                     <button className="btn" type="submit">
                       {t("login")}

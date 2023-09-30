@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable array-callback-return */
 
 // Router
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 // import swiper 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,30 +10,12 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-export const SwiperHomeHerro = () => {
-  const [eventImg, setEventImg] = useState([]);
-const navigate=useNavigate()
-const [loading,setLoading]=useState(false)
+//? Redux toolkit
+import { useSelector } from "react-redux";
 
-  useEffect(() => {
-    const getSlide = async () => {
-      setLoading(true)
-      await axios
-        .get(process.env.REACT_APP_ALL_SLIDES)
-        .then((res) => {
-          setEventImg(res.data);
-          setLoading(false)
-        })
-        .catch((error) => {
-          console.log(error);
-          setLoading(false)
-          navigate("/error")
-        });
-    };
-    getSlide();
-  },[navigate]);
-
-
+export const SwiperHomeHerro = ({data}) => {
+  
+const loading=useSelector(state=>state.events.loading)
 
   return (
     <div className="swiperHome">
@@ -47,11 +29,17 @@ const [loading,setLoading]=useState(false)
           autoplay={true}
           className="mySwiper swiperList"
         >
-          {eventImg.map((item) =>(
-            <SwiperSlide className="swiperItem" key={item.id}>
-              <img src={`http://localhost:7000/${ item.slideImg}`} alt={item.name} />
-            </SwiperSlide>
-          )
+          {data.map((item) => {
+            if(item.sliderImg!==null){
+              return (
+                <SwiperSlide className="swiperItem" key={item.id}>
+                <Link to={`/card-details/${item.id}`}>
+                <img src={`http://localhost:7000/${ item?.sliderImg}`} alt={item.name} />
+                </Link>
+              </SwiperSlide>
+              )
+            }
+          }
           )}
         </Swiper>
       </div>

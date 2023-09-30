@@ -4,7 +4,7 @@ import warnig from "../assets/images/warning.svg";
 import { Card } from "../components/Card";
 import { useSelector } from "react-redux";
 
-export const FavoriEvenets = () => {
+export const FavoriEvents = () => {
   let favoriteList = useSelector((state) => state.cartData.favori);
   const {t}=useTranslation()
 

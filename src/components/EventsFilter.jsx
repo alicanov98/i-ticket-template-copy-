@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
+
 import { FaAngleDown } from "react-icons/fa";
+
 import { useLocation } from "react-router-dom";
+
 import Slider from "react-slider";
 
 const MIN = 1.0;
 const MAX = 500.0;
+
 export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
+
   const path = useLocation();
+
   const [openDropList, setOpenDrop] = useState(false);
+
   const [values, setValues] = useState({ initialState: [MIN, MAX] });
-
-
 
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
   };
 
   let checkDropdown = openDropList ? "filterDropdown active" : "filterDropdown";
+
   const closeDropdown = () => {
     setOpenDrop(false);
   };
@@ -25,11 +31,8 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
     closeDropdown();
   }, [path.pathname]);
 
-  
   const [selectedOption, setSelectedOption] = useState(""); 
   
-
-
   const handleSelectOption = (optionTexts) => {
     setSelectedOption(optionTexts)
     onSelectFilter(optionTexts);

@@ -81,5 +81,8 @@
   "get_direction":"Get Direction",
   "similar_events":"Similar Events",
   "date":"Date",
-  "venue_location":"Venue Location"
+  "venue_location":"Venue Location",
+  "page_not_found":"Page Not Found",
+  "home_page":"Home Page",
+  "we_are_sorry":"We are sorry for the inconvenience. It looks like you are trying to access a page that either has been deleted or never existed."
 }

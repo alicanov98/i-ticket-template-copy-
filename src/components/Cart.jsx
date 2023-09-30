@@ -2,8 +2,12 @@ import closeIcon from "../assets/images/close.svg";
 import evenodd from "../assets/images/evenodd.svg";
 import removeImg from "../assets/images/remove.svg";
 import removeAll from "../assets/images/removeAll.svg";
+
 import { Link, useLocation } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
+
+import { useEffect } from "react";
 
 import {
   removeFromCart,
@@ -13,20 +17,26 @@ import {
 } from "../redux/slices/cartSlice";
 
 import Timer from "./Timer";
-import { useEffect } from "react";
 
 export const Cart = ({ open, setOpen }) => {
+
   const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cartData.cart);
+
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   const totalPrice = cart.reduce(
     (total, item) => total + item.minimumPrice * item.quantity,
     0
   );
+
   const path=useLocation()
+  
   useEffect(()=>{
    setOpen(false)
   },[path.pathname,setOpen])
+
   return (
     <div className={`cart ${open && "active"}`}>
       <div className="overlay" onClick={() => setOpen(false)}></div>

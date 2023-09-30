@@ -1,23 +1,26 @@
-import React from "react";
-
-// Router
+//? Router
 import { Routes, Route } from "react-router-dom";
 
-// Components
+//? Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Basket } from "./pages/Basket";
 
-// Pages
+//? Pages
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import AllEvnets from "./pages/AllEvnets";
 import CardDetails from "./pages/CardDetails";
+
+
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { FavoriEvenets } from "./pages/FavoriEvenets";
-import { Basket } from "./pages/Basket";
+
+import { FavoriEvents } from "./pages/FavoriEvents";
+
 
 const App = () => {
+
   return (
     <Provider store={store}>
       <Header />
@@ -25,7 +28,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/all-events" element={<AllEvnets/>}/>
         <Route path="/card-details/:id" element={<CardDetails/>}/>
-        <Route path="/favorites" element={<FavoriEvenets/>}/>
+        <Route path="/favorites" element={<FavoriEvents/>}/>
         <Route path="/basket" element={<Basket/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>

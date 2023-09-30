@@ -15,7 +15,7 @@ import tickets from "../assets/images/tickets.svg";
 import info from "../assets/images/info.svg";
 import fullscreenImg from "../assets/images/fullscreens.svg";
 
-//? React tabs 
+//? React tabs
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
@@ -49,29 +49,10 @@ const defaultProps = {
 };
 
 const CardDetails = () => {
-
   const dispatch = useDispatch();
+  let favoriteList = useSelector((state) => state.cartData.favori);
   const { id } = useParams();
-
   const [cardData, setCardData] = useState({});
-  const [activIcon, setActiveIcon] = useState(false);
-
-  let checkDropdown = activIcon ? "active icon" : "favoriteIcon icon";
-  useEffect(() => {
-    const storedFavori = localStorage.getItem("activIcon");
-    if (storedFavori === "true") {
-      setActiveIcon(true);
-    }
-  }, []);
-
-  const handleFavoriClick = () => {
-    if (activIcon) {
-      localStorage.setItem("activIcon", "false");
-    } else {
-      localStorage.setItem("activIcon", "true");
-    }
-    setActiveIcon(!activIcon);
-  };
 
   useEffect(() => {
     const getSingleData = async () => {
@@ -87,10 +68,15 @@ const CardDetails = () => {
     getSingleData();
   }, [id]);
 
+
   const count = useSelector((state) => state.cartData.counter);
   let totalPrice = Number(cardData.minimumPrice) * count;
 
-  const {t}=useTranslation()
+  const isFavoriteEvent = favoriteList.find((event) => event.id === id);
+
+
+  const { t } = useTranslation();
+  
   return (
     <>
       <section className="cardHerro">
@@ -102,13 +88,16 @@ const CardDetails = () => {
             <div className="btnsCard">
               <Link href="#icalendar" className="priceBtn" to="/">
                 <span className="cardBtn">
-                  <span className="price">{t("from")}-{cardData.minimumPrice} ₼</span>
+                  <span className="price">
+                    {t("from")}-{cardData.minimumPrice} ₼
+                  </span>
                 </span>
               </Link>
               <button
-                className={checkDropdown}
+                className={
+                  isFavoriteEvent ? "active icon" : "favoriteIcon icon"
+                }
                 onClick={() => {
-                  handleFavoriClick()
                   dispatch(adToFavori(cardData));
                 }}
               >
@@ -149,7 +138,9 @@ const CardDetails = () => {
                 </span>
                 <div className="infoBlockTitle">
                   <p className="blockTitle">{t("language")}</p>
-                  <p className="blockTitle blockTitlend">{t("age_restrictions")}</p>
+                  <p className="blockTitle blockTitlend">
+                    {t("age_restrictions")}
+                  </p>
                 </div>
               </div>
             </Link>
@@ -200,7 +191,9 @@ const CardDetails = () => {
                   <div className="ticketPrice infoItems">
                     <span className="sessionLabel">{t("price")}</span>
 
-                    <span className="value priceValue">{cardData.minimumPrice} ₼</span>
+                    <span className="value priceValue">
+                      {cardData.minimumPrice} ₼
+                    </span>
                   </div>
                 </div>
               </div>
@@ -245,7 +238,9 @@ const CardDetails = () => {
                             +
                           </button>
                         </div>
-                        <span className="available">{t("available")}: 3000</span>
+                        <span className="available">
+                          {t("available")}: 3000
+                        </span>
                         <button
                           className="add"
                           type="button"
@@ -331,7 +326,7 @@ const CardDetails = () => {
                   </div>
                   <div className="venueBtn">
                     <Link to="https://www.google.com/maps?q=40.8451988,48.3832192">
-                       {t("get_direction")}
+                      {t("get_direction")}
                     </Link>
                   </div>
                 </div>

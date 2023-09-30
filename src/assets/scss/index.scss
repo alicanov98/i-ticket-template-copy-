@@ -16,11 +16,14 @@
 @import "./components/swipers/swipersEvents";
 @import "./components/advertisingApp";
 @import "./components/swiperFilter";
+@import "./components/loading";
 @import "./components/cart";
 @import "./components/footer";
+
 // Pages
 @import "./pages/home";
 @import "./pages/cardDetails";
 @import "./pages/allEvents";
 @import "./pages/basket";
 @import "./pages/favoriEvents";
+@import "./pages/notFound";
