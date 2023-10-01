@@ -1,17 +1,17 @@
-// Router
+//? Router
 import { NavLink, Link, useLocation } from "react-router-dom";
 
-// Images
+//? Images
 import logo from "../assets/images/logo.svg";
 import logo2 from "../assets/images/logo-dark.svg";
 import cartIcon from "../assets/images/cart.svg";
 
-// Components
+//? Components
 import MobileMenu from "../components/MobileMenu";
 import LoginModal from "../components/LoginModal";
 import { Cart } from "./Cart";
 
-// Icons
+//? Icons
 import {
   IoHeartOutline,
   IoSearch,
@@ -19,33 +19,33 @@ import {
   IoPersonOutline,
 } from "react-icons/io5";
 import { FaEllipsis, FaBars } from "react-icons/fa6";
+import { BiLogOutCircle } from "react-icons/bi";
 
-// Hooks
+//? Hooks
 import { useEffect, useState } from "react";
 import { Search } from "./Search";
 
-// Redux
-// import { addToCart } from "../redux/slices/cartSlice";
+//? Redux
 import { useSelector } from "react-redux";
 
-// Axios
+
+//? Axios
 import axios from "axios";
 
-// i18n
+//? i18n
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const path = useLocation();
-  // const dispatch = useDispatch();
-
   const [user, setUser] = useState(null);
 
-  // DropDown
+  //? states
   const [openDropList, setOpenDrop] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [search, setSearch] = useState(false);
   const [cart, setCart] = useState(false);
+
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
   };
@@ -59,7 +59,7 @@ const Header = () => {
     closeDropdown();
   }, [path.pathname]);
 
-  // Responsive Header Change
+  //? Responsive Header Change
 
   const [headerClassName, setHeaderClassName] = useState("header");
   const [logoSrc, setLogoSrc] = useState(logo);
@@ -102,7 +102,7 @@ const Header = () => {
           token,
         };
         await axios
-          .post("http://localhost:7000/iticket-api/check-login", body)
+          .post(process.env.REACT_APP_CHECK_LOGIN, body)
           .then((res) => {
             setUser(res.data);
           })
@@ -116,6 +116,15 @@ const Header = () => {
 
   const { i18n } = useTranslation();
   const { t } = useTranslation();
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+    setTimeout(() => {
+      setUser(null);
+    }, 1000);
+  };
+
   return (
     <header className={headerClassName}>
       <div className="row">
@@ -215,13 +224,17 @@ const Header = () => {
             {/* onClick={() => dispatch(addToCart())} */}
             <span className="count">{cartCount}</span>
           </Link>
-          {!user && (
+          {!user ? (
             <div
               className="personOut"
               onClick={() => setLoginModal(!loginModal)}
             >
               <IoPersonOutline className="personOutLine" />
             </div>
+          ) : (
+            <span onClick={logOut} className="logOut">
+              <BiLogOutCircle className="logOutIcon" />
+            </span>
           )}
         </div>
         <MobileMenu open={mobileMenu} setOpen={setMobileMenu} />

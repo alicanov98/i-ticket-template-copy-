@@ -13,11 +13,11 @@ import * as yup from "yup";
 //? axios
 import axios from "axios";
 
-//? alertswal2
-import { errorSwal } from "../utils/swal";
-
 //? i18n 
 import { useTranslation } from "react-i18next";
+
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 //? ----------------------------------------------
 const RegisterModal = ({ open, setOpen, setModal }) => {
@@ -26,19 +26,20 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
 
   //! Form validation
   const registerSchema = yup.object({
-    name: yup.string().trim().required("Ad Bos olmaz"),
-    surname: yup.string().trim().required("Soyad Bos olmaz"),
-    email: yup.string().trim().required("Email Bos olmaz"),
+    name: yup.string().trim().required(t("name_empty")),
+    surname: yup.string().trim().required(t("surname_empty")),
+    email: yup.string().trim().required(t("email_empty")),
+    mobile: yup.string().trim().required(t("phone_empty")).matches(/^[0-9+]+$/,t("just_numbers")),
     password: yup
       .string()
       .trim()
-      .required("Sifre Bos olmaz")
-      .min(6, "Şifrə çox qısa"),
+      .required(t("password_empty"))
+      .min(6, t("password_short")),
     confirmPassword: yup
       .string()
       .trim()
-      .required("Şifrəni təsdiqləyin bos olmaz")
-      .test("passwords-match", "Şifrələr uyğun gəlmir", function (value) {
+      .required(t("confirm_password_empty"))
+      .test("passwords-match", t("passwords_not_match"), function (value) {
         return this.parent.password === value;
       }),
   });
@@ -62,19 +63,53 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
     };
 
     await axios
-      .post("http://localhost:7000/iticket-api/register", body)
+      .post(process.env.REACT_APP_REGISTER, body)
       .then((res) => {
         console.log(res);
-        window.location.reload()
+        toast.success(t("successful_registration"), {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+          setTimeout(()=>{
+            window.location.reload()
+          },2000)
       })
       .catch((err) => {
         console.log(err);
+        toast.error(t("something_wrong"), {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       });
   };
 
 // !----------------------------------------------
   return (
     <div className="registerModal">
+      <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+/>
       <div
         className="overlay"
         onClick={() => {
@@ -109,17 +144,14 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
             <div className="modalBody">
               <form onSubmit={handleSubmit(formSubmit)}>
                 <div className="formGroup">
-                  {errors.confirmPassword && errorSwal(errors.confirmPassword.message)}
-                {errors.password && errorSwal(errors.password.message)}
-                {errors.email && errorSwal(errors.email.message)}
-                  {errors.surname && errorSwal(errors.surname.message)}
-                {errors.name && errorSwal(errors.name.message)}
                   <input
                     type="text"
                     placeholder={t("first_name")}
                     name="name"
                     {...register("name")}
+                    className={errors.email && "errorInp"}
                   />
+                  {errors.name && <span className="errorMsg">{errors.name.message}</span>}
                 </div>
                 <div className="formGroup">
                   <input
@@ -127,10 +159,13 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                     placeholder={t("last_name")}
                     name="surname"
                     {...register("surname")}
+                    className={errors.email && "errorInp"}
                   />
+                      {errors.surname && <span className="errorMsg">{errors.surname.message}</span>}
                 </div>
                 <div className="formGroup">
-                  <input type="text" placeholder={t("mobile")} />
+                  <input type="text" name="mobile" className={errors.email && "errorInp"} placeholder={t("mobile")} {...register("mobile")}/>
+                  {errors.mobile && <span className="errorMsg">{errors.mobile.message}</span>}
                 </div>
                 <div className="formGroup">
                   <input
@@ -138,25 +173,30 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                     name="email"
                     placeholder={t("email")}
                     {...register("email")}
+                    className={errors.email && "errorInp"}
                   />
+                      {errors.email && <span className="errorMsg">{errors.email.message}</span>}
                 </div>
                 <div className="formGroup">
                   <input
-                    className="regInp"
+                   className={errors.email ? "errorInp":"regInp"}
                     type="password"
                     name="password"
                     placeholder={t("password")}
                     {...register("password")}
+                
                   />
+                      {errors.password && <span className="errorMsg">{errors.password.message}</span>}
                 </div>
                 <div className="formGroup">
                   <input
                     type="password"
-                    className="regInp"
+                    className={errors.email ? "errorInp":"regInp"}
                     name="confirmPassword"
                     placeholder={t("confirm_password")}
                     {...register("confirmPassword")}
                   />
+                      {errors.confirmPassword && <span className="errorMsg">{errors.confirmPassword.message}</span>}
                 </div>
                 <div className="formGroup">
                   <button className="btn" type="submit">

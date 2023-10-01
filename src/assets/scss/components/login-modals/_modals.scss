@@ -1,9 +1,4 @@
-// .loginDialog {
-//   padding: 36px;
-// }
-// .registerDialog {
-//   padding: 20px;
-// }
+
 .overlay {
   width: 100%;
   height: 100%;
@@ -129,12 +124,20 @@
           font-weight: 500;
           border: 1px solid #d1d5db;
 
+
+
           &::placeholder {
             color: #6b6e72;
           }
 
           &:focus {
             background-color: #d1d5db99;
+          }
+
+          &.errorInp{
+          
+              background-color: #ff000050;
+          
           }
         }
 

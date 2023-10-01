@@ -9,7 +9,6 @@ import { BiLogoFacebook } from "react-icons/bi";
 import RegisterModal from "./RegisterModal";
 import { ResetPassword } from "./ResetPassword";
 
-
 //? Form hook
 import { useForm } from "react-hook-form";
 
@@ -23,26 +22,27 @@ import axios from "axios";
 //? i18n
 import { useTranslation } from "react-i18next";
 
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //? ----------------------------------------------
 const LoginModal = ({ open, setOpen }) => {
+  const { t } = useTranslation();
 
   //! Form Validation
   const [modal, setModal] = useState("login");
-  
+
   const loginSchema = object({
     email: string()
-      .trim("Email bos olmasin")
-      .matches(
-        /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
-        { message: "Email formati yalnisdir", excludeEmptyString: true }
-      ),
+      .trim("Email will not be empty.")
+      .matches(/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, {
+        message: t("email_error"),
+        excludeEmptyString: true,
+      })
+      .required(),
     password: string()
-      .trim("Sifre bos olmasin")
-      .matches(/^(?=.*[a-z])(?=.*[A-Z]).{8,18}$/, { message: "Sifrenin formati yalnisdir", excludeEmptyString: true } ),
+      .trim("")
+      .required(`${t("password_error")}`),
   });
 
   const {
@@ -53,44 +53,64 @@ const LoginModal = ({ open, setOpen }) => {
     resolver: yupResolver(loginSchema),
   });
 
-//! Post form data
+  //! Post form data
   const submitForm = async (data) => {
     const body = {
       email: data.email,
       password: data.password,
     };
 
-    console.log(body)
-
-    if (Object.keys(errors).length > 0) {
-      // Display toast for validation errors
-      toast.error("Please fix the form errors before submitting.");
-      return;
-    }
+    console.log(body);
 
     await axios
       .post("http://localhost:7000/iticket-api/login", body)
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
-
-        if (res.status === 200) {
-          setOpen(true);
-          setModal("login");
+        toast.success(t("provided_match"), {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setOpen(true);
+        setModal("login");
+        setTimeout(() => {
           window.location.reload();
-        }
+        }, 1500);
       })
       .catch((err) => {
-        if (err.response.status === 404) {
-          console.log("Istifadeci tapilmadi");
-        }
+        toast.error(`${t("provided_not_match")}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
-  
-  const { t } = useTranslation();
 
-//! ---------------------------------------------
+  //! ---------------------------------------------
   return (
     <div className={`loginModal ${open && "active"}`}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div
         className="overlay"
         onClick={() => {
@@ -98,6 +118,7 @@ const LoginModal = ({ open, setOpen }) => {
           setModal("login");
         }}
       ></div>
+
       {modal === "login" ? (
         <div className="row">
           <div className="modal">
@@ -131,18 +152,25 @@ const LoginModal = ({ open, setOpen }) => {
                       name="email"
                       placeholder={t("email_or_phone")}
                       {...register("email")}
+                      className={errors.email && "errorInp"}
                     />
+                    {errors.email && (
+                      <span className="errorMsg">{errors.email.message}</span>
+                    )}
                   </div>
                   <div className="formGroup">
                     <input
                       type="password"
                       name="password"
                       placeholder={t("password")}
+                      className={errors.email && "errorInp"}
                       {...register("password")}
                     />
-                    <p className="forgot" onClick={() => setModal("reset")}>
-                      {t("forgot")}?
-                    </p>
+                    {errors.password && (
+                      <span className="errorMsg">
+                        {errors.password.message}
+                      </span>
+                    )}
                   </div>
                   <div className="formGroup">
                     <button className="btn" type="submit">

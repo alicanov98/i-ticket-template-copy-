@@ -84,5 +84,20 @@
   "venue_location":"Venue Location",
   "page_not_found":"Page Not Found",
   "home_page":"Home Page",
-  "we_are_sorry":"We are sorry for the inconvenience. It looks like you are trying to access a page that either has been deleted or never existed."
+  "we_are_sorry":"We are sorry for the inconvenience. It looks like you are trying to access a page that either has been deleted or never existed.",
+  "email_error":"The e-mail address field is required.",
+  "password_error":"The password field is required.",
+  "provided_not_match":"User not found !",
+  "provided_match":"Logged in !",
+  "name_empty":"The name cannot be empty.",
+  "surname_empty":"Surname cannot be empty.",
+  "email_empty":"Email will not be empty.",
+  "phone_empty":"The phone cannot be empty.",
+  "just_numbers":"Just numbers.",
+  "password_empty":"The password cannot be empty.",
+  "password_short":"Password too short.",
+  "confirm_password_empty":"Confirm password is not empty.",
+"passwords_not_match":"Passwords do not match.",
+"something_wrong!":"Something went wrong!",
+"successful_registration":"Successful Registration"
 }

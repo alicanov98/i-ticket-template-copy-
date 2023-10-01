@@ -232,7 +232,7 @@
         color: #bebebe;
       }
 
-      .personOut {
+      .personOut,.logOut {
         border-radius: 50%;
         background-color: #ffdd00;
         width: 50px;
@@ -245,6 +245,9 @@
 
         .personOutLine {
           color: #000;
+        }
+        .logOutIcon{
+          font-size: 30px;
         }
       }
 

@@ -83,5 +83,21 @@
   "venue_location":"Məkan yeri",
   "page_not_found":"Səhifə tapılmadı",
   "home_page":"Əsas səhifə",
-  "we_are_sorry":"Narahatçılığa görə üzr istəyirik. Deyəsən, silinmiş və ya heç vaxt mövcud olmayan səhifəyə daxil olmağa çalışırsınız."
+  "we_are_sorry":"Narahatçılığa görə üzr istəyirik. Deyəsən, silinmiş və ya heç vaxt mövcud olmayan səhifəyə daxil olmağa çalışırsınız.",
+"email_error":"E-poçt mütləqdir.",
+"password_error":"Şifrə mütləqdir.",
+"provided_not_match":"İstifadəçi tapılmadı",
+"provided_match":"Sayta daxil oldunuz !",
+"name_empty":"Ad boş olmaz.",
+"surname_empty":"Soyad boş olmaz.",
+"email_empty":"Email boş olmaz.",
+"phone_empty":"Telefon boş olmaz.",
+"just_numbers":"Sadəcə rəqəmlər.",
+"password_empty":"Şifrə boş olmaz.",
+"password_short":"Şifrə çox qısa.",
+"confirm_password_empty":"Şifrəni təsdiqləyin boş olmaz.",
+"passwords_not_match":"Şifrələr uyğun gəlmir.",
+"something_wrong":"Nə isə düz getmədi!",
+"successful_registration":"Ugurlu Qeydiyyat."
+
 }
