@@ -23,6 +23,10 @@ import axios from "axios";
 //? i18n
 import { useTranslation } from "react-i18next";
 
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //? ----------------------------------------------
 const LoginModal = ({ open, setOpen }) => {
 
@@ -34,11 +38,11 @@ const LoginModal = ({ open, setOpen }) => {
       .trim("Email bos olmasin")
       .matches(
         /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
-        "Email formati yalnisdir"
+        { message: "Email formati yalnisdir", excludeEmptyString: true }
       ),
     password: string()
       .trim("Sifre bos olmasin")
-      .matches(/^(?=.*[a-z])(?=.*[A-Z]).{8,18}$/, "Sifrenin formati yalnisdir"),
+      .matches(/^(?=.*[a-z])(?=.*[A-Z]).{8,18}$/, { message: "Sifrenin formati yalnisdir", excludeEmptyString: true } ),
   });
 
   const {
@@ -57,6 +61,12 @@ const LoginModal = ({ open, setOpen }) => {
     };
 
     console.log(body)
+
+    if (Object.keys(errors).length > 0) {
+      // Display toast for validation errors
+      toast.error("Please fix the form errors before submitting.");
+      return;
+    }
 
     await axios
       .post("http://localhost:7000/iticket-api/login", body)

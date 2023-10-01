@@ -1,4 +1,4 @@
-.footer {
+    .footer {
     width: 100%;
     margin-top: 64px;
     padding-top: 12px;
@@ -122,7 +122,7 @@
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width:1255px){
     .footer {
         .container {
             .row {
@@ -153,11 +153,70 @@
 
                     .footerLogo {
                         margin: 0;
-                        width: 112px;
+                        width: 200px;
 
                         img {
                             margin: 0;
                         }
+                    }
+
+                    .footerCardCont {
+                        p {
+                            font-size: 20px;
+                        }
+
+                        .tel {
+                            font-size: 22px;
+                        }
+                    }
+
+                    .footerCardTitle {
+                        font-size: 22px;
+                    }
+
+                    .infoList {
+                        .infoItem {
+                            a {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+
+                    .footerText {
+                        font-size: 20px;
+                    }
+                }
+            }
+
+            .footerBottom {
+                width: 100%;
+                border-top: 1px solid #d2d2d2;
+
+                .row {
+                    justify-content: center;
+                    gap: 0;
+
+                    .copyRight {
+                        padding: 16px 20px;
+                        font-size: 20px;
+                    }
+
+                    .socialList {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer {
+        .container {
+            .row {
+                .footerCard {
+                    .footerLogo {
+                        width: 112px;
                     }
 
                     .footerCardCont {
@@ -189,20 +248,9 @@
             }
 
             .footerBottom {
-                width: 100%;
-                border-top: 1px solid #d2d2d2;
-
                 .row {
-                    justify-content: center;
-                    gap: 0;
-
                     .copyRight {
-                        padding: 16px 20px;
                         font-size: 16px;
-                    }
-
-                    .socialList {
-                        width: 100%;
                     }
                 }
             }
@@ -215,8 +263,7 @@
 @media (max-width: 768px) {
     .footer {
         .container {
-            width: 90%;
-            padding: 0;
+           
 
             .footerBottom {
                 margin-top: 20px;
@@ -272,6 +319,7 @@
 @media(max-width:376px) {
     .footer {
         .container {
+           
             .row {
                 .footerCard {
                     .footerCardCont {

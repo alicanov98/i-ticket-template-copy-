@@ -28,6 +28,7 @@
                 padding-top: 16px;
                 color: black;
                 font-size: 16px;
+                text-align: center;
             }
             .btnBackHomePage{
                 background-color: #fd0;
@@ -40,6 +41,36 @@
                 margin-top: 16px;
                 border: none;
                 outline: none;
+            }
+        }
+    }
+}
+
+@media(max-width:480px){
+    .notFound{
+        height: 40vh;
+        .container{
+            .row{
+                .notFoundError{
+                    img{
+                        width: 100px;
+                        height: 100px;
+                    }
+                    .errorLable{
+                        font-size: 50px;
+                    }
+                }
+                .titleNotFound{
+                    font-size: 20px;
+                    margin-top: 16px;
+                }
+                p{
+                    text-align: center;
+                }
+                .btnBackHomePage{
+                    font-size: 16px;
+                    padding: 14px 22px;
+                }
             }
         }
     }
