@@ -98,6 +98,7 @@
 "confirm_password_empty":"Şifrəni təsdiqləyin boş olmaz.",
 "passwords_not_match":"Şifrələr uyğun gəlmir.",
 "something_wrong":"Nə isə düz getmədi!",
-"successful_registration":"Ugurlu Qeydiyyat."
+"successful_registration":"Ugurlu Qeydiyyat.",
+"order_accepted":"Sifarişiniz qəbul olundu."
 
 }

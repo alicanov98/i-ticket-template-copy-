@@ -99,5 +99,6 @@
   "confirm_password_empty":"Confirm password is not empty.",
 "passwords_not_match":"Passwords do not match.",
 "something_wrong!":"Something went wrong!",
-"successful_registration":"Successful Registration"
+"successful_registration":"Successful Registration",
+"order_accepted":"Your order accepted."
 }

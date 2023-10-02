@@ -13,18 +13,16 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
 
   const path = useLocation();
 
-  const [openDropList, setOpenDrop] = useState(false);
+  const [openDropList, setOpenDropList] = useState(false);
 
   const [values, setValues] = useState({ initialState: [MIN, MAX] });
 
-  const openDropdown = () => {
-    setOpenDrop((openDropList) => !openDropList);
-  };
+
 
   let checkDropdown = openDropList ? "filterDropdown active" : "filterDropdown";
 
   const closeDropdown = () => {
-    setOpenDrop(false);
+    setOpenDropList(false);
   };
 
   useEffect(() => {
@@ -46,7 +44,7 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
     <section className="events-filter">
       <div className="eventsFilter">
         <div className="row">
-          <div className="filter" onClick={openDropdown}>
+          <div className="filter"  >
             <select
               placeholder="Məkan seçin"
               onChange={(e) => {
@@ -62,8 +60,8 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
               Elektra Events Hall
               </option>
             </select>
-            <div className="controlFilterInp">
-              <div className="filterControl">
+            <div className="controlFilterInp" onClick={()=>setOpenDropList(!openDropList)}>
+              <div className="filterControl" >
                 <input type="select-one" placeholder="Məkan seçin" disabled />
                 <FaAngleDown className="downIcon" />
               </div>

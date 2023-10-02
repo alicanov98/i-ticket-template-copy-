@@ -16,6 +16,7 @@ import axios from "axios";
 //? i18n 
 import { useTranslation } from "react-i18next";
 
+//? Toast
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -161,7 +162,7 @@ theme="colored"
                     {...register("surname")}
                     className={errors.email && "errorInp"}
                   />
-                      {errors.surname && <span className="errorMsg">{errors.surname.message}</span>}
+               {errors.surname && <span className="errorMsg">{errors.surname.message}</span>}    
                 </div>
                 <div className="formGroup">
                   <input type="text" name="mobile" className={errors.email && "errorInp"} placeholder={t("mobile")} {...register("mobile")}/>
@@ -173,7 +174,7 @@ theme="colored"
                     name="email"
                     placeholder={t("email")}
                     {...register("email")}
-                    className={errors.email && "errorInp"}
+                    className={errors.email && "erro  rInp"}
                   />
                       {errors.email && <span className="errorMsg">{errors.email.message}</span>}
                 </div>
