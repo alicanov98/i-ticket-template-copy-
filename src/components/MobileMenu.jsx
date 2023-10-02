@@ -20,12 +20,12 @@ const MobileMenu = ({ open, setOpen }) => {
   const inputValue = function (e) {
     setValue(e.target.value);
   };
-let innWidth=window.innerWidth>1255
+  let innWidth = window.innerWidth > 1255;
 
   const path = useLocation();
   useEffect(() => {
     setOpen(false);
-  }, [path.pathname, setOpen,innWidth ]);
+  }, [path.pathname, setOpen, innWidth]);
 
   useEffect(() => {
     const filterData = async () => {
@@ -91,17 +91,27 @@ let innWidth=window.innerWidth>1255
               onChange={inputValue}
             />
             <AiOutlineSearch className="menuInpIcon" />
-            { value===""?undefined:<ul className="searchList">
-              {resultSearch.map((searchItem)=>(
-                value===""? undefined
-                :<Link to={`/card-details/${searchItem.id}`} className="searchCard" onClick={() => {
-                  path.push(`/card-details/${searchItem.id}`);
-                  window.location.reload();
-                }}>
-                <li className="searchItem" key={searchItem.id}> {searchItem.eventTitle}</li>
-              </Link>
-              ))}
-            </ul>}
+            {value === "" ? undefined : (
+              <ul className="searchList">
+                {resultSearch.map((searchItem) =>
+                  value === "" ? undefined : (
+                    <Link
+                      to={`/card-details/${searchItem.id}`}
+                      className="searchCard"
+                      onClick={() => {
+                        path.push(`/card-details/${searchItem.id}`);
+                        window.location.reload();
+                      }}
+                    >
+                      <li className="searchItem" key={searchItem.id}>
+                        {" "}
+                        {searchItem.eventTitle}
+                      </li>
+                    </Link>
+                  )
+                )}
+              </ul>
+            )}
           </div>
           <nav className="navBarz">
             <ul className="navList">
