@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 
+//? React Icons 
 import { FaAngleDown } from "react-icons/fa";
 
+//? Router 
 import { useLocation } from "react-router-dom";
 
+//? React slider 
 import Slider from "react-slider";
 
+//? Price filter min & max 
 const MIN = 1.0;
 const MAX = 500.0;
 
+//? ------------------ 
 export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
 
   const path = useLocation();
@@ -16,8 +21,6 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
   const [openDropList, setOpenDropList] = useState(false);
 
   const [values, setValues] = useState({ initialState: [MIN, MAX] });
-
-
 
   let checkDropdown = openDropList ? "filterDropdown active" : "filterDropdown";
 
@@ -31,6 +34,7 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
 
   const [selectedOption, setSelectedOption] = useState(""); 
   
+  //? Location filter  
   const handleSelectOption = (optionTexts) => {
     setSelectedOption(optionTexts)
     onSelectFilter(optionTexts);
@@ -40,10 +44,14 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
     selectedPrice(price); 
   }
 
+  //?------------------------------------ 
   return (
     <section className="events-filter">
       <div className="eventsFilter">
         <div className="row">
+          
+          {/* //! Location Filter */}
+          
           <div className="filter"  >
             <select
               placeholder="Məkan seçin"
@@ -102,6 +110,7 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
               </div>
             </div>
           </div>
+          {/* //! Date Filter */}
           <div className="filter">
             <input
               type="text"
@@ -110,6 +119,8 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
               readOnly
             />
           </div>
+
+          {/* //! Price Filter */}
           <div className="filter">
             <div className={"priceRangeView"}>
               Qiymət {values[0]}.00 ₼-dan {values[1]}.00 ₼-dək
@@ -127,6 +138,7 @@ export const EventsFilter = ({ onSelectFilter,selectedPrice  }) => {
               />
             </div>
           </div>
+
         </div>
       </div>
     </section>

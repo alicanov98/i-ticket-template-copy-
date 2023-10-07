@@ -1,12 +1,14 @@
-import React from "react";
-
-// I18n
-import { useTranslation } from "react-i18next";
-
-
-import { Link } from "react-router-dom";
+//? Images 
 import logo from "../assets/images/logo.svg"
 import pay from "../assets/images/cards.svg"
+
+//? I18n
+import { useTranslation } from "react-i18next";
+
+//? Router 
+import { Link } from "react-router-dom";
+
+//? React Icons 
 import {
   FaFacebookF,
   FaTiktok,
@@ -15,6 +17,7 @@ import {
 } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 
+//?-------------------------- 
 const Footer = () => {
 
 const {t}=useTranslation()
@@ -23,6 +26,7 @@ const {t}=useTranslation()
     <footer className="footer">
       <div className="container">
         <div className="row">
+          {/* //! Footer Cards */}
           <div className="footerCard">
             <Link className="footerLogo" to="/">
               <img src={logo} alt="" />
@@ -34,6 +38,7 @@ const {t}=useTranslation()
               </Link>
             </div>
           </div>
+          {/* //!------------------ */}
           <div className="footerCard">
             <h3 className="footerCardTitle">{t("information")}</h3>
             <ul className="infoList">
@@ -57,6 +62,7 @@ const {t}=useTranslation()
               </li>
             </ul>
           </div>
+          {/* //!-------------------------- */}
           <div className="footerCard">
             <h3 className="footerCardTitle">iTicket</h3>
             <ul className="infoList">
@@ -77,6 +83,7 @@ const {t}=useTranslation()
               </li>
             </ul>
           </div>
+          {/* //!-------------------------- */}
           <div className="footerCard">
             <h3 className="footerCardTitle">{t("security")}</h3>
             <p className="footerText">
@@ -85,6 +92,7 @@ const {t}=useTranslation()
             <img src={pay} alt="" />
           </div>
         </div>
+        {/* //! Footer Bottom */}
         <div className="footerBottom">
           <div className="row">
             <p className="copyRight">

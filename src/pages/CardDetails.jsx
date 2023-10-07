@@ -1,7 +1,7 @@
-// Router
+//? Router
 import { Link, useParams } from "react-router-dom";
 
-// Icons
+//? Icons
 import { MdFavoriteBorder } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
 
@@ -49,10 +49,14 @@ const defaultProps = {
 };
 
 const CardDetails = () => {
-  const dispatch = useDispatch();
-  let favoriteList = useSelector((state) => state.cartData.favori);
-  const { id } = useParams();
+  
   const [cardData, setCardData] = useState({});
+
+  const dispatch = useDispatch();
+
+  let favoriteList = useSelector((state) => state.cartData.favori);
+
+  const { id } = useParams();
 
   useEffect(() => {
     const getSingleData = async () => {
@@ -70,6 +74,7 @@ const CardDetails = () => {
 
 
   const count = useSelector((state) => state.cartData.counter);
+  
   let totalPrice = Number(cardData.minimumPrice) * count;
 
   const isFavoriteEvent = favoriteList.find((event) => event.id === id);

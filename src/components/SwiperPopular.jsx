@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 //? Import Swiper styles
 import "swiper/css";
 
-
+//? Card
 import { Card } from "./Card";
 
 export const SwiperPopular = ({data}) => {

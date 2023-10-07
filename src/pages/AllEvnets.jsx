@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from "react";
 
+//? Axios
 import axios from "axios";
 
+//? Filters
 import { EventsFilter } from "../components/EventsFilter";
 
+//? Card
 import { Card } from "../components/Card";
 
+//? Router
 import { useNavigate } from "react-router-dom";
 
+//? Loading
 import Loading from "../components/Loading";
 
 const AllEvnets = () => {
 
   const navigate = useNavigate();
 
+  //? State
   const [eventCards, setEventCards] = useState([]);
-
   const [loading, setLoading] = useState(false);
-
   const [originalEventCards, setOriginalEventCards] = useState([]);
 
+  //? Api get data
   useEffect(() => {
     setLoading(true);
     const getSlide = async () => {
@@ -39,9 +44,10 @@ const AllEvnets = () => {
     };
     setTimeout(() => {
       getSlide();
-    }, 4000);
+    }, 3000);
   }, [navigate]);
 
+  //? Location Filter
   const handleFilter = (selectedValue) => {
     const filteredCards = originalEventCards.filter(
       (item) => item.eventLocation === selectedValue
@@ -49,6 +55,7 @@ const AllEvnets = () => {
     setEventCards(filteredCards);
   };
 
+  //? Price Filter
   const handleFilterPrice = (num) => {
     const filteredPrice = originalEventCards.filter(
       (item) => item.minimumPrice === num.toString()
@@ -58,10 +65,12 @@ const AllEvnets = () => {
 
   return (
     <div className="container">
+
       <EventsFilter
         onSelectFilter={(selectedValue) => handleFilter(selectedValue)}
         selectedPrice={(item) => handleFilterPrice(item)}
       />
+      
       {loading && <Loading />}
       <div className="cardBox">
         {eventCards.map((item) => (

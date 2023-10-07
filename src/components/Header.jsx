@@ -1,3 +1,4 @@
+
 //? Router
 import { NavLink, Link, useLocation } from "react-router-dom";
 
@@ -94,6 +95,8 @@ const Header = () => {
   const carts = useSelector((state) => state.cartData.cart);
   const cartCount = carts.reduce((total, item) => total + item.quantity, 0);
 
+
+  //? Api Login 
   useEffect(() => {
     const checkUser = async () => {
       let token = JSON.parse(localStorage.getItem("token"));
@@ -117,6 +120,7 @@ const Header = () => {
   const { i18n } = useTranslation();
   const { t } = useTranslation();
 
+  //? Login out 
   const logOut = () => {
     localStorage.removeItem("token");
     window.location.reload();
@@ -125,17 +129,24 @@ const Header = () => {
     }, 1000);
   };
 
+//?-------------------------------- 
+
   return (
     <header className={headerClassName}>
       <div className="row">
+        {/* //! Mobil Menu */}
         <div className="bars" onClick={() => setMobileMenu(!mobileMenu)}>
           <FaBars className="bar" />
         </div>
+
+        {/* //! Logo */}
         <div className="logo">
           <Link to="/">
             <img src={logoSrc} alt="logo" />
           </Link>
         </div>
+
+        {/* //! Nav Bar */}
         <nav className="navBar">
           <div className="lng">
             <button
@@ -213,6 +224,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+        {/* //! Search , Favorites , Login */}
         <div className="userArea">
           <Link to="/favorites" className="favoIcon">
             {" "}
@@ -241,6 +253,8 @@ const Header = () => {
         <LoginModal open={loginModal} setOpen={setLoginModal} />
         <Search open={search} setOpen={setSearch} />
       </div>
+      
+      {/* //! Cart Basket Button Fixed */}
       <div className="cartBtnFixed">
         <button
           className="cartBtn"
@@ -256,6 +270,7 @@ const Header = () => {
           <img className="cartIcon" src={cartIcon} alt="icon" />
         </button>
       </div>
+      {/* //! Cart Basket */}
       <Cart open={cart} setOpen={setCart} />
     </header>
   );

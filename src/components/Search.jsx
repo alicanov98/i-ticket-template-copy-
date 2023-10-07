@@ -28,8 +28,11 @@ export const Search = ({ setOpen, open }) => {
   const path = useLocation();
 
   return (
+    
     <div className={`search ${open && "active"}`}>
+      {/* //! Overlay */}
       <div className="overlay" onClick={() => setOpen(false)}></div>
+      {/* //! Form Search */}
       <div className="formSearch">
         <AiOutlineSearch className="iconSerach" />
         <input

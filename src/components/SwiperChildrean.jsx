@@ -1,6 +1,8 @@
 //? Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+
+//? Card
 import { Card } from "./Card";
 
 export const SwiperChildrean = ({data}) => {

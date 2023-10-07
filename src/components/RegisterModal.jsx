@@ -1,4 +1,4 @@
-//? Icons 
+//? Icons
 import { VscChromeClose } from "react-icons/vsc";
 import { BsGoogle } from "react-icons/bs";
 import { BiLogoFacebook } from "react-icons/bi";
@@ -6,31 +6,34 @@ import { BiLogoFacebook } from "react-icons/bi";
 //? Form hook
 import { useForm } from "react-hook-form";
 
-//? Yup 
+//? Yup
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 //? axios
 import axios from "axios";
 
-//? i18n 
+//? i18n
 import { useTranslation } from "react-i18next";
 
 //? Toast
-import { toast,ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //? ----------------------------------------------
 const RegisterModal = ({ open, setOpen, setModal }) => {
-
-  const {t}=useTranslation()
+  const { t } = useTranslation();
 
   //! Form validation
   const registerSchema = yup.object({
     name: yup.string().trim().required(t("name_empty")),
     surname: yup.string().trim().required(t("surname_empty")),
     email: yup.string().trim().required(t("email_empty")),
-    mobile: yup.string().trim().required(t("phone_empty")).matches(/^[0-9+]+$/,t("just_numbers")),
+    mobile: yup
+      .string()
+      .trim()
+      .required(t("phone_empty"))
+      .matches(/^[0-9+]+$/, t("just_numbers")),
     password: yup
       .string()
       .trim()
@@ -45,16 +48,15 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
       }),
   });
 
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm({
-      resolver: yupResolver(registerSchema),
-    });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+  });
 
-
-    //! Post form data 
+  //! Api Post form data
   const formSubmit = async (data) => {
     const body = {
       name: data.name,
@@ -76,10 +78,10 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
           draggable: true,
           progress: undefined,
           theme: "colored",
-          });
-          setTimeout(()=>{
-            window.location.reload()
-          },2000)
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);
@@ -92,25 +94,30 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
           draggable: true,
           progress: undefined,
           theme: "colored",
-          });
+        });
       });
   };
 
-// !----------------------------------------------
+  // !----------------------------------------------
   return (
+    //! Register Modal */
+
     <div className="registerModal">
       <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-/>
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+
+      {/* //! Overlay */}
+
       <div
         className="overlay"
         onClick={() => {
@@ -118,6 +125,7 @@ theme="colored"
           setModal("login");
         }}
       ></div>
+
       <div className="row">
         <div className={`registersModal ${open && "active"}`}>
           <div className="modalDialog">
@@ -131,6 +139,8 @@ theme="colored"
             >
               <VscChromeClose className="icoClose" />
             </button>
+
+            {/* //! Modal Header */}
             <div className="modalHeader">
               <h4 className="modalTitle">{t("register")}</h4>
               <div className="modalHeaderAddons">
@@ -142,6 +152,8 @@ theme="colored"
                 </button>
               </div>
             </div>
+
+            {/* //! Modal Body */}
             <div className="modalBody">
               <form onSubmit={handleSubmit(formSubmit)}>
                 <div className="formGroup">
@@ -152,7 +164,9 @@ theme="colored"
                     {...register("name")}
                     className={errors.email && "errorInp"}
                   />
-                  {errors.name && <span className="errorMsg">{errors.name.message}</span>}
+                  {errors.name && (
+                    <span className="errorMsg">{errors.name.message}</span>
+                  )}
                 </div>
                 <div className="formGroup">
                   <input
@@ -162,11 +176,21 @@ theme="colored"
                     {...register("surname")}
                     className={errors.email && "errorInp"}
                   />
-               {errors.surname && <span className="errorMsg">{errors.surname.message}</span>}    
+                  {errors.surname && (
+                    <span className="errorMsg">{errors.surname.message}</span>
+                  )}
                 </div>
                 <div className="formGroup">
-                  <input type="text" name="mobile" className={errors.email && "errorInp"} placeholder={t("mobile")} {...register("mobile")}/>
-                  {errors.mobile && <span className="errorMsg">{errors.mobile.message}</span>}
+                  <input
+                    type="text"
+                    name="mobile"
+                    className={errors.email && "errorInp"}
+                    placeholder={t("mobile")}
+                    {...register("mobile")}
+                  />
+                  {errors.mobile && (
+                    <span className="errorMsg">{errors.mobile.message}</span>
+                  )}
                 </div>
                 <div className="formGroup">
                   <input
@@ -176,42 +200,51 @@ theme="colored"
                     {...register("email")}
                     className={errors.email && "erro  rInp"}
                   />
-                      {errors.email && <span className="errorMsg">{errors.email.message}</span>}
+                  {errors.email && (
+                    <span className="errorMsg">{errors.email.message}</span>
+                  )}
                 </div>
                 <div className="formGroup">
                   <input
-                   className={errors.email ? "errorInp":"regInp"}
+                    className={errors.email ? "errorInp" : "regInp"}
                     type="password"
                     name="password"
                     placeholder={t("password")}
                     {...register("password")}
-                
                   />
-                      {errors.password && <span className="errorMsg">{errors.password.message}</span>}
+                  {errors.password && (
+                    <span className="errorMsg">{errors.password.message}</span>
+                  )}
                 </div>
                 <div className="formGroup">
                   <input
                     type="password"
-                    className={errors.email ? "errorInp":"regInp"}
+                    className={errors.email ? "errorInp" : "regInp"}
                     name="confirmPassword"
                     placeholder={t("confirm_password")}
                     {...register("confirmPassword")}
                   />
-                      {errors.confirmPassword && <span className="errorMsg">{errors.confirmPassword.message}</span>}
+                  {errors.confirmPassword && (
+                    <span className="errorMsg">
+                      {errors.confirmPassword.message}
+                    </span>
+                  )}
                 </div>
                 <div className="formGroup">
                   <button className="btn" type="submit">
-                   {t("register")}
+                    {t("register")}
                   </button>
                 </div>
               </form>
             </div>
+
+            {/* //! Modal Footer */}
             <div className="modalFooter">
               <span className="footerText regFooterText">
                 {t("already_registered")}
               </span>
               <p className="signUp" onClick={() => setModal("login")}>
-               {t("sgin_in")}
+                {t("sgin_in")}
               </p>
             </div>
           </div>

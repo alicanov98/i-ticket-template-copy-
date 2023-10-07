@@ -1,32 +1,36 @@
-// Router
+//? Router
 import { Link, NavLink, useLocation } from "react-router-dom";
 
-// img
+//? img
 import logo from "../assets/images/logo.svg";
-// Icons
+//? Icons
 import { AiOutlineSearch } from "react-icons/ai";
 import { VscChromeClose } from "react-icons/vsc";
 
 import { useEffect, useState } from "react";
 
-// i18n
+//? i18n
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 const MobileMenu = ({ open, setOpen }) => {
+  //! States
   const [value, setValue] = useState("");
   const [searchEvents, setSearchEvents] = useState([]);
 
   const inputValue = function (e) {
     setValue(e.target.value);
   };
+
   let innWidth = window.innerWidth > 1255;
 
   const path = useLocation();
+
   useEffect(() => {
     setOpen(false);
   }, [path.pathname, setOpen, innWidth]);
 
+  //? Api
   useEffect(() => {
     const filterData = async () => {
       await axios
@@ -41,20 +45,28 @@ const MobileMenu = ({ open, setOpen }) => {
     filterData();
   }, []);
 
+  //! Evenets Search
   const resultSearch = searchEvents.filter((item) =>
     item.eventTitle.toLowerCase().includes(value.toLowerCase())
   );
 
   const { i18n } = useTranslation();
   const { t } = useTranslation();
+
+  //!------------------------------------------------
   return (
     <div className={`mobileMenu ${open && "active"}`}>
+      {/* //! Overlay */}
       <div className="overlay" onClick={() => setOpen(false)}></div>
+
       <div className="row">
+        {/* //! Close Button */}
         <button className="close" onClick={() => setOpen(false)}>
           <VscChromeClose className="icoClose" />
         </button>
+
         <div className="menu">
+          {/* //! Mobil Menu Header  */}
           <div className="menuHeader">
             <div className="logo">
               <Link to="/">
@@ -82,6 +94,7 @@ const MobileMenu = ({ open, setOpen }) => {
               </button>
             </div>
           </div>
+          {/* //! Mobil Menu search */}
           <div className="menuSearch">
             <input
               type="text"
@@ -113,6 +126,7 @@ const MobileMenu = ({ open, setOpen }) => {
               </ul>
             )}
           </div>
+          {/* //! Mobil Menu Navbar */}
           <nav className="navBarz">
             <ul className="navList">
               <li className="navItem">
@@ -159,6 +173,7 @@ const MobileMenu = ({ open, setOpen }) => {
               </li>
             </ul>
           </nav>
+          {/* //! Mobil Menu Footer  */}
           <div className="menuFooter">
             <Link to="/"> Biletlərin Satış Məntəqələri</Link>
             <Link to="/">Əlaqə</Link>

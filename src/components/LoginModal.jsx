@@ -22,6 +22,7 @@ import axios from "axios";
 //? i18n
 import { useTranslation } from "react-i18next";
 
+//? React Toastify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -32,6 +33,7 @@ const LoginModal = ({ open, setOpen }) => {
   //! Form Validation
   const [modal, setModal] = useState("login");
 
+  //! Login Form Validation
   const loginSchema = object({
     email: string()
       .trim("Email will not be empty.")
@@ -62,6 +64,7 @@ const LoginModal = ({ open, setOpen }) => {
 
     console.log(body);
 
+    //! Api Post Login
     await axios
       .post("http://localhost:7000/iticket-api/login", body)
       .then((res) => {
@@ -99,6 +102,8 @@ const LoginModal = ({ open, setOpen }) => {
   //! ---------------------------------------------
   return (
     <div className={`loginModal ${open && "active"}`}>
+
+      {/* //! React ToastContainer */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -111,6 +116,8 @@ const LoginModal = ({ open, setOpen }) => {
         pauseOnHover
         theme="colored"
       />
+
+      {/* //! Overlay */}
       <div
         className="overlay"
         onClick={() => {
@@ -118,7 +125,8 @@ const LoginModal = ({ open, setOpen }) => {
           setModal("login");
         }}
       ></div>
-
+      
+{/* //! Login Modals Open and close */}
       {modal === "login" ? (
         <div className="row">
           <div className="modal">

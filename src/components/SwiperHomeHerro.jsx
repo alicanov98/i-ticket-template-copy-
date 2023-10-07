@@ -1,10 +1,8 @@
 /* eslint-disable array-callback-return */
-
-// Router
+//? Router
 import { Link } from "react-router-dom";
 
-
-// import swiper 
+//? import swiper 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -15,6 +13,7 @@ import { useSelector } from "react-redux";
 
 export const SwiperHomeHerro = ({data}) => {
   
+  //? Loading 
 const loading=useSelector(state=>state.events.loading)
 
   return (

@@ -1,13 +1,15 @@
+import { useEffect } from "react";
+
+//? images 
 import closeIcon from "../assets/images/close.svg";
 import evenodd from "../assets/images/evenodd.svg";
 import removeImg from "../assets/images/remove.svg";
 import removeAll from "../assets/images/removeAll.svg";
-
+//? Router 
 import { Link, useLocation } from "react-router-dom";
 
+//? Redux 
 import { useDispatch, useSelector } from "react-redux";
-
-import { useEffect } from "react";
 
 import {
   removeFromCart,
@@ -16,8 +18,10 @@ import {
   allRemoveFromCart,
 } from "../redux/slices/cartSlice";
 
+//? Timer 
 import Timer from "./Timer";
 
+//? -------------------------------------------- 
 export const Cart = ({ open, setOpen }) => {
 
   const dispatch = useDispatch();
@@ -37,11 +41,15 @@ export const Cart = ({ open, setOpen }) => {
    setOpen(false)
   },[path.pathname,setOpen])
 
+  //? ------------------------------------------ 
   return (
     <div className={`cart ${open && "active"}`}>
+      {/* //! Overlay */}
       <div className="overlay" onClick={() => setOpen(false)}></div>
       <div className="cartContent">
+      {/* //! Loading */}
         <div className="imapLoading"></div>
+        {/* //! Cart Header */}
         <div className="cartHeader">
           <div className="NumberOfTickets">
             <span className="numberOfTitle">
@@ -55,7 +63,10 @@ export const Cart = ({ open, setOpen }) => {
           </button>
         </div>
         <div className="title">Səbət</div>
+        {/* //! Timer */}
         <Timer setOpen={setOpen}/>
+
+        {/* //! Ticket List */}
         <div className="ticketsList">
           <div className="cartsContent">
             <ul className="cartTicketList">
@@ -96,6 +107,7 @@ export const Cart = ({ open, setOpen }) => {
             </ul>
           </div>
         </div>
+        {/* //! Cart Footer */}
         <div className="cartFooter">
           <div className="totalPriceCart">
             <div className="cartTotalPrice">

@@ -27,9 +27,8 @@ import Timer from "../components/Timer";
 import { useTranslation } from "react-i18next";
 
 //? Toast
-import { toast,ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //? -------------------------------
 export const Basket = () => {
@@ -85,31 +84,34 @@ export const Basket = () => {
       draggable: true,
       progress: undefined,
       theme: "colored",
-      });
-      setTimeout(()=>{
-        window.location.reload()
-      },2000)
+    });
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   return (
     <>
       <section className="basket">
-      <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-/>
+        {/* //! ToastContainer  */}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <div className="container">
           {cart.length === 0 ? (
             <div className="warnning">
               <h4 className="title">Səbət</h4>
+
+              {/* //! Warnig   */}
               <div className="warnig">
                 <img src={warnig} alt="warnig" />
                 <h3>{t("No_events_found")}</h3>
@@ -119,7 +121,10 @@ theme="colored"
             <div className="orders">
               <div className="eventTickets">
                 <h4 className="title">Səbət</h4>
+                {/* //! Timer  */}
                 <Timer />
+
+                {/* //! Events List  */}
                 <ul className="cartTicketList">
                   {cart.map((item) => (
                     <li className="cartTicketItem" key={item.id}>
@@ -162,6 +167,8 @@ theme="colored"
                     </li>
                   ))}
                 </ul>
+
+                {/* //! Delivery */}
                 <div className="delivery">
                   <h4 className="title">Çatdırılma üsulunu seçin</h4>
                   <div className="onlineDelivery">
@@ -170,6 +177,8 @@ theme="colored"
                   </div>
                 </div>
               </div>
+              
+              {/* //! Tickets Order */}
               <div className="ticketsOrder">
                 <div className="ticketOrderTitle">
                   <h2>Çatdırılma üsulu</h2>
