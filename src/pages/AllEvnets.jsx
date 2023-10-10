@@ -1,30 +1,26 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 //? Axios
 import axios from "axios";
 
-//? Filters
-import { EventsFilter } from "../components/EventsFilter";
-
-//? Card
-import { Card } from "../components/Card";
-
 //? Router
 import { useNavigate } from "react-router-dom";
 
-//? Loading
+//? Component
+import { EventsFilter } from "../components/EventsFilter";
+import { Card } from "../components/Card";
 import Loading from "../components/Loading";
 
 const AllEvnets = () => {
-
+  //? Router
   const navigate = useNavigate();
 
-  //? State
+  //? Local states
   const [eventCards, setEventCards] = useState([]);
   const [loading, setLoading] = useState(false);
   const [originalEventCards, setOriginalEventCards] = useState([]);
 
-  //? Api get data
+  //? Get data from api
   useEffect(() => {
     setLoading(true);
     const getSlide = async () => {
@@ -65,12 +61,10 @@ const AllEvnets = () => {
 
   return (
     <div className="container">
-
       <EventsFilter
         onSelectFilter={(selectedValue) => handleFilter(selectedValue)}
         selectedPrice={(item) => handleFilterPrice(item)}
       />
-      
       {loading && <Loading />}
       <div className="cardBox">
         {eventCards.map((item) => (

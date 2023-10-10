@@ -1,20 +1,18 @@
-/* eslint-disable array-callback-return */
 //? Router
 import { Link } from "react-router-dom";
 
-//? import swiper 
+//? Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-//? Redux toolkit
+//? Redux
 import { useSelector } from "react-redux";
 
-export const SwiperHomeHerro = ({data}) => {
-  
-  //? Loading 
-const loading=useSelector(state=>state.events.loading)
+export const SwiperHomeHerro = ({ data }) => {
+  //? Redux
+  const loading = useSelector((state) => state.events.loading);
 
   return (
     <div className="swiperHome">
@@ -28,17 +26,18 @@ const loading=useSelector(state=>state.events.loading)
           autoplay={true}
           className="mySwiper swiperList"
         >
-          {data.map((item) => {
-            if(item.sliderImg!==null){
-              return (
+          {data.map(
+            (item) =>
+              item.sliderImg !== null && (
                 <SwiperSlide className="swiperItem" key={item.id}>
-                <Link to={`/card-details/${item.id}`}>
-                <img src={`http://localhost:7000/${ item?.sliderImg}`} alt={item.name} />
-                </Link>
-              </SwiperSlide>
+                  <Link to={`/card-details/${item.id}`}>
+                    <img
+                      src={`http://localhost:7000/${item?.sliderImg}`}
+                      alt={item.name}
+                    />
+                  </Link>
+                </SwiperSlide>
               )
-            }
-          }
           )}
         </Swiper>
       </div>

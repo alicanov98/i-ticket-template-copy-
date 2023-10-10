@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 //? Router
 import { Link, useParams } from "react-router-dom";
 
@@ -19,11 +21,10 @@ import fullscreenImg from "../assets/images/fullscreens.svg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
-import { useEffect, useState } from "react";
-//? axios
+//? Axios
 import axios from "axios";
 
-//? redux
+//? Redux
 import {
   addToCart,
   adToFavori,
@@ -34,12 +35,14 @@ import {
 } from "../redux/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-//?google-map
+//? Google-map
 import GoogleMapReact from "google-map-react";
+
+//? Translation
 import { useTranslation } from "react-i18next";
 
+//? Google map
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 const defaultProps = {
   center: {
     lat: 40.383702,
@@ -49,15 +52,31 @@ const defaultProps = {
 };
 
 const CardDetails = () => {
-  
-  const [cardData, setCardData] = useState({});
-
-  const dispatch = useDispatch();
-
-  let favoriteList = useSelector((state) => state.cartData.favori);
-
+  //? Router
   const { id } = useParams();
 
+  //? Translation
+  const { t } = useTranslation();
+
+  //? Scroll page to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [cardData, setCardData] = useState({
+    bannerImg: "uploads/yuxumadaGelmeBarner.jpg",
+    infoImg: "uploads/yuxumadaGelmeInfo.jpg",
+    locationImg: "uploads/elektroEventHall.png",
+  });
+
+  //? Redux
+  const dispatch = useDispatch();
+  let favoriteList = useSelector((state) => state.cartData.favori);
+  const count = useSelector((state) => state.cartData.counter);
+  let totalPrice = Number(cardData.minimumPrice) * count;
+  const isFavoriteEvent = favoriteList.find((event) => event.id === id);
+
+  //? Get single data from api
   useEffect(() => {
     const getSingleData = async () => {
       await axios
@@ -72,16 +91,6 @@ const CardDetails = () => {
     getSingleData();
   }, [id]);
 
-
-  const count = useSelector((state) => state.cartData.counter);
-  
-  let totalPrice = Number(cardData.minimumPrice) * count;
-
-  const isFavoriteEvent = favoriteList.find((event) => event.id === id);
-
-
-  const { t } = useTranslation();
-  
   return (
     <>
       <section className="cardHerro">

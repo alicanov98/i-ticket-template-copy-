@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-//? Icons
+//? React icons
 import { AiOutlineSearch } from "react-icons/ai";
 import { VscChromeClose } from "react-icons/vsc";
 
-//? i18n
+//? Translation
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 
@@ -12,27 +12,29 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export const Search = ({ setOpen, open }) => {
-  const [value, setValue] = useState("");
+  //? Translation
   const { t } = useTranslation();
+
+  //? Local states
+  const [value, setValue] = useState("");
 
   const inputValue = function (e) {
     setValue(e.target.value);
   };
 
+  //? Redux
   const events = useSelector((state) => state.events.events);
+
+  //? Router
+  const path = useLocation();
 
   const resultSearch = events.filter((item) =>
     item.eventTitle.toLowerCase().includes(value.toLowerCase())
   );
 
-  const path = useLocation();
-
   return (
-    
     <div className={`search ${open && "active"}`}>
-      {/* //! Overlay */}
       <div className="overlay" onClick={() => setOpen(false)}></div>
-      {/* //! Form Search */}
       <div className="formSearch">
         <AiOutlineSearch className="iconSerach" />
         <input

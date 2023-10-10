@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 //? Images
 import removeImg from "../assets/images/remove.svg";
@@ -15,27 +15,30 @@ import {
 
 //? Form hook
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 //? Yup
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-//? Timer
+//? Components
 import Timer from "../components/Timer";
 
-//? i18n
+//? Translation
 import { useTranslation } from "react-i18next";
 
-//? Toast
+//? React-toastify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-//? -------------------------------
-export const Basket = () => {
+const Basket = () => {
+  //? Translation
+  const { t } = useTranslation();
+
+  //? Redux
+  const cart = useSelector((state) => state.cartData.cart);
   const dispatch = useDispatch();
 
-  const cart = useSelector((state) => state.cartData.cart);
-
+  //? Local states
   const [mobileNumber, setMobileNumber] = useState("+994");
 
   const handleMobileNumberChange = (e) => {
@@ -47,14 +50,13 @@ export const Basket = () => {
     }
   };
 
+  //? Calc total price
   const totalPrice = cart.reduce(
     (total, item) => total + item.minimumPrice * item.quantity,
     0
   );
 
-  const { t } = useTranslation();
-
-  //! Form validation
+  //? Yup schema
   const registerSchema = yup.object({
     name: yup.string().trim().required(t("name_empty")),
     surname: yup.string().trim().required(t("surname_empty")),
@@ -66,6 +68,7 @@ export const Basket = () => {
       .matches(/^[0-9+]+$/, t("just_numbers")),
   });
 
+  //? React hook form
   const {
     register,
     handleSubmit,
@@ -88,6 +91,7 @@ export const Basket = () => {
     setTimeout(() => {
       window.location.reload();
     }, 2000);
+    console.log(data);
   };
 
   return (
@@ -177,7 +181,7 @@ export const Basket = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* //! Tickets Order */}
               <div className="ticketsOrder">
                 <div className="ticketOrderTitle">
@@ -257,3 +261,5 @@ export const Basket = () => {
     </>
   );
 };
+
+export default Basket;

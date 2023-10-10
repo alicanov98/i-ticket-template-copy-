@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 
-//? images 
+//? images
 import closeIcon from "../assets/images/close.svg";
 import evenodd from "../assets/images/evenodd.svg";
 import removeImg from "../assets/images/remove.svg";
 import removeAll from "../assets/images/removeAll.svg";
-//? Router 
+//? Router
 import { Link, useLocation } from "react-router-dom";
 
-//? Redux 
+//? Redux
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -18,36 +18,37 @@ import {
   allRemoveFromCart,
 } from "../redux/slices/cartSlice";
 
-//? Timer 
+//? Timer
 import Timer from "./Timer";
 
-//? -------------------------------------------- 
+//? --------------------------------------------
 export const Cart = ({ open, setOpen }) => {
+  //? Router
+  const path = useLocation();
 
+  //? Redux
+  const cart = useSelector((state) => state.cartData.cart);
   const dispatch = useDispatch();
 
-  const cart = useSelector((state) => state.cartData.cart);
-
+  //? Calc product quantity
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
+  //? Calc cart total price
   const totalPrice = cart.reduce(
     (total, item) => total + item.minimumPrice * item.quantity,
     0
   );
 
-  const path=useLocation()
-  
-  useEffect(()=>{
-   setOpen(false)
-  },[path.pathname,setOpen])
+  useEffect(() => {
+    setOpen(false);
+  }, [path.pathname, setOpen]);
 
-  //? ------------------------------------------ 
   return (
     <div className={`cart ${open && "active"}`}>
       {/* //! Overlay */}
       <div className="overlay" onClick={() => setOpen(false)}></div>
       <div className="cartContent">
-      {/* //! Loading */}
+        {/* //! Loading */}
         <div className="imapLoading"></div>
         {/* //! Cart Header */}
         <div className="cartHeader">
@@ -64,7 +65,7 @@ export const Cart = ({ open, setOpen }) => {
         </div>
         <div className="title">Səbət</div>
         {/* //! Timer */}
-        <Timer setOpen={setOpen}/>
+        <Timer setOpen={setOpen} />
 
         {/* //! Ticket List */}
         <div className="ticketsList">

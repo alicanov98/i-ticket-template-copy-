@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-//? Redux 
+
+//? Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
   allRemoveFromCart,
@@ -10,17 +11,16 @@ import {
 //? Router
 import { useLocation } from "react-router-dom";
 
-const Timer = ({setOpen}) => {
-
+const Timer = ({ setOpen }) => {
   //! States
   const [minutes, setMinutes] = useState(15);
   const [seconds, setSeconds] = useState(0);
-  
+
   const dispatch = useDispatch();
-  
-  const cart=useSelector(state=>state.cartData.cart)
-  
-  const path = useLocation().pathname
+
+  const cart = useSelector((state) => state.cartData.cart);
+
+  const path = useLocation().pathname;
 
   useEffect(() => {
     let interval;
@@ -30,9 +30,9 @@ const Timer = ({setOpen}) => {
       dispatch(allRemoveFromCart());
       dispatch(cartTotal());
       dispatch(cartTotalPrice());
-        if(path!=="/basket"){
-            setOpen(false);
-        }
+      if (path !== "/basket") {
+        setOpen(false);
+      }
     } else {
       interval = setInterval(() => {
         if (seconds === 0) {
@@ -50,7 +50,7 @@ const Timer = ({setOpen}) => {
     return () => {
       clearInterval(interval);
     };
-  }, [minutes, seconds, setOpen, dispatch,path]);
+  }, [minutes, seconds, setOpen, dispatch, path]);
 
   useEffect(() => {
     const checkCart = () => {
@@ -64,7 +64,6 @@ const Timer = ({setOpen}) => {
     checkCart();
   }, [cart.length]);
 
-  //?----------------
   return (
     <div className="timer">
       <div>

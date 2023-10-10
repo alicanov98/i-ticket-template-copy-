@@ -9,31 +9,31 @@ import { BiLogoFacebook } from "react-icons/bi";
 import RegisterModal from "./RegisterModal";
 import { ResetPassword } from "./ResetPassword";
 
-//? Form hook
+//? React hook form
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 //? Yup
-import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
 
 //? Axios
 import axios from "axios";
 
-//? i18n
+//? Translation
 import { useTranslation } from "react-i18next";
 
 //? React Toastify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-//? ----------------------------------------------
 const LoginModal = ({ open, setOpen }) => {
+  //? Translation
   const { t } = useTranslation();
 
-  //! Form Validation
+  //? Local states
   const [modal, setModal] = useState("login");
 
-  //! Login Form Validation
+  //? Yup schema
   const loginSchema = object({
     email: string()
       .trim("Email will not be empty.")
@@ -47,6 +47,7 @@ const LoginModal = ({ open, setOpen }) => {
       .required(`${t("password_error")}`),
   });
 
+  //? React hook form
   const {
     register,
     handleSubmit,
@@ -55,16 +56,12 @@ const LoginModal = ({ open, setOpen }) => {
     resolver: yupResolver(loginSchema),
   });
 
-  //! Post form data
+  //? Login
   const submitForm = async (data) => {
     const body = {
       email: data.email,
       password: data.password,
     };
-
-    console.log(body);
-
-    //! Api Post Login
     await axios
       .post("http://localhost:7000/iticket-api/login", body)
       .then((res) => {
@@ -99,11 +96,8 @@ const LoginModal = ({ open, setOpen }) => {
       });
   };
 
-  //! ---------------------------------------------
   return (
     <div className={`loginModal ${open && "active"}`}>
-
-      {/* //! React ToastContainer */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -116,8 +110,6 @@ const LoginModal = ({ open, setOpen }) => {
         pauseOnHover
         theme="colored"
       />
-
-      {/* //! Overlay */}
       <div
         className="overlay"
         onClick={() => {
@@ -125,8 +117,6 @@ const LoginModal = ({ open, setOpen }) => {
           setModal("login");
         }}
       ></div>
-      
-{/* //! Login Modals Open and close */}
       {modal === "login" ? (
         <div className="row">
           <div className="modal">

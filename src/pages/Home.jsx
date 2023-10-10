@@ -1,4 +1,4 @@
-//? Swiper sections
+//? Slide components
 import { SwiperChildrean } from "../components/SwiperChildrean";
 import { SwiperHomeHerro } from "../components/SwiperHomeHerro";
 import { SwiperPerformances } from "../components/SwiperPerformances";
@@ -7,7 +7,7 @@ import { SwiperTourism } from "../components/SwiperTourism";
 import { SwiperNewEvents } from "../components/SwiperNewEvents";
 import { SwiperEventsWeekend } from "../components/SwiperEventsWeekend";
 
-//? Image
+//? Images
 import ios from "../assets/images/ios.png";
 import android from "../assets/images/android.png";
 import mobilApp from "../assets/images/app-05-2023.png";
@@ -16,7 +16,7 @@ import Loading from "../components/Loading";
 //? Router
 import { Link } from "react-router-dom";
 
-//? I18next
+//? Translation
 import { useTranslation } from "react-i18next";
 
 //? Redux toolkit
@@ -25,16 +25,22 @@ import { useEffect } from "react";
 import { getEvents } from "../redux/slices/eventsSlice";
 
 const Home = () => {
+  //? Scroll page to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
+  //? Translation
   const { t } = useTranslation();
 
-  const events = useSelector((state) =>state.events.events);
+  //? Redux
+  const events = useSelector((state) => state.events.events);
   const loading = useSelector((state) => state.events.loading);
-
   const dispatch = useDispatch();
 
+  //? Get Events
   useEffect(() => {
-      dispatch(getEvents())
+    dispatch(getEvents());
   }, [dispatch]);
 
   return (

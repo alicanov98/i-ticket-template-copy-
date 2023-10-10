@@ -1,14 +1,14 @@
-//? Images 
-import logo from "../assets/images/logo.svg"
-import pay from "../assets/images/cards.svg"
+//? Images
+import logo from "../assets/images/logo.svg";
+import pay from "../assets/images/cards.svg";
 
-//? I18n
+//? Translation
 import { useTranslation } from "react-i18next";
 
-//? Router 
+//? Router
 import { Link } from "react-router-dom";
 
-//? React Icons 
+//? React Icons
 import {
   FaFacebookF,
   FaTiktok,
@@ -17,16 +17,15 @@ import {
 } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 
-//?-------------------------- 
+//?--------------------------
 const Footer = () => {
-
-const {t}=useTranslation()
+  //? Translation
+  const { t } = useTranslation();
 
   return (
     <footer className="footer">
       <div className="container">
         <div className="row">
-          {/* //! Footer Cards */}
           <div className="footerCard">
             <Link className="footerLogo" to="/">
               <img src={logo} alt="" />
@@ -38,7 +37,6 @@ const {t}=useTranslation()
               </Link>
             </div>
           </div>
-          {/* //!------------------ */}
           <div className="footerCard">
             <h3 className="footerCardTitle">{t("information")}</h3>
             <ul className="infoList">
@@ -62,7 +60,6 @@ const {t}=useTranslation()
               </li>
             </ul>
           </div>
-          {/* //!-------------------------- */}
           <div className="footerCard">
             <h3 className="footerCardTitle">iTicket</h3>
             <ul className="infoList">
@@ -83,21 +80,15 @@ const {t}=useTranslation()
               </li>
             </ul>
           </div>
-          {/* //!-------------------------- */}
           <div className="footerCard">
             <h3 className="footerCardTitle">{t("security")}</h3>
-            <p className="footerText">
-              {t("protected")}
-            </p>
+            <p className="footerText">{t("protected")}</p>
             <img src={pay} alt="" />
           </div>
         </div>
-        {/* //! Footer Bottom */}
         <div className="footerBottom">
           <div className="row">
-            <p className="copyRight">
-               {t("trademark")}
-            </p>
+            <p className="copyRight">{t("trademark")}</p>
             <ul className="socialList">
               <li className="socialItem">
                 <Link className="social" to="/">

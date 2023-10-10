@@ -1,14 +1,12 @@
-//? Icons
+//? React icons
 import { VscChromeClose } from "react-icons/vsc";
 
-
-//? i18n
+//? Translation
 import { useTranslation } from "react-i18next";
 
-
 export const ResetPassword = ({ open, setOpen, setModal }) => {
-
-const {t}=useTranslation()
+  //? Translation
+  const { t } = useTranslation();
 
   return (
     <div className="resetPasswordModal">
@@ -35,10 +33,10 @@ const {t}=useTranslation()
               <h4 className="modalTitle">{t("reset_password")}</h4>
             </div>
             <div className="modalBody">
-              <form >
+              <form>
                 <div className="formGroup">
-                {/* {errors.email && errorSwal(errors.email.message)} */}
-                  <input type="text" name="email" placeholder={t("email")}  />
+                  {/* {errors.email && errorSwal(errors.email.message)} */}
+                  <input type="text" name="email" placeholder={t("email")} />
                 </div>
                 <div className="formGroup">
                   <button className="btn" type="submit">

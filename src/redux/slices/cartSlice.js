@@ -8,6 +8,7 @@ const initialState = {
   counter: 1,
 };
 
+//? Check saved favorite from localStorage
 const checkSavedFavorite = () => {
   const saved = JSON.parse(localStorage.getItem("favoriteList"));
   if (saved !== null) {
@@ -16,16 +17,27 @@ const checkSavedFavorite = () => {
     initialState.favori = [];
   }
 };
-checkSavedFavorite()
+checkSavedFavorite();
+
+//? Check saved cart from localStorage
+const checkSavedCart = () => {
+  const saved = JSON.parse(localStorage.getItem("cart"));
+  if (saved !== null) {
+    initialState.cart = saved;
+  } else {
+    initialState.cart = [];
+  }
+};
+checkSavedCart();
 
 const cartSlice = createSlice({
   name: "cartData",
   initialState,
   reducers: {
-    increment: (state, action) => {
+    increment: (state) => {
       state.counter += 1;
     },
-    decrement: (state, action) => {
+    decrement: (state) => {
       if (state.counter > 0) {
         state.counter -= 1;
       }
@@ -56,6 +68,7 @@ const cartSlice = createSlice({
         );
       }
       state.counter = 0;
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     adToFavori: (state, action) => {
       const newFavoriCard = action.payload;
@@ -64,9 +77,11 @@ const cartSlice = createSlice({
       );
       if (existingFavoriCardIndex === -1) {
         state.favori.push(newFavoriCard);
-      }else{
-        const uptateFavori=state.favori.filter((item)=>item.id!==newFavoriCard.id)
-        state.favori=uptateFavori
+      } else {
+        const uptateFavori = state.favori.filter(
+          (item) => item.id !== newFavoriCard.id
+        );
+        state.favori = uptateFavori;
       }
       localStorage.setItem("favoriteList", JSON.stringify(state.favori));
     },
@@ -74,9 +89,11 @@ const cartSlice = createSlice({
       const cardId = action.payload;
       const updatedCart = state.cart.filter((item) => item.id !== cardId);
       state.cart = updatedCart;
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     allRemoveFromCart: (state, action) => {
       state.cart = [];
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     cartTotal: (state, action) => {
       let count = state.cart.map((item) => item.quantitiy);
@@ -93,6 +110,7 @@ const cartSlice = createSlice({
   },
 });
 
+//? Export actions
 export const {
   addToCart,
   removeFromCart,

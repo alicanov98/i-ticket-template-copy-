@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 
 //? Router
 import { NavLink, Link, useLocation } from "react-router-dom";
@@ -8,11 +9,12 @@ import logo2 from "../assets/images/logo-dark.svg";
 import cartIcon from "../assets/images/cart.svg";
 
 //? Components
-import MobileMenu from "../components/MobileMenu";
-import LoginModal from "../components/LoginModal";
+import MobileMenu from "./MobileMenu";
+import LoginModal from "./LoginModal";
 import { Cart } from "./Cart";
+import { Search } from "./Search";
 
-//? Icons
+//? React Icons
 import {
   IoHeartOutline,
   IoSearch,
@@ -22,36 +24,42 @@ import {
 import { FaEllipsis, FaBars } from "react-icons/fa6";
 import { BiLogOutCircle } from "react-icons/bi";
 
-//? Hooks
-import { useEffect, useState } from "react";
-import { Search } from "./Search";
-
 //? Redux
 import { useSelector } from "react-redux";
-
 
 //? Axios
 import axios from "axios";
 
-//? i18n
+//? Translation
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
-  const path = useLocation();
-  const [user, setUser] = useState(null);
+  //? Translation
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
 
-  //? states
+  //? Redux
+  const carts = useSelector((state) => state.cartData.cart);
+  const cartCount = carts.reduce((total, item) => total + item.quantity, 0);
+
+  //? Router
+  const path = useLocation();
+
+  //? Local states
+  const [user, setUser] = useState(null);
   const [openDropList, setOpenDrop] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [search, setSearch] = useState(false);
   const [cart, setCart] = useState(false);
+  //? Responsive Header Change
+  const [headerClassName, setHeaderClassName] = useState("header");
+  const [logoSrc, setLogoSrc] = useState(logo);
 
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
   };
 
-  let checkDropdown = openDropList ? "dropDown" : "active";
   const closeDropdown = () => {
     setOpenDrop(false);
   };
@@ -59,11 +67,6 @@ const Header = () => {
   useEffect(() => {
     closeDropdown();
   }, [path.pathname]);
-
-  //? Responsive Header Change
-
-  const [headerClassName, setHeaderClassName] = useState("header");
-  const [logoSrc, setLogoSrc] = useState(logo);
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,20 +86,14 @@ const Header = () => {
         }
       }
     };
-
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => {
       window.addEventListener("resize", handleResize);
     };
   }, [path.pathname]);
 
-  const carts = useSelector((state) => state.cartData.cart);
-  const cartCount = carts.reduce((total, item) => total + item.quantity, 0);
-
-
-  //? Api Login 
+  //? Login
   useEffect(() => {
     const checkUser = async () => {
       let token = JSON.parse(localStorage.getItem("token"));
@@ -117,10 +114,7 @@ const Header = () => {
     checkUser();
   }, []);
 
-  const { i18n } = useTranslation();
-  const { t } = useTranslation();
-
-  //? Login out 
+  //? Logout
   const logOut = () => {
     localStorage.removeItem("token");
     window.location.reload();
@@ -129,24 +123,17 @@ const Header = () => {
     }, 1000);
   };
 
-//?-------------------------------- 
-
   return (
     <header className={headerClassName}>
       <div className="row">
-        {/* //! Mobil Menu */}
         <div className="bars" onClick={() => setMobileMenu(!mobileMenu)}>
           <FaBars className="bar" />
         </div>
-
-        {/* //! Logo */}
         <div className="logo">
           <Link to="/">
             <img src={logoSrc} alt="logo" />
           </Link>
         </div>
-
-        {/* //! Nav Bar */}
         <nav className="navBar">
           <div className="lng">
             <button
@@ -173,58 +160,57 @@ const Header = () => {
               <NavLink to="/all-events">{t("all_events")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/c">{t("concert")}</NavLink>
+              <NavLink to="/error">{t("concert")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/t">{t("theatre")}</NavLink>
+              <NavLink to="/error">{t("theatre")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/u">{t("kids")}</NavLink>
+              <NavLink to="/error">{t("kids")}</NavLink>
             </li>
             <li className="navItem">
-              <NavLink to="/h">{t("hayal_kahvesi")}</NavLink>
+              <NavLink to="/error">{t("hayal_kahvesi")}</NavLink>
             </li>
             <li className="navItem">
               <NavLink to="/sport">{t("sport")}</NavLink>
             </li>
-            <li className={checkDropdown}>
+            <li className={openDropList ? "dropDown" : "active"}>
               <FaEllipsis onClick={openDropdown} className="dod" />
               <ul className="dropDownList">
                 <li className="dropDownItem">
-                  <NavLink to="/a"> Hayal Kahvesi</NavLink>
+                  <NavLink to="/error"> Hayal Kahvesi</NavLink>
                 </li>
                 <li className="dropDownItem">
                   <NavLink to="/sport">{t("sport")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/a">{t("baku_jazz_fest")}</NavLink>
+                  <NavLink to="/error">{t("baku_jazz_fest")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/b">{t("museum")}</NavLink>
+                  <NavLink to="/error">{t("museum")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/f">{t("tourism")}</NavLink>
+                  <NavLink to="/error">{t("tourism")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/g">{t("seminar")}</NavLink>
+                  <NavLink to="/error">{t("seminar")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/x">{t("master_class")}</NavLink>
+                  <NavLink to="/error">{t("master_class")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/m">{t("other")}</NavLink>
+                  <NavLink to="/error">{t("other")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/m">{t("products")}</NavLink>
+                  <NavLink to="/error">{t("products")}</NavLink>
                 </li>
                 <li className="dropDownItem">
-                  <NavLink to="/m">{t("vr")}</NavLink>
+                  <NavLink to="/error">{t("vr")}</NavLink>
                 </li>
               </ul>
             </li>
           </ul>
         </nav>
-        {/* //! Search , Favorites , Login */}
         <div className="userArea">
           <Link to="/favorites" className="favoIcon">
             {" "}
@@ -233,7 +219,6 @@ const Header = () => {
           <IoSearch className="searchIcon" onClick={() => setSearch(!search)} />
           <Link className="carts" to={carts.length !== 0 ? "/basket" : "#"}>
             <IoCart className="icart" />
-            {/* onClick={() => dispatch(addToCart())} */}
             <span className="count">{cartCount}</span>
           </Link>
           {!user ? (
@@ -253,8 +238,6 @@ const Header = () => {
         <LoginModal open={loginModal} setOpen={setLoginModal} />
         <Search open={search} setOpen={setSearch} />
       </div>
-      
-      {/* //! Cart Basket Button Fixed */}
       <div className="cartBtnFixed">
         <button
           className="cartBtn"
@@ -270,7 +253,6 @@ const Header = () => {
           <img className="cartIcon" src={cartIcon} alt="icon" />
         </button>
       </div>
-      {/* //! Cart Basket */}
       <Cart open={cart} setOpen={setCart} />
     </header>
   );

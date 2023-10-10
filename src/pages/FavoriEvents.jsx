@@ -1,12 +1,21 @@
-
+//? Translation
 import { useTranslation } from "react-i18next";
+
+//? Icon
 import warnig from "../assets/images/warning.svg";
+
+//? Component
 import { Card } from "../components/Card";
+
+//? Redux
 import { useSelector } from "react-redux";
 
-export const FavoriEvents = () => {
+const FavoriEvents = () => {
+  //? Redux
   let favoriteList = useSelector((state) => state.cartData.favori);
-  const {t}=useTranslation()
+
+  //? Translation
+  const { t } = useTranslation();
 
   return (
     <>
@@ -21,7 +30,7 @@ export const FavoriEvents = () => {
           ) : (
             <div className="cardBox">
               {favoriteList.map((item) => (
-                  <Card key={item.id} data={item} />
+                <Card key={item.id} data={item} />
               ))}
             </div>
           )}
@@ -30,3 +39,5 @@ export const FavoriEvents = () => {
     </>
   );
 };
+
+export default FavoriEvents;

@@ -1,20 +1,27 @@
+import { useEffect, useState } from "react";
+
 //? Router
 import { Link, NavLink, useLocation } from "react-router-dom";
 
-//? img
+//? Images
 import logo from "../assets/images/logo.svg";
-//? Icons
+
+//? React Icons
 import { AiOutlineSearch } from "react-icons/ai";
 import { VscChromeClose } from "react-icons/vsc";
 
-import { useEffect, useState } from "react";
-
-//? i18n
+//? Translation
 import { useTranslation } from "react-i18next";
+
+//? Axios
 import axios from "axios";
 
 const MobileMenu = ({ open, setOpen }) => {
-  //! States
+  //? Translation
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  //? Local states
   const [value, setValue] = useState("");
   const [searchEvents, setSearchEvents] = useState([]);
 
@@ -24,13 +31,14 @@ const MobileMenu = ({ open, setOpen }) => {
 
   let innWidth = window.innerWidth > 1255;
 
+  //? Router
   const path = useLocation();
 
   useEffect(() => {
     setOpen(false);
   }, [path.pathname, setOpen, innWidth]);
 
-  //? Api
+  //? Filter data
   useEffect(() => {
     const filterData = async () => {
       await axios
@@ -45,28 +53,19 @@ const MobileMenu = ({ open, setOpen }) => {
     filterData();
   }, []);
 
-  //! Evenets Search
+  //? Event search
   const resultSearch = searchEvents.filter((item) =>
     item.eventTitle.toLowerCase().includes(value.toLowerCase())
   );
 
-  const { i18n } = useTranslation();
-  const { t } = useTranslation();
-
-  //!------------------------------------------------
   return (
     <div className={`mobileMenu ${open && "active"}`}>
-      {/* //! Overlay */}
       <div className="overlay" onClick={() => setOpen(false)}></div>
-
       <div className="row">
-        {/* //! Close Button */}
         <button className="close" onClick={() => setOpen(false)}>
           <VscChromeClose className="icoClose" />
         </button>
-
         <div className="menu">
-          {/* //! Mobil Menu Header  */}
           <div className="menuHeader">
             <div className="logo">
               <Link to="/">
@@ -94,7 +93,6 @@ const MobileMenu = ({ open, setOpen }) => {
               </button>
             </div>
           </div>
-          {/* //! Mobil Menu search */}
           <div className="menuSearch">
             <input
               type="text"
@@ -126,54 +124,52 @@ const MobileMenu = ({ open, setOpen }) => {
               </ul>
             )}
           </div>
-          {/* //! Mobil Menu Navbar */}
           <nav className="navBarz">
             <ul className="navList">
               <li className="navItem">
                 <NavLink to="/all-events">{t("all_events")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/c">{t("concert")}</NavLink>
+                <NavLink to="/error">{t("concert")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/t">{t("theatre")}</NavLink>
+                <NavLink to="/error">{t("theatre")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/u">{t("kids")}</NavLink>
+                <NavLink to="/error">{t("kids")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/h">{t("hayal_kahvesi")}</NavLink>
+                <NavLink to="/error">{t("hayal_kahvesi")}</NavLink>
               </li>
               <li className="navItem">
                 <NavLink to="/sport">{t("sport")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/a">{t("baku_jazz_fest")}</NavLink>
+                <NavLink to="/error">{t("baku_jazz_fest")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/b">{t("museum")}</NavLink>
+                <NavLink to="/error">{t("museum")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/f">{t("tourism")}</NavLink>
+                <NavLink to="/error">{t("tourism")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/g">{t("seminar")}</NavLink>
+                <NavLink to="/error">{t("seminar")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/x">{t("master_class")}</NavLink>
+                <NavLink to="/error">{t("master_class")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/m">{t("other")}</NavLink>
+                <NavLink to="/error">{t("other")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/m">{t("products")}</NavLink>
+                <NavLink to="/error">{t("products")}</NavLink>
               </li>
               <li className="navItem">
-                <NavLink to="/m">{t("vr")}</NavLink>
+                <NavLink to="/error">{t("vr")}</NavLink>
               </li>
             </ul>
           </nav>
-          {/* //! Mobil Menu Footer  */}
           <div className="menuFooter">
             <Link to="/"> Biletlərin Satış Məntəqələri</Link>
             <Link to="/">Əlaqə</Link>

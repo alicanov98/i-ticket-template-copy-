@@ -1,30 +1,30 @@
-//? Icons
+//? React icons
 import { VscChromeClose } from "react-icons/vsc";
 import { BsGoogle } from "react-icons/bs";
 import { BiLogoFacebook } from "react-icons/bi";
 
-//? Form hook
+//? React hook form
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 //? Yup
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-//? axios
+//? Axios
 import axios from "axios";
 
-//? i18n
+//? Translation
 import { useTranslation } from "react-i18next";
 
-//? Toast
+//? React toastify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-//? ----------------------------------------------
 const RegisterModal = ({ open, setOpen, setModal }) => {
+  //? Translation
   const { t } = useTranslation();
 
-  //! Form validation
+  //? Yup schema
   const registerSchema = yup.object({
     name: yup.string().trim().required(t("name_empty")),
     surname: yup.string().trim().required(t("surname_empty")),
@@ -48,6 +48,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
       }),
   });
 
+  //? React hook form
   const {
     register,
     handleSubmit,
@@ -56,7 +57,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
     resolver: yupResolver(registerSchema),
   });
 
-  //! Api Post form data
+  //? Register
   const formSubmit = async (data) => {
     const body = {
       name: data.name,
@@ -98,10 +99,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
       });
   };
 
-  // !----------------------------------------------
   return (
-    //! Register Modal */
-
     <div className="registerModal">
       <ToastContainer
         position="top-right"
@@ -115,9 +113,6 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
         pauseOnHover
         theme="colored"
       />
-
-      {/* //! Overlay */}
-
       <div
         className="overlay"
         onClick={() => {
@@ -125,7 +120,6 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
           setModal("login");
         }}
       ></div>
-
       <div className="row">
         <div className={`registersModal ${open && "active"}`}>
           <div className="modalDialog">
@@ -139,8 +133,6 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
             >
               <VscChromeClose className="icoClose" />
             </button>
-
-            {/* //! Modal Header */}
             <div className="modalHeader">
               <h4 className="modalTitle">{t("register")}</h4>
               <div className="modalHeaderAddons">
@@ -152,8 +144,6 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                 </button>
               </div>
             </div>
-
-            {/* //! Modal Body */}
             <div className="modalBody">
               <form onSubmit={handleSubmit(formSubmit)}>
                 <div className="formGroup">
@@ -237,8 +227,6 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                 </div>
               </form>
             </div>
-
-            {/* //! Modal Footer */}
             <div className="modalFooter">
               <span className="footerText regFooterText">
                 {t("already_registered")}

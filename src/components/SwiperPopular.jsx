@@ -1,13 +1,11 @@
-//? Import Swiper React components
+//? Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
-
-//? Import Swiper styles
 import "swiper/css";
 
-//? Card
+//? Component
 import { Card } from "./Card";
 
-export const SwiperPopular = ({data}) => {
+export const SwiperPopular = ({ data }) => {
   return (
     <Swiper
       centeredSlides={true}
