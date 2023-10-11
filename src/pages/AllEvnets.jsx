@@ -18,7 +18,8 @@ const AllEvnets = () => {
   //? Local states
   const [eventCards, setEventCards] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [originalEventCards, setOriginalEventCards] = useState([]);
+  const [events, setEvents] = useState([]);
+ const [eventLocation,seteventLocation]=useState("allEvents")
 
   //? Get data from api
   useEffect(() => {
@@ -29,7 +30,8 @@ const AllEvnets = () => {
         .then((res) => {
           const eventData = res.data;
           setEventCards(eventData);
-          setOriginalEventCards(eventData);
+          setEvents(eventData);
+          updateLocation(eventData)
           setLoading(false);
         })
         .catch((error) => {
@@ -43,17 +45,26 @@ const AllEvnets = () => {
     }, 3000);
   }, [navigate]);
 
+  
+  const updateLocation = (data) => {
+    const uniqueLocation = Array.from(new Set(data.map(item => item.eventLocation)));
+    seteventLocation(uniqueLocation);
+  };
+
+
   //? Location Filter
   const handleFilter = (selectedValue) => {
-    const filteredCards = originalEventCards.filter(
+    const filteredCards = events.filter(
       (item) => item.eventLocation === selectedValue
     );
+
+    console.log(filteredCards)
     setEventCards(filteredCards);
   };
 
   //? Price Filter
   const handleFilterPrice = (num) => {
-    const filteredPrice = originalEventCards.filter(
+    const filteredPrice = events.filter(
       (item) => item.minimumPrice === num.toString()
     );
     setEventCards(filteredPrice);
@@ -62,9 +73,11 @@ const AllEvnets = () => {
   return (
     <div className="container">
       <EventsFilter
-        onSelectFilter={(selectedValue) => handleFilter(selectedValue)}
-        selectedPrice={(item) => handleFilterPrice(item)}
-      />
+      text={eventLocation}
+      onSelectFilter={(selectedValue) => handleFilter(selectedValue)}
+      selectedPrice={(item) => handleFilterPrice(item)}
+    />
+ 
       {loading && <Loading />}
       <div className="cardBox">
         {eventCards.map((item) => (

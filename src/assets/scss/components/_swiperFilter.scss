@@ -57,6 +57,11 @@
             }
 
             .filterList {
+              height: 300px;
+              overflow-x: scroll;
+              &::-webkit-scrollbar {
+                background-color: transparent;
+              }
               .filterItem {
                 padding: 12px 28px;
                 font-size: 20px;
