@@ -12,7 +12,7 @@ import {
 import { useLocation } from "react-router-dom";
 
 const Timer = ({ setOpen }) => {
-  //! States
+
   const [minutes, setMinutes] = useState(15);
   const [seconds, setSeconds] = useState(0);
 

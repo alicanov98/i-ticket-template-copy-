@@ -99,6 +99,8 @@
 "passwords_not_match":"Şifrələr uyğun gəlmir.",
 "something_wrong":"Nə isə düz getmədi!",
 "successful_registration":"Ugurlu Qeydiyyat.",
-"order_accepted":"Sifarişiniz qəbul olundu."
-
+"order_accepted":"Sifarişiniz qəbul olundu.",
+"email_not_empty":"E-poçt boş olmamalıdır.",
+"Must_characters":"Ən azı 10 simvol olmalıdır.",
+"Must_characterss":"Ən azı 3 simvol olmalıdır."
 }

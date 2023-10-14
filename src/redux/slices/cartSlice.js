@@ -67,7 +67,7 @@ const cartSlice = createSlice({
           0
         );
       }
-      state.counter = 0;
+      state.counter = 1;
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     adToFavori: (state, action) => {

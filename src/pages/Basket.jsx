@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //? Images
 import removeImg from "../assets/images/remove.svg";
@@ -29,10 +29,14 @@ import { useTranslation } from "react-i18next";
 //? React-toastify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Basket = () => {
   //? Translation
   const { t } = useTranslation();
+
+  //? Router
+  const navigate = useNavigate();
 
   //? Redux
   const cart = useSelector((state) => state.cartData.cart);
@@ -88,11 +92,21 @@ const Basket = () => {
       progress: undefined,
       theme: "colored",
     });
+    localStorage.removeItem("cart");
     setTimeout(() => {
+      navigate("/");
       window.location.reload();
     }, 2000);
+
     console.log(data);
   };
+
+
+  //? Scroll page to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   return (
     <>

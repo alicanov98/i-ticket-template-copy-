@@ -36,12 +36,12 @@ const LoginModal = ({ open, setOpen }) => {
   //? Yup schema
   const loginSchema = object({
     email: string()
-      .trim("Email will not be empty.")
+      .trim()
       .matches(/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, {
         message: t("email_error"),
         excludeEmptyString: true,
       })
-      .required(),
+      .required(`${t("email_not_empty")}`),
     password: string()
       .trim("")
       .required(`${t("password_error")}`),

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 //? Translation
 import { useTranslation } from "react-i18next";
 
@@ -10,12 +12,18 @@ import { Card } from "../components/Card";
 //? Redux
 import { useSelector } from "react-redux";
 
+
 const FavoriEvents = () => {
   //? Redux
   let favoriteList = useSelector((state) => state.cartData.favori);
 
   //? Translation
   const { t } = useTranslation();
+
+  //? Scroll page to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

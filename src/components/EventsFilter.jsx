@@ -62,7 +62,7 @@ export const EventsFilter = ({ onSelectFilter, selectedPrice, text }) => {
                           {item}
                         </li>
                       ))
-                    : undefined}
+                    : ""}
                 </ul>
               </div>
             </div>

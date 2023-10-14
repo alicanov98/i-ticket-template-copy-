@@ -15,6 +15,11 @@
         flex: 0 0 31%;
         @include filterController;
 
+        input {
+          cursor: pointer;
+
+        }
+
         select {
           display: none;
         }
@@ -59,9 +64,11 @@
             .filterList {
               height: 300px;
               overflow-x: scroll;
+
               &::-webkit-scrollbar {
                 background-color: transparent;
               }
+
               .filterItem {
                 padding: 12px 28px;
                 font-size: 20px;
@@ -80,12 +87,11 @@
 
         .priceRangeView {
           width: 100%;
-          cursor: text;
+          cursor: pointer;
           font-size: 20px;
           font-weight: 500;
           line-height: 1.2;
           background: #fff;
-          // height: 56px;
           outline: 2px solid transparent;
           outline-offset: 2px;
           border-radius: 30px;
@@ -147,11 +153,14 @@
 
 @media(max-width:1024px) {
   .events-filter {
-margin-bottom: 20px;
+    margin-bottom: 20px;
+
     .eventsFilter {
       padding: 48px 0px 24px;
+
       .row {
         gap: 40px;
+
         .filter {
           max-width: 100%;
           flex: 0 0 100%;

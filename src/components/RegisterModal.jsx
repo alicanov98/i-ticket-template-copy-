@@ -26,12 +26,16 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
 
   //? Yup schema
   const registerSchema = yup.object({
-    name: yup.string().trim().required(t("name_empty")),
-    surname: yup.string().trim().required(t("surname_empty")),
-    email: yup.string().trim().required(t("email_empty")),
+    name: yup.string().trim().min(3, t("Must_characterss")).required(t("name_empty")),
+    surname: yup.string().trim().min(3, t("Must_characterss")).required(t("surname_empty")),
+    email: yup.string().trim().required(t("email_not_empty")).matches(/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, {
+      message: t("email_error"),
+      excludeEmptyString: true,
+    }),
     mobile: yup
       .string()
       .trim()
+      .min(10, t("Must_characters"))
       .required(t("phone_empty"))
       .matches(/^[0-9+]+$/, t("just_numbers")),
     password: yup
@@ -152,7 +156,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                     placeholder={t("first_name")}
                     name="name"
                     {...register("name")}
-                    className={errors.email && "errorInp"}
+                    className={errors.name && "errorInp"}
                   />
                   {errors.name && (
                     <span className="errorMsg">{errors.name.message}</span>
@@ -164,7 +168,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                     placeholder={t("last_name")}
                     name="surname"
                     {...register("surname")}
-                    className={errors.email && "errorInp"}
+                    className={errors.surname && "errorInp"}
                   />
                   {errors.surname && (
                     <span className="errorMsg">{errors.surname.message}</span>
@@ -174,7 +178,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                   <input
                     type="text"
                     name="mobile"
-                    className={errors.email && "errorInp"}
+                    className={errors.mobile && "errorInp"}
                     placeholder={t("mobile")}
                     {...register("mobile")}
                   />
@@ -188,7 +192,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                     name="email"
                     placeholder={t("email")}
                     {...register("email")}
-                    className={errors.email && "erro  rInp"}
+                    className={errors.email && "errorInp"}
                   />
                   {errors.email && (
                     <span className="errorMsg">{errors.email.message}</span>
@@ -196,7 +200,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                 </div>
                 <div className="formGroup">
                   <input
-                    className={errors.email ? "errorInp" : "regInp"}
+                    className={errors.password ? "errorInp" : "regInp"}
                     type="password"
                     name="password"
                     placeholder={t("password")}
@@ -209,7 +213,7 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
                 <div className="formGroup">
                   <input
                     type="password"
-                    className={errors.email ? "errorInp" : "regInp"}
+                    className={errors.confirmPassword ? "errorInp" : "regInp"}
                     name="confirmPassword"
                     placeholder={t("confirm_password")}
                     {...register("confirmPassword")}
