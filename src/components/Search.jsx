@@ -63,7 +63,7 @@ export const Search = ({ setOpen, open }) => {
                     <li className="searchItem" key={searchItem.id}>
                       <div className="cartTicketImg">
                         <img
-                          src={`http://localhost:7000/${searchItem.cardImg}`}
+                          src={`${searchItem.cardImg}`}
                           alt="img"
                         />
                       </div>

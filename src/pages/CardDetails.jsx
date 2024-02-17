@@ -41,6 +41,7 @@ import GoogleMapReact from "google-map-react";
 //? Translation
 import { useTranslation } from "react-i18next";
 
+import data from "../data.json"
 //? Google map
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 const defaultProps = {
@@ -77,25 +78,20 @@ const CardDetails = () => {
   const isFavoriteEvent = favoriteList.find((event) => event.id === id);
 
   //? Get single data from api
+
+  
   useEffect(() => {
-    const getSingleData = async () => {
-      await axios
-        .get(`${process.env.REACT_APP_EVENT_DETAILS}/${id}`)
-        .then((res) => {
-          setCardData(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getSingleData();
+    const eventData = data.data.find((event) => event.id === id);
+    setCardData(eventData);
+
   }, [id]);
+
 
   return (
     <>
       <section className="cardHerro">
         <div className="barnerImg">
-          <img src={`http://localhost:7000/${cardData.bannerImg}`} alt="" />
+          <img src={`/${cardData?.bannerImg}`} alt="" />
         </div>
         <div className="info">
           <div className="container">
@@ -289,7 +285,6 @@ const CardDetails = () => {
                     <Link>{t("age_restrictions")}</Link>
                   </Tab>
                 </TabList>
-
                 <TabPanel className="tabMain">
                   <div className="tabContent">
                     <div className="tabText">
@@ -307,7 +302,7 @@ const CardDetails = () => {
               </Tabs>
             </div>
             <div className="eventDetailImg">
-              <img src={`http://localhost:7000/${cardData.infoImg}`} alt="" />
+              <img src={`/${cardData?.infoImg}`} alt="" />
             </div>
           </div>
           <div className="venue-detail">
@@ -345,8 +340,8 @@ const CardDetails = () => {
                   </div>
                 </div>
                 <img
-                  src={`http://localhost:7000/${cardData.locationImg}`}
-                  alt=""
+                  src={`/${cardData?.locationImg}`}
+                  alt={`/${cardData?.locationImg}`}
                 />
               </div>
             </div>

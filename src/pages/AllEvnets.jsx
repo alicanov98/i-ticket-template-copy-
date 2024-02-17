@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { EventsFilter } from "../components/EventsFilter";
 import { Card } from "../components/Card";
 import Loading from "../components/Loading";
-
+import data from "../data.json"
 const AllEvnets = () => {
   //? Router
   const navigate = useNavigate();
@@ -24,25 +24,10 @@ const AllEvnets = () => {
   //? Get data from api
   useEffect(() => {
     setLoading(true);
-    const getSlide = async () => {
-      await axios
-        .get(process.env.REACT_APP_ALL_EVENTS)
-        .then((res) => {
-          const eventData = res.data;
-          setEventCards(eventData);
-          setEvents(eventData);
-          updateLocation(eventData)
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setLoading(false);
-          navigate("/error");
-        });
-    };
-    setTimeout(() => {
-      getSlide();
-    }, 3000);
+    setEventCards(data.data);
+    setEvents(data.data);
+    updateLocation(data.data)
+    setLoading(false);
   }, [navigate]);
 
   

@@ -32,7 +32,7 @@ export const SwiperHomeHerro = ({ data }) => {
                 <SwiperSlide className="swiperItem" key={item.id}>
                   <Link to={`/card-details/${item.id}`}>
                     <img
-                      src={`http://localhost:7000/${item?.sliderImg}`}
+                      src={`${item?.sliderImg}`}
                       alt={item.name}
                     />
                   </Link>

@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import data from "../../data.json"
 
 //? Helper function to delay the API request
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// console.log(data.data)
 //? Get Events
 export const getEvents = createAsyncThunk("getEvents", async () => {
   await delay(3000);
-  const res = await axios.get(process.env.REACT_APP_ALL_EVENTS);
-  return res.data;
+  return data.data
 });
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   loading: false,
   error: "",
 };
+
 
 const eventSlice = createSlice({
   name: "events",

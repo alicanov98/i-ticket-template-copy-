@@ -13,7 +13,7 @@ export const Card = ({ data }) => {
       <div className="cardImg">
         <div className="image">
           <img
-            src={`http://localhost:7000/${data?.cardImg}`}
+            src={`${process.env.PUBLIC_URL}/${data?.cardImg}`}
             alt={data.eventTitle}
           />
           <span className="btn">

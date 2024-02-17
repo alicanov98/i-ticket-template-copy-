@@ -75,7 +75,7 @@ export const Cart = ({ open, setOpen }) => {
                 <li className="cartTicketItem" key={item.id}>
                   <div className="cartTicketImg">
                     <img
-                      src={`http://localhost:7000/${item.cardImg}`}
+                      src={`/${item?.cardImg}`}
                       alt="img"
                     />
                   </div>
