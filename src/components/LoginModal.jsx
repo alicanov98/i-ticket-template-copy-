@@ -16,8 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 //? Yup
 import { object, string } from "yup";
 
-//? Axios
-import axios from "axios";
+
 
 //? Translation
 import { useTranslation } from "react-i18next";
@@ -26,7 +25,10 @@ import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const LoginModal = ({ open, setOpen }) => {
+const LoginModal = ({ open, setOpen,setUser }) => {
+
+
+  
   //? Translation
   const { t } = useTranslation();
 
@@ -57,44 +59,48 @@ const LoginModal = ({ open, setOpen }) => {
   });
 
   //? Login
-  const submitForm = async (data) => {
-    const body = {
-      email: data.email,
-      password: data.password,
-    };
-    await axios
-      .post("http://localhost:7000/iticket-api/login", body)
-      .then((res) => {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        toast.success(t("provided_match"), {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        setOpen(true);
-        setModal("login");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
-      })
-      .catch((err) => {
-        toast.error(`${t("provided_not_match")}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+  const submitForm = (data) => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    const user = storedUser.find((user) => user.email === data.email && user.password === data.password);
+
+    if (user) {
+      
+    
+      toast.success(t("provided_match"), {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
+  
+
+      setOpen(true);
+      setModal("login");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+      setUser(true);
+    } else {
+    
+      toast.error(`${t("provided_not_match")}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
+  
+  
 
   return (
     <div className={`loginModal ${open && "active"}`}>

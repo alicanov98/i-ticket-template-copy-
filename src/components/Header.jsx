@@ -27,8 +27,7 @@ import { BiLogOutCircle } from "react-icons/bi";
 //? Redux
 import { useSelector } from "react-redux";
 
-//? Axios
-import axios from "axios";
+
 
 //? Translation
 import { useTranslation } from "react-i18next";
@@ -46,7 +45,7 @@ const Header = () => {
   const path = useLocation();
 
   //? Local states
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
   const [openDropList, setOpenDrop] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
@@ -60,6 +59,7 @@ const Header = () => {
   const openDropdown = () => {
     setOpenDrop((openDropList) => !openDropList);
   };
+
 
   const closeDropdown = () => {
     setOpenDrop(false);
@@ -96,31 +96,17 @@ const Header = () => {
 
   //? Login
   useEffect(() => {
-    const checkUser = async () => {
-      let token = JSON.parse(localStorage.getItem("token"));
-      if (token) {
-        const body = {
-          token,
-        };
-        await axios
-          .post(process.env.REACT_APP_CHECK_LOGIN, body)
-          .then((res) => {
-            setUser(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    };
-    checkUser();
-  }, []);
+    console.log(user)
+  }, [setUser, user]);
 
+  const id = JSON.parse(localStorage.getItem("id")) 
+// if(id){setUser(true)}else{setUser(false)}
   //? Logout
   const logOut = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     window.location.reload();
     setTimeout(() => {
-      setUser(null);
+      setUser(false);
     }, 1000);
   };
 
@@ -236,7 +222,7 @@ const Header = () => {
           )}
         </div>
         <MobileMenu open={mobileMenu} setOpen={setMobileMenu} />
-        <LoginModal open={loginModal} setOpen={setLoginModal} />
+        <LoginModal open={loginModal} setOpen={setLoginModal} setUser={setUser}  />
         <Search open={search} setOpen={setSearch} />
       </div>
       <div className="cartBtnFixed">

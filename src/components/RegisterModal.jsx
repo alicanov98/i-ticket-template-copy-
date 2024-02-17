@@ -10,8 +10,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 //? Yup
 import * as yup from "yup";
 
-//? Axios
-import axios from "axios";
 
 //? Translation
 import { useTranslation } from "react-i18next";
@@ -19,6 +17,9 @@ import { useTranslation } from "react-i18next";
 //? React toastify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
+
 
 const RegisterModal = ({ open, setOpen, setModal }) => {
   //? Translation
@@ -64,43 +65,88 @@ const RegisterModal = ({ open, setOpen, setModal }) => {
   //? Register
   const formSubmit = async (data) => {
     const body = {
+      id:data.password,
       name: data.name,
       surname: data.surname,
       email: data.email,
       password: data.password,
+      confirmPassword:data.confirmPassword,
     };
+ 
 
-    await axios
-      .post(process.env.REACT_APP_REGISTER, body)
-      .then((res) => {
-        console.log(res);
-        toast.success(t("successful_registration"), {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(t("something_wrong"), {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+    if (Object.keys(errors).length === 0) {
+      console.log("true:", body);
+    
+ 
+      const user = []
+    user.push(body)
+    
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("id", JSON.stringify(body.id));
+      // Token oluşturma
+
+    
+      toast.success(t("successful_registration"), {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } else {
+      console.log("errors:", body);
+      toast.error(t("something_wrong"), {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    
+
+
+    // await axios
+    //   .post(process.env.REACT_APP_REGISTER, body)
+    //   .then((res) => {
+    //     console.log(res);
+    //     toast.success(t("successful_registration"), {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "colored",
+    //     });
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 2000);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     toast.error(t("something_wrong"), {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "colored",
+    //     });
+    //   });
   };
 
   return (
