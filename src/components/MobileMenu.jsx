@@ -14,7 +14,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import { useTranslation } from "react-i18next";
 
 //? Axios
-import axios from "axios";
+import data from "../data.json"
 
 const MobileMenu = ({ open, setOpen }) => {
   //? Translation
@@ -40,17 +40,10 @@ const MobileMenu = ({ open, setOpen }) => {
 
   //? Filter data
   useEffect(() => {
-    const filterData = async () => {
-      await axios
-        .get(process.env.REACT_APP_ALL_EVENTS)
-        .then((res) => {
-          setSearchEvents(res.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    filterData();
+    
+          setSearchEvents(data.data);
+ 
+
   }, []);
 
   //? Event search
